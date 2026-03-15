@@ -4,8 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "#home", label: "Начало" },
+  { href: "#about", label: "За нас" },
   { href: "#services", label: "Услуги" },
   { href: "#products", label: "Продукти" },
+  { href: "#calculator", label: "Калкулатор" },
   { href: "#faq", label: "ЧЗВ" },
 ];
 
