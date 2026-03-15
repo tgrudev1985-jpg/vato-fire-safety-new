@@ -27,7 +27,7 @@ const ContactSection = () => {
               <span className="text-primary">с професионалистите</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-12">
-              ВАТО – Пожарна Безопасност ЕООД – Вашият надежден партньор в сигурността.
+              ВАТО Пожарна Безопасност ООД (ЕИК:202475567) – Вашият надежден партньор в сигурността.
             </p>
 
             <div className="space-y-8">
