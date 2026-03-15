@@ -44,10 +44,10 @@ const HeroSection = () => (
             <Send className="h-5 w-5" /> Поискай оферта
           </a>
           <a
-            href="tel:+359888000000"
+            href="tel:+359898701900"
             className="inline-flex items-center gap-2 border-2 border-primary-foreground/50 px-8 py-4 rounded-xl font-bold hover:bg-primary-foreground hover:text-primary transition"
           >
-            <Phone className="h-5 w-5" /> +359 888 000 000
+            <Phone className="h-5 w-5" /> 0898 701 900
           </a>
         </div>
       </motion.div>

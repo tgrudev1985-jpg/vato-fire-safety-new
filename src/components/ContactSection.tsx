@@ -27,13 +27,40 @@ const ContactSection = () => {
               <span className="text-primary">с професионалистите</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-12">
-              ВАТО Пожарна Безопасност – Вашият надежден партньор в сигурността от 2010г.
+              ВАТО – Пожарна Безопасност ЕООД – Вашият надежден партньор в сигурността.
             </p>
 
             <div className="space-y-8">
-              <ContactInfo icon={Phone} label="Телефон" value="+359 888 000 000" />
-              <ContactInfo icon={Mail} label="Имейл" value="office@vato-fire.bg" />
-              <ContactInfo icon={MapPin} label="Адрес" value='гр. София, Бул. "Сигурност" 10 (Складова база 4)' />
+              <div className="flex items-start gap-6">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm uppercase font-bold text-muted-foreground">Телефон</p>
+                  <a href="tel:+359898701900" className="text-2xl font-bold text-foreground block hover:text-primary transition-colors">
+                    0898 701 900
+                  </a>
+                  <a href="tel:+359896741869" className="text-lg font-semibold text-muted-foreground block hover:text-primary transition-colors">
+                    0896 741 869
+                  </a>
+                </div>
+              </div>
+              <ContactInfo icon={Mail} label="Имейл" value="vato2009@abv.bg" href="mailto:vato2009@abv.bg" />
+              <ContactInfo icon={MapPin} label="Адрес" value="гр. Варна, ж.к. Възраждане 2, с.о. Кочмар, бл. 264" />
+            </div>
+
+            {/* Google Maps embed */}
+            <div className="mt-10 rounded-2xl overflow-hidden border border-border shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2907.5!2d27.8873338!3d43.2370432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a455751c2d0d41%3A0x22951dd09e0fa20c!2z0JLQsNGC0L4t0J_QvtC20LDRgNC90LAg0LHQtdC30L7Qv9Cw0YHQvdC-0YHRgiIgRU9P0JQ!5e0!3m2!1sbg!2sbg!4v1710000000000!5m2!1sbg!2sbg"
+                width="100%"
+                height="250"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="ВАТО Пожарна Безопасност - Google Maps"
+              />
             </div>
           </motion.div>
 
@@ -108,10 +135,12 @@ const ContactInfo = ({
   icon: Icon,
   label,
   value,
+  href,
 }: {
   icon: typeof Phone;
   label: string;
   value: string;
+  href?: string;
 }) => (
   <div className="flex items-start gap-6">
     <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
@@ -119,7 +148,13 @@ const ContactInfo = ({
     </div>
     <div>
       <p className="text-sm uppercase font-bold text-muted-foreground">{label}</p>
-      <p className="text-2xl font-bold text-foreground">{value}</p>
+      {href ? (
+        <a href={href} className="text-2xl font-bold text-foreground hover:text-primary transition-colors">
+          {value}
+        </a>
+      ) : (
+        <p className="text-2xl font-bold text-foreground">{value}</p>
+      )}
     </div>
   </div>
 );
