@@ -18,8 +18,8 @@ const Navbar = () => {
         <div className="flex justify-between h-20 items-center">
           <a href="#home" className="flex items-center gap-2">
             <Flame className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold tracking-tighter text-foreground uppercase">
-              ВАТО <span className="text-primary">Пожарна</span>
+            <span className="text-xl font-bold tracking-tighter text-foreground uppercase">
+              ВАТО <span className="text-primary">Пожарна Безопасност</span> ООД
             </span>
           </a>
 
