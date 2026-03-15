@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Flame, Zap, Square, HeartPulse } from "lucide-react";
+import { Flame, Zap, Square, HeartPulse, AlertTriangle } from "lucide-react";
 
 const products = [
   {
