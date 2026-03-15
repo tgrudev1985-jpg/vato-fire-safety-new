@@ -20,7 +20,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="border-t border-primary-foreground/5 mt-12 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-        <p>© 2026 ВАТО – Пожарна Безопасност ЕООД. Всички права запазени.</p>
+        <p>© 2026 ВАТО Пожарна Безопасност ООД (ЕИК:202475567). Всички права запазени.</p>
         <div className="flex gap-8">
           <a href="#" className="hover:text-primary-foreground transition-colors">
             Политика за поверителност

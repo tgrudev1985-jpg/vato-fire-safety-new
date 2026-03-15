@@ -27,7 +27,7 @@ const ContactSection = () => {
               <span className="text-primary">с професионалистите</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-12">
-              ВАТО – Пожарна Безопасност ЕООД – Вашият надежден партньор в сигурността.
+              ВАТО Пожарна Безопасност ООД (ЕИК:202475567) – Вашият надежден партньор в сигурността.
             </p>
 
             <div className="space-y-8">
@@ -46,7 +46,7 @@ const ContactSection = () => {
                 </div>
               </div>
               <ContactInfo icon={Mail} label="Имейл" value="vato2009@abv.bg" href="mailto:vato2009@abv.bg" />
-              <ContactInfo icon={MapPin} label="Адрес" value="гр. Варна, ж.к. Възраждане 2, с.о. Кочмар, бл. 264" />
+              <ContactInfo icon={MapPin} label="Адрес" value="гр. Варна, бул. 3 март, ж.к. Възраждане 2, с.о. Кочмар, бл. 264" />
             </div>
 
             {/* Google Maps embed */}
