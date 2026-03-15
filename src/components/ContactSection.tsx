@@ -22,12 +22,12 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl font-extrabold mb-8 italic uppercase tracking-tighter text-foreground">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-8 italic uppercase tracking-tighter text-foreground relative z-10">
               Свържете се <br />
               <span className="text-primary">с професионалистите</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-12">
-              ВАТО Пожарна Безопасност ООД (ЕИК:202475567) – Вашият надежден партньор в сигурността.
+              ВАТО Пожарна Безопасност ООД – Вашият надежден партньор в сигурността.
             </p>
 
             <div className="space-y-8">

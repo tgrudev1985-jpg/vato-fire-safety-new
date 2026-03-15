@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Flame, Zap, Square, HeartPulse } from "lucide-react";
+import { Flame, Zap, Square, HeartPulse, AlertTriangle } from "lucide-react";
 
 const products = [
   {
@@ -26,6 +26,18 @@ const products = [
     iconColor: "text-success",
     title: "Аптечка (Първа помощ)",
     desc: "Комплектована според изискванията на МЗ.",
+  },
+  {
+    icon: Flame,
+    iconColor: "text-yellow-500",
+    title: "Пожарогасител клас F",
+    desc: "Специализиран за кухненски пожари от запалени мазнини и масла.",
+  },
+  {
+    icon: AlertTriangle,
+    iconColor: "text-orange-500",
+    title: "Авто триъгълник",
+    desc: "Светлоотразителен триъгълник за аварийно сигнализиране на пътя.",
   },
 ];
 
