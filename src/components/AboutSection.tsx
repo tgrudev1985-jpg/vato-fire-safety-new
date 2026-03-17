@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
-import { Shield, Award, Users, MapPin } from "lucide-react";
+import { Shield, Users, MapPin } from "lucide-react";
 
 const stats = [
   { icon: Shield, value: "15+", label: "Години опит" },
-  { icon: Award, value: "ISO", label: "Сертифицирани" },
   { icon: Users, value: "500+", label: "Доволни клиенти" },
   { icon: MapPin, value: "Варна", label: "Основна база" },
 ];
