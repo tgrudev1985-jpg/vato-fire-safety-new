@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Award, Users, MapPin } from "lucide-react";
+import { Shield, Users, MapPin } from "lucide-react";
 
 const stats = [
   { icon: Shield, value: "15+", label: "Години опит" },
