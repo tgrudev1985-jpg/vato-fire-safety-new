@@ -1,358 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calculator, Info, ChevronDown } from "lucide-react";
-
-interface ObjectType {
-  id: string;
-  label: string;
-  group: string;
-  areaUnit: string; // "m2", "етаж", "помещение", etc.
-  areaPer: number; // площ за единица (кв.м), 0 = не е по площ
-  extinguishers: {
-    type: string;
-    count: number;
-  }[];
-}
-
-const objectTypes: ObjectType[] = [
-  // ГРУПА II - ОБЩЕСТВЕНИ СГРАДИ
-  {
-    id: "admin_corridor",
-    label: "Административна сграда (коридорна система)",
-    group: "Обществени сгради",
-    areaUnit: "на 60 м коридор",
-    areaPer: 60,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "admin_non_corridor",
-    label: "Административна сграда (некоридорна система)",
-    group: "Обществени сгради",
-    areaUnit: "на етаж",
-    areaPer: 0,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "hotel_corridor",
-    label: "Хотел / Мотел / Хостел (коридорна система)",
-    group: "Обществени сгради",
-    areaUnit: "на 60 м коридор",
-    areaPer: 60,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "hotel_non_corridor",
-    label: "Хотел / Мотел / Хостел (некоридорна система)",
-    group: "Обществени сгради",
-    areaUnit: "на етаж",
-    areaPer: 0,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "bookstore",
-    label: "Книжарница",
-    group: "Обществени сгради",
-    areaUnit: "м²",
-    areaPer: 100,
-    extinguishers: [
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "shop_textile",
-    label: "Магазин за текстил / обувки / галантерия",
-    group: "Обществени сгради",
-    areaUnit: "м²",
-    areaPer: 100,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "shop_paints",
-    label: "Магазин за бои / лакове / разтворители",
-    group: "Обществени сгради",
-    areaUnit: "м²",
-    areaPer: 100,
-    extinguishers: [
-      { type: "Прахов ABC 12 кг", count: 1 },
-      { type: "Воден 9 л (клас B)", count: 1 },
-    ],
-  },
-  {
-    id: "bakery_cafe",
-    label: "Сладкарница / Закусвалня",
-    group: "Обществени сгради",
-    areaUnit: "м²",
-    areaPer: 150,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "pharmacy",
-    label: "Аптека",
-    group: "Обществени сгради",
-    areaUnit: "м²",
-    areaPer: 150,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "kindergarten",
-    label: "Детско заведение",
-    group: "Обществени сгради",
-    areaUnit: "на етаж",
-    areaPer: 0,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "school_corridor",
-    label: "Учебно заведение (коридорна система)",
-    group: "Обществени сгради",
-    areaUnit: "на 60 м коридор",
-    areaPer: 60,
-    extinguishers: [
-      { type: "Прахов 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "library",
-    label: "Библиотека / Читалня",
-    group: "Обществени сгради",
-    areaUnit: "м²",
-    areaPer: 150,
-    extinguishers: [
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "gallery_museum",
-    label: "Галерия / Музей / Изложбена зала",
-    group: "Обществени сгради",
-    areaUnit: "м²",
-    areaPer: 150,
-    extinguishers: [
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "disco_casino",
-    label: "Дискотека / Казино",
-    group: "Обществени сгради",
-    areaUnit: "м²",
-    areaPer: 400,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "service_corridor",
-    label: "Сграда за услуги (коридорна система)",
-    group: "Обществени сгради",
-    areaUnit: "на 60 м коридор",
-    areaPer: 60,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "dormitory",
-    label: "Общежитие / Спален корпус",
-    group: "Обществени сгради",
-    areaUnit: "на етаж",
-    areaPer: 0,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  // ГРУПА I - ПРОИЗВОДСТВА
-  {
-    id: "woodworking",
-    label: "Дървообработване / Мебелно производство",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 150,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "painting_room",
-    label: "Бояджийно / Лакозаливно помещение",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 150,
-    extinguishers: [
-      { type: "Прахов BC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас B)", count: 1 },
-    ],
-  },
-  {
-    id: "chemical",
-    label: "Химическо производство (ЛЗТ и ГТ)",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 300,
-    extinguishers: [
-      { type: "Прахов BC 12 кг", count: 2 },
-      { type: "Воден 9 л (клас B)", count: 1 },
-      { type: "Возим CO₂ 30 кг", count: 1 },
-    ],
-  },
-  {
-    id: "auto_service",
-    label: "Автосервиз / Ремонтна база",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 300,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 2 },
-      { type: "Воден 9 л (клас B)", count: 1 },
-      { type: "Возим прахов 50 кг", count: 1 },
-    ],
-  },
-  {
-    id: "welding",
-    label: "Заваръчно производство",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 300,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 2 },
-      { type: "Воден 9 л (клас B)", count: 1 },
-      { type: "Возим прахов 50 кг", count: 1 },
-    ],
-  },
-  {
-    id: "food_production",
-    label: "Производство на хранителни продукти",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 300,
-    extinguishers: [
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "textile",
-    label: "Текстилно предприятие / Шивалня",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 500,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 2 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "electronics",
-    label: "Електронни / Електроремонтни помещения",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 100,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-    ],
-  },
-  {
-    id: "cold_storage",
-    label: "Хладилни камери",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 200,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 2 },
-      { type: "Воден 9 л (клас A)", count: 2 },
-    ],
-  },
-  {
-    id: "furgon",
-    label: "Фургон / Офис-контейнер",
-    group: "Производства",
-    areaUnit: "на фургон",
-    areaPer: 0,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-    ],
-  },
-  {
-    id: "lab_flammable",
-    label: "Лаборатория (с ГТ и ЛЗТ)",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 100,
-    extinguishers: [
-      { type: "Прахов BC 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас B)", count: 1 },
-      { type: "Возим прахов 50 кг", count: 1 },
-    ],
-  },
-  {
-    id: "lab_other",
-    label: "Лаборатория (други цели)",
-    group: "Производства",
-    areaUnit: "помещение до 100 м²",
-    areaPer: 0,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Возим прахов 50 кг", count: 1 },
-    ],
-  },
-  {
-    id: "construction_site",
-    label: "Строителна площадка",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 500,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-];
-
-// Group the object types
-const groups = [...new Set(objectTypes.map((t) => t.group))];
+import { objectTypes, groups } from "@/data/objectTypes";
 
 interface CalculationResult {
   items: { type: string; count: number }[];
@@ -364,13 +13,19 @@ interface CalculationResult {
 const CalculatorSection = () => {
   const [selectedId, setSelectedId] = useState("");
   const [area, setArea] = useState("");
-  const [units, setUnits] = useState(""); // floors or length for non-area types
+  const [units, setUnits] = useState("");
   const [result, setResult] = useState<CalculationResult | null>(null);
 
   const selectedObj = objectTypes.find((t) => t.id === selectedId);
   const needsArea = selectedObj ? selectedObj.areaPer > 0 : false;
-  const needsUnits = selectedObj ? selectedObj.areaPer === 0 && selectedObj.areaUnit !== "на фургон" && selectedObj.areaUnit !== "помещение до 100 м²" : false;
-  const isFixedUnit = selectedObj ? selectedObj.areaPer === 0 && !needsUnits : false;
+  const isFixedUnit = selectedObj
+    ? selectedObj.areaPer === 0 &&
+      !["на етаж", "на камера"].some((u) => selectedObj.areaUnit.includes(u)) &&
+      !selectedObj.areaUnit.includes("коридор")
+    : false;
+  const needsUnits = selectedObj
+    ? selectedObj.areaPer === 0 && !isFixedUnit
+    : false;
 
   const calculate = () => {
     if (!selectedObj) return;
@@ -399,9 +54,12 @@ const CalculatorSection = () => {
 
   const getInputLabel = () => {
     if (!selectedObj) return "";
-    if (needsArea) return `Площ на обекта (кв.м.) — изчислява се на всеки ${selectedObj.areaPer} м²`;
+    if (needsArea)
+      return `Площ на обекта (кв.м.) — изчислява се на всеки ${selectedObj.areaPer} м²`;
     if (selectedObj.areaUnit.includes("етаж")) return "Брой етажи";
-    if (selectedObj.areaUnit.includes("коридор")) return "Дължина на коридора (м)";
+    if (selectedObj.areaUnit.includes("коридор"))
+      return "Дължина на коридора (м)";
+    if (selectedObj.areaUnit.includes("камера")) return "Брой камери";
     return "";
   };
 
@@ -421,8 +79,13 @@ const CalculatorSection = () => {
           <div className="w-24 h-1.5 bg-primary mx-auto rounded-full mb-4" />
           <p className="text-muted-foreground">
             Изчислете необходимите пожаротехнически средства по{" "}
-            <span className="font-semibold text-foreground">Приложение 2</span> към{" "}
-            <span className="font-semibold text-foreground">Наредба № Iз-1971</span>
+            <span className="font-semibold text-foreground">
+              Приложение 2
+            </span>{" "}
+            към{" "}
+            <span className="font-semibold text-foreground">
+              Наредба № Iз-1971
+            </span>
           </p>
         </motion.div>
 
@@ -509,7 +172,10 @@ const CalculatorSection = () => {
             {selectedObj && isFixedUnit && (
               <div className="p-4 bg-muted/50 rounded-xl text-sm text-muted-foreground">
                 <Info className="inline h-4 w-4 mr-1" />
-                Изискванията са фиксирани — <strong className="text-foreground">{selectedObj.areaUnit}</strong>
+                Изискванията са фиксирани —{" "}
+                <strong className="text-foreground">
+                  {selectedObj.areaUnit}
+                </strong>
               </div>
             )}
 
@@ -532,7 +198,9 @@ const CalculatorSection = () => {
               animate={{ opacity: 1, y: 0 }}
               className="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-2xl"
             >
-              <h3 className="text-lg font-bold text-foreground mb-1">Резултат:</h3>
+              <h3 className="text-lg font-bold text-foreground mb-1">
+                Резултат:
+              </h3>
               <p className="text-sm text-muted-foreground mb-4">
                 {result.objectLabel} — {result.areaUnit}
                 {result.multiplier > 1 && ` × ${result.multiplier}`}
@@ -544,8 +212,12 @@ const CalculatorSection = () => {
                     key={i}
                     className="flex items-center justify-between p-3 bg-background rounded-xl border border-border"
                   >
-                    <span className="text-foreground font-medium text-sm">{item.type}</span>
-                    <span className="text-xl font-bold text-primary">{item.count} бр.</span>
+                    <span className="text-foreground font-medium text-sm">
+                      {item.type}
+                    </span>
+                    <span className="text-xl font-bold text-primary">
+                      {item.count} бр.
+                    </span>
                   </div>
                 ))}
               </div>
@@ -553,8 +225,11 @@ const CalculatorSection = () => {
               <div className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">
                 <Info className="h-4 w-4 shrink-0 mt-0.5" />
                 <span>
-                  Данните са съгласно Приложение 2 към Наредба № Iз-1971 от 2009 г. (обн. ДВ бр. 96/2009 г., посл. изм. и доп. ДВ бр. 91/2024 г., доп. ДВ бр. 46 от 6.VI.2025 г.). 
-                  Изчислението е ориентировъчно. За точна оценка, свържете се с нас за професионален одит.
+                  Данните са съгласно Приложение 2 към Наредба № Iз-1971 от
+                  2009 г. (обн. ДВ бр. 96/2009 г., посл. изм. и доп. ДВ бр.
+                  91/2024 г., доп. ДВ бр. 46 от 6.VI.2025 г.). Изчислението е
+                  ориентировъчно. За точна оценка, свържете се с нас за
+                  професионален одит.
                 </span>
               </div>
               <a
