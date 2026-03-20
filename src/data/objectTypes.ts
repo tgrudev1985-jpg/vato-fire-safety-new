@@ -16,10 +16,9 @@ export const objectTypes: ObjectType[] = [
   //            СЪОРЪЖЕНИЯ, ИНСТАЛАЦИИ И СВОБОДНА ДВОРНА ПЛОЩ
   // ═══════════════════════════════════════════════════════════════
 
-  // --- 1. Първоначална преработка на дървесина ---
   {
-    id: "timber_primary",
-    label: "1. Предприятие за първоначална преработка на дървесина, разфасовъчни и др. /Ф5.1/",
+    id: "i1",
+    label: "I-1. Предприятие за първоначална преработка на дървесина, разфасовъчни и др. /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 150,
@@ -28,10 +27,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 2. Дървообработващи производства ---
   {
-    id: "woodworking",
-    label: "2. Дървообработващо производство, мебелно, тапицерско и др. (с лепила, лакове) /Ф5.1/",
+    id: "i2",
+    label: "I-2. Дървообработващо производство, мебелно, тапицерско и др. (с лепила, лакове) /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 150,
@@ -40,10 +38,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 3. Сушилни за дървен материал (ел. енергия) ---
   {
-    id: "dryer_electric",
-    label: "3. Сушилня за дървен материал (ел. енергия) — до 2 камери /Ф5.1/",
+    id: "i3a",
+    label: "I-3а. Сушилня за дървен материал (ел. енергия) — до 2 камери /Ф5.1/",
     group: "Производства",
     areaUnit: "на до 2 камери",
     areaPer: 0,
@@ -53,8 +50,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "dryer_electric_multi",
-    label: "3. Сушилня за дървен материал (ел. енергия) — за всяка камера над 2 /Ф5.1/",
+    id: "i3b",
+    label: "I-3б. Сушилня за дървен материал (ел. енергия) — за всяка камера над 2 /Ф5.1/",
     group: "Производства",
     areaUnit: "на камера",
     areaPer: 0,
@@ -63,10 +60,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 4. Сушилни за дървен материал (газ, течни/твърди горива) ---
   {
-    id: "dryer_fuel",
-    label: "4. Сушилня за дървен материал (газ, течни/твърди горива) — до 2 камери /Ф5.1/",
+    id: "i4a",
+    label: "I-4а. Сушилня за дървен материал (газ, течни/твърди горива) — до 2 камери /Ф5.1/",
     group: "Производства",
     areaUnit: "на до 2 камери",
     areaPer: 0,
@@ -76,8 +72,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "dryer_fuel_multi",
-    label: "4. Сушилня за дървен материал (газ, течни/твърди горива) — за всяка камера над 2 /Ф5.1/",
+    id: "i4b",
+    label: "I-4б. Сушилня за дървен материал (газ, течни/твърди горива) — за всяка камера над 2 /Ф5.1/",
     group: "Производства",
     areaUnit: "на камера",
     areaPer: 0,
@@ -86,10 +82,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 5. Шлифоване и полиране на дървесина ---
   {
-    id: "wood_sanding",
-    label: "5. Помещения за шлифоване и полиране на изделия от дървесина /Ф5.1/",
+    id: "i5",
+    label: "I-5. Помещения за шлифоване и полиране на изделия от дървесина /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 150,
@@ -98,10 +93,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 6. Бояджийни, лакозаливни ---
   {
-    id: "painting_room",
-    label: "6. Бояджийни, лакозаливни и др. помещения за горими материали /Ф5.1/",
+    id: "i6",
+    label: "I-6. Бояджийни, лакозаливни и др. помещения за горими материали /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 150,
@@ -110,10 +104,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас B)", count: 1 },
     ],
   },
-  // --- 7. Горими изделия и амбалаж ---
   {
-    id: "combustible_products",
-    label: "7. Помещения за изготвяне и ремонт на горими изделия и амбалаж /Ф5.1/",
+    id: "i7",
+    label: "I-7. Помещения за изготвяне и ремонт на горими изделия и амбалаж /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 150,
@@ -122,10 +115,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 8. Изделия от пластмаси, полиетилен, полиуретан ---
   {
-    id: "plastics_production",
-    label: "8. Помещения за изделия от пластмаси, полиетилен, полиуретан и др. /Ф5.1/",
+    id: "i8",
+    label: "I-8. Помещения за изделия от пластмаси, полиетилен, полиуретан и др. /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 150,
@@ -134,10 +126,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас B)", count: 1 },
     ],
   },
-  // --- 9. Химически производства (ЛЗТ и ГТ) ---
   {
-    id: "chemical",
-    label: "9. Химическо производство (ЛЗТ и ГТ) /Ф5.1/",
+    id: "i9",
+    label: "I-9. Химическо производство (ЛЗТ и ГТ) /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 300,
@@ -148,10 +139,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим прахов BC 50 кг (на помещение)", count: 1 },
     ],
   },
-  // --- 10. Помпени станции за ЛЗТ и ГТ ---
   {
-    id: "pump_station_flammable",
-    label: "10. Помпени станции за ЛЗТ и ГТ /Ф5.1/",
+    id: "i10",
+    label: "I-10. Помпени станции за ЛЗТ и ГТ /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 300,
@@ -162,10 +152,21 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим прахов BC 50 кг (на помещение)", count: 1 },
     ],
   },
-  // --- 12. Помещения с горивни уредби ---
   {
-    id: "fuel_device_liquid",
-    label: "12а. Помещения с горивни уредби — на течно гориво /Ф5.1/",
+    id: "i11",
+    label: "I-11. Екстракционни, ректификационни и реакторни помещения /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на съоръжение",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+      { type: "Возим прахов BC 50 кг (на помещение)", count: 1 },
+    ],
+  },
+  {
+    id: "i12a",
+    label: "I-12а. Помещения с горивни уредби — на течно гориво /Ф5.1/",
     group: "Производства",
     areaUnit: "на уредба",
     areaPer: 0,
@@ -176,20 +177,122 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "fuel_device_gas",
-    label: "12б. Помещения с горивни уредби — на газообразно гориво /Ф5.1/",
+    id: "i12b",
+    label: "I-12б. Помещения с горивни уредби — на газообразно гориво /Ф5.1/",
     group: "Производства",
     areaUnit: "на уредба",
     areaPer: 0,
     extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i13",
+    label: "I-13. Компресорни за горими газове /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на два компресора",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 2 },
       { type: "Прахов BC 12 кг", count: 1 },
       { type: "Возим CO₂ 30 кг", count: 1 },
     ],
   },
-  // --- 26. Автомобилни, ремонтни, автосервизи ---
   {
-    id: "auto_service",
-    label: "26. Автосервиз / Ремонтна база / Автобаза /Ф5.1/",
+    id: "i14",
+    label: "I-14. Кислородни станции /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i15",
+    label: "I-15. Ацетиленови станции /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 100,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i16",
+    label: "I-16. Водородни станции /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 100,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i17",
+    label: "I-17. Помещения за приготвяне на бои, лакове, лепила и др. с ЛЗТ и ГТ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i18",
+    label: "I-18. Сушилни към помещения за боядисване /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на съоръжение",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i19",
+    label: "I-19. Участъци за промивка, обезмасляване на изделия с ЛЗТ и ГТ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i20",
+    label: "I-20. Помещения за металопокрития с ЛЗТ и ГТ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i21",
+    label: "I-21. Помещения за пропитка със състави от ЛЗТ и ГТ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i22",
+    label: "I-22. Помещения за консервация с ЛЗТ и ГТ /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 300,
@@ -199,10 +302,67 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим CO₂ 30 кг", count: 1 },
     ],
   },
-  // --- 28. Помещения за електронни елементи ---
   {
-    id: "electronics",
-    label: "28. Помещения за производство и ремонт на електронни елементи /Ф5.1/",
+    id: "i23",
+    label: "I-23. Производства с метален натрий, алуминий и др. под. /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов D 6 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i24",
+    label: "I-24. Бояджийни в металообработващи обекти /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов D 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "i25",
+    label: "I-25. Боядисване по конвейерен метод /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на всеки 15 м от конвейера",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов D 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Возим прахов D 50 кг (на помещение)", count: 1 },
+    ],
+  },
+  {
+    id: "i26",
+    label: "I-26. Автосервиз / Ремонтна база / Автобаза /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i27",
+    label: "I-27. Монтажни и ремонтни сгради за самолети и хеликоптери /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 2 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+      { type: "Прахов ABC 6 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i28",
+    label: "I-28. Помещения за производство и ремонт на електронни елементи /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 150,
@@ -210,10 +370,66 @@ export const objectTypes: ObjectType[] = [
       { type: "CO₂ 5 кг", count: 2 },
     ],
   },
-  // --- 32. Заваръчни производства ---
   {
-    id: "welding",
-    label: "32. Заваръчно производство /Ф5.1/",
+    id: "i29a",
+    label: "I-29а. Ковашки и пресови производства — на твърдо гориво /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 1000,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "i29b",
+    label: "I-29б. Ковашки и пресови производства — на течно гориво /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на инсталация",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i29c",
+    label: "I-29в. Ковашки и пресови производства — на горим газ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на инсталация",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i30",
+    label: "I-30. Прокатни производства /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 1000,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i31",
+    label: "I-31. Леярски производства /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 1000,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i32",
+    label: "I-32. Заваръчни производства /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 300,
@@ -223,10 +439,78 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим CO₂ 30 кг", count: 1 },
     ],
   },
-  // --- 37. Механични цехове (студена обработка) ---
   {
-    id: "metalworking",
-    label: "37. Механични цехове за студена обработка, механо-монтажни и др. /Ф5.1/",
+    id: "i33",
+    label: "I-33. Постоянни места за извършване на огневи работи /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на обособено място",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i34",
+    label: "I-34. Временни места за извършване на огневи работи /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на обособено място",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i35a",
+    label: "I-35а. Термични производства — на твърдо гориво /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i35b",
+    label: "I-35б. Термични производства — на течно гориво /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на инсталация",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i35c",
+    label: "I-35в. Термични производства — на горим газ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на инсталация",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 2 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i36",
+    label: "I-36. Помещения за байцване, шлифоване и фосфатиране /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+    ],
+  },
+  {
+    id: "i37",
+    label: "I-37. Механични цехове за студена обработка, механо-монтажни и др. /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 300,
@@ -235,10 +519,54 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас B)", count: 1 },
     ],
   },
-  // --- 42. Електроремонтни помещения ---
   {
-    id: "electrorepair",
-    label: "42. Електроремонтни помещения /Ф5.1/",
+    id: "i38",
+    label: "I-38. Конвейери за транспортиране на горими материали /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на всеки 15 м",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i39",
+    label: "I-39. Конвейери за транспортиране на пакетирани ЛЗТ и ГТ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на всеки 15 м",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i40",
+    label: "I-40. Монтажни помещения с наличие на горими материали /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i41",
+    label: "I-41. Вагоностроителни и ремонтни производства, вагонни депа /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+    ],
+  },
+  {
+    id: "i42",
+    label: "I-42. Електроремонтни помещения /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 100,
@@ -247,10 +575,9 @@ export const objectTypes: ObjectType[] = [
       { type: "CO₂ 5 кг", count: 1 },
     ],
   },
-  // --- 44. КИП, командни пултове ---
   {
-    id: "control_room",
-    label: "44. Помещения за КИП, командни пултове /Ф5.1/",
+    id: "i43",
+    label: "I-43. Помещения с маслени трансформатори, токоизправители и др. под. /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 100,
@@ -258,10 +585,74 @@ export const objectTypes: ObjectType[] = [
       { type: "CO₂ 5 кг", count: 2 },
     ],
   },
-  // --- 48. Текстилни предприятия ---
   {
-    id: "textile_sewing",
-    label: "48а. Текстилно предприятие — шивачни /Ф5.1/",
+    id: "i44",
+    label: "I-44. Помещения за КИП, командни пултове /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 100,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 2 },
+    ],
+  },
+  {
+    id: "i45",
+    label: "I-45. Производство на стоманобетонни елементи; бетонови възли /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 1500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i46a",
+    label: "I-46а. Целулоза — дървораздробяване /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на машина",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i46b",
+    label: "I-46б. Целулоза — обработка (без мокрите процеси) /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i47a",
+    label: "I-47а. Производство на хартия — машинни зали /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i47b",
+    label: "I-47б. Производство на хартия — помещения за оформяне /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i48a",
+    label: "I-48а. Текстилно предприятие — шивачни /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 500,
@@ -272,8 +663,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "textile_spinning",
-    label: "48б. Текстилно предприятие — предачни /Ф5.1/",
+    id: "i48b",
+    label: "I-48б. Текстилно предприятие — предачни /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 500,
@@ -284,20 +675,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "textile_drying",
-    label: "48в. Текстилно предприятие — сушилни /Ф5.1/",
-    group: "Производства",
-    areaUnit: "м²",
-    areaPer: 500,
-    extinguishers: [
-      { type: "Прахов ABC 12 кг", count: 1 },
-      { type: "CO₂ 5 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
-    ],
-  },
-  {
-    id: "textile_dyeing",
-    label: "48г. Текстилно предприятие — багрилни /Ф5.1/",
+    id: "i48c",
+    label: "I-48в. Текстилно предприятие — сушилни /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 500,
@@ -307,10 +686,174 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 55. Котелни ---
   {
-    id: "boiler_solid",
-    label: "55а. Котелно — на твърдо гориво /Ф5.1/",
+    id: "i48d",
+    label: "I-48г. Текстилно предприятие — багрилни /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i49a",
+    label: "I-49а. Стъклопроизводство /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 1000,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 3 },
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i49b",
+    label: "I-49б. Стъклоопаковка /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "i49c",
+    label: "I-49в. Порцеланови изделия и опаковка /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i50",
+    label: "I-50. Керамични предприятия, на твърдо гориво /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 1000,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i51a",
+    label: "I-51а. Керамични предприятия — на течно гориво /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на пещ",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+    ],
+  },
+  {
+    id: "i51b",
+    label: "I-51б. Керамични предприятия — на газ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на пещ",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "i52a",
+    label: "I-52а. Циментово производство — на течно гориво /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+    ],
+  },
+  {
+    id: "i52b",
+    label: "I-52б. Циментово производство — на горим газ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 3 },
+    ],
+  },
+  {
+    id: "i53a",
+    label: "I-53а. Обогатителни производства — надземни сгради /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 1000,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i53b",
+    label: "I-53б. Обогатителни — сортировка и дробилни /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i53c",
+    label: "I-53в. Обогатителни — сушилни отделения /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i53d",
+    label: "I-53г. Обогатителни — флотационни отделения /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i53e",
+    label: "I-53д. Обогатителни — ремонт на бензинови и акумулаторни лампи /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+    ],
+  },
+  {
+    id: "i54",
+    label: "I-54. Брикетни производства /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "i55a",
+    label: "I-55а. Котелно — на твърдо гориво /Ф5.1/",
     group: "Производства",
     areaUnit: "на котел",
     areaPer: 0,
@@ -320,8 +863,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "boiler_liquid",
-    label: "55б. Котелно — на течно гориво /Ф5.1/",
+    id: "i55b",
+    label: "I-55б. Котелно — на течно гориво /Ф5.1/",
     group: "Производства",
     areaUnit: "на котел",
     areaPer: 0,
@@ -332,8 +875,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "boiler_gas",
-    label: "55в. Котелно — на газообразно гориво /Ф5.1/",
+    id: "i55c",
+    label: "I-55в. Котелно — на газообразно гориво /Ф5.1/",
     group: "Производства",
     areaUnit: "на котел",
     areaPer: 0,
@@ -343,10 +886,19 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим CO₂ 30 кг", count: 1 },
     ],
   },
-  // --- 57. Помещения за вентилация и отопление ---
   {
-    id: "ventilation_room",
-    label: "57. Помещения за вентилация и отопление /Ф5.1/",
+    id: "i56",
+    label: "I-56. Естакади за подаване на въглища /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на 100 м",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "i57",
+    label: "I-57. Помещения за вентилация и отопление /Ф5.1/",
     group: "Производства",
     areaUnit: "на помещение",
     areaPer: 0,
@@ -354,10 +906,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Прахов ABC 6 кг", count: 1 },
     ],
   },
-  // --- 58. Трафопостове ---
   {
-    id: "transformer_standalone",
-    label: "58а. Трафопост — комплектен и отделно стоящ /Ф5.1/",
+    id: "i58a",
+    label: "I-58а. Трафопост — комплектен и отделно стоящ /Ф5.1/",
     group: "Производства",
     areaUnit: "на трафопост",
     areaPer: 0,
@@ -367,19 +918,102 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "transformer_indoor",
-    label: "58б. Трафопост — в сграда, помещение на трансформатора /Ф5.1/",
+    id: "i58b",
+    label: "I-58б. Трафопост в сграда — помещение на трансформатора /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 20,
+    extinguishers: [
+      { type: "Прахов BC 12 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i58c",
+    label: "I-58в. Трафопост в сграда — ЗРУ средно напрежение /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 20,
+    extinguishers: [
+      { type: "Прахов BC 12 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i58d",
+    label: "I-58г. Трафопост в сграда — ЗРУ ниско напрежение до 1000 V /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 20,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i59",
+    label: "I-59. Закрити и открити разпределителни уредби до 1000 V /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на 50 м",
+    areaPer: 0,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i60a",
+    label: "I-60а. Машинни зали — турбогенератори /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на генератор",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i60b",
+    label: "I-60б. Машинни зали — кондензаторни помещения /Ф5.1/",
     group: "Производства",
     areaUnit: "на помещение",
     areaPer: 0,
     extinguishers: [
-      { type: "Прахов BC 12 кг", count: 1 },
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
     ],
   },
-  // --- 64. Акумулаторно помещение ---
   {
-    id: "battery_room",
-    label: "64. Помещение за зареждане и съхранение на акумулатори /Ф5.1/",
+    id: "i60c",
+    label: "I-60в. Командни зали и пултове за управление /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на зала",
+    areaPer: 0,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 2 },
+    ],
+  },
+  {
+    id: "i60d",
+    label: "I-60г. Кабелни етажи (простори) /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на помещение",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "i60e",
+    label: "I-60д. Кабелни тунели /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на 100 м",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "i64",
+    label: "I-64. Помещение за зареждане и съхранение на акумулатори /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 150,
@@ -387,10 +1021,63 @@ export const objectTypes: ObjectType[] = [
       { type: "CO₂ 5 кг", count: 2 },
     ],
   },
-  // --- 67. Лаборатории с ГТ и ЛЗТ ---
   {
-    id: "lab_flammable",
-    label: "67. Лаборатория (с ГТ и ЛЗТ) /Ф5.1/",
+    id: "i65a",
+    label: "I-65а. Агрегати за ел. енергия — с дизелово гориво /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на агрегат",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "i65b",
+    label: "I-65б. Агрегати за ел. енергия — с ЛЗТ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на агрегат",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i65c",
+    label: "I-65в. Агрегати за ел. енергия — с горим газ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на агрегат",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "i66a",
+    label: "I-66а. Изпитвателни станции за електродвигатели /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i66b",
+    label: "I-66б. Изпитвателни станции за ДВГ /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i67",
+    label: "I-67. Лаборатория (с ГТ и ЛЗТ) /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 100,
@@ -401,10 +1088,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим CO₂ 30 кг", count: 1 },
     ],
   },
-  // --- 68. Лаборатории за други цели ---
   {
-    id: "lab_other",
-    label: "68. Лаборатория за други цели /Ф5.1/",
+    id: "i68",
+    label: "I-68. Лаборатория за други цели /Ф5.1/",
     group: "Производства",
     areaUnit: "помещение до 100 м²",
     areaPer: 0,
@@ -414,10 +1100,32 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим CO₂ 30 кг", count: 1 },
     ],
   },
-  // --- 77. Полиграфическа промишленост ---
   {
-    id: "printing",
-    label: "77. Печатница / Полиграфическа промишленост /Ф5.1/",
+    id: "i69",
+    label: "I-69. Сондажни кули /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на кула",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 2 },
+      { type: "Прахов BC 12 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i70",
+    label: "I-70. Операторни помещения, командни зали и др. под. /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на помещение до 300 м²",
+    areaPer: 0,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "i77",
+    label: "I-77. Печатница / Полиграфическа промишленост /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 300,
@@ -427,10 +1135,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 78. Кожухарска, обувна промишленост ---
   {
-    id: "leather_shoes",
-    label: "78. Предприятия на кожухарската, обувната промишленост и др. /Ф5.1/",
+    id: "i78",
+    label: "I-78. Предприятия на кожухарската, обувната промишленост и др. /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 200,
@@ -439,10 +1146,20 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 80. Мелници, нишестени производства ---
   {
-    id: "flour_mill",
-    label: "80. Мелници, нишестени производства и производства за фураж /Ф5.1/",
+    id: "i79",
+    label: "I-79. Тютюневи и ферментационни заводи, цигарени фабрики /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "i80",
+    label: "I-80. Мелници, нишестени производства и производства за фураж /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 150,
@@ -451,10 +1168,20 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 82. Строителни обекти ---
   {
-    id: "construction_site",
-    label: "82а. Строителна площадка — район /Ф5.1/",
+    id: "i81",
+    label: "I-81. Маслодобивни предприятия /Ф5.1/",
+    group: "Производства",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+    ],
+  },
+  {
+    id: "i82a",
+    label: "I-82а. Строителна площадка — район /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 500,
@@ -464,8 +1191,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "construction_inside",
-    label: "82б. Строителен обект — вътре в сградите, на етаж",
+    id: "i82b",
+    label: "I-82б. Строителен обект — вътре в сградите, на етаж",
     group: "Производства",
     areaUnit: "на етаж",
     areaPer: 0,
@@ -473,10 +1200,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 83. Фургони и офис-контейнери (Група I) ---
   {
-    id: "furgon_production",
-    label: "83. Фургон / Офис-контейнер (производствен обект) /Ф5.1/",
+    id: "i83",
+    label: "I-83. Фургон / Офис-контейнер (производствен обект) /Ф5.1/",
     group: "Производства",
     areaUnit: "на фургон",
     areaPer: 0,
@@ -484,10 +1210,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Прахов ABC 6 кг", count: 1 },
     ],
   },
-  // --- 84. Производство на хранителни продукти ---
   {
-    id: "food_production",
-    label: "84. Производство на хранителни продукти /Ф5.1/",
+    id: "i84",
+    label: "I-84. Производство на хранителни продукти /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 300,
@@ -496,10 +1221,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 85. Хладилни камери ---
   {
-    id: "cold_storage",
-    label: "85. Хладилни камери /Ф5.1/",
+    id: "i85",
+    label: "I-85. Хладилни камери /Ф5.1/",
     group: "Производства",
     areaUnit: "м²",
     areaPer: 200,
@@ -508,10 +1232,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 2 },
     ],
   },
-  // --- 86. Работилници в учебни заведения ---
   {
-    id: "school_workshop_wood",
-    label: "86а. Работилница в учебно заведение — дърводелна /Ф5.1/",
+    id: "i86a",
+    label: "I-86а. Работилница в учебно заведение — дърводелна /Ф5.1/",
     group: "Производства",
     areaUnit: "на помещение",
     areaPer: 0,
@@ -521,8 +1244,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "school_workshop_metal",
-    label: "86б. Работилница в учебно заведение — металообработваща /Ф5.1/",
+    id: "i86b",
+    label: "I-86б. Работилница в учебно заведение — металообработваща /Ф5.1/",
     group: "Производства",
     areaUnit: "на помещение",
     areaPer: 0,
@@ -533,8 +1256,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "school_workshop_sewing",
-    label: "86в. Работилница в учебно заведение — шивална, книговезна и др. /Ф5.1/",
+    id: "i86c",
+    label: "I-86в. Работилница в учебно заведение — шивална, книговезна и др. /Ф5.1/",
     group: "Производства",
     areaUnit: "на помещение",
     areaPer: 0,
@@ -544,10 +1267,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 87. Хлебопекарни ---
   {
-    id: "bakery_solid",
-    label: "87а. Хлебопекарна — на твърдо гориво /Ф5.1/",
+    id: "i87a",
+    label: "I-87а. Хлебопекарна — на твърдо гориво /Ф5.1/",
     group: "Производства",
     areaUnit: "на пещ",
     areaPer: 0,
@@ -557,8 +1279,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "bakery_liquid",
-    label: "87б. Хлебопекарна — на течно гориво /Ф5.1/",
+    id: "i87b",
+    label: "I-87б. Хлебопекарна — на течно гориво /Ф5.1/",
     group: "Производства",
     areaUnit: "на пещ",
     areaPer: 0,
@@ -568,8 +1290,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "bakery_gas",
-    label: "87в. Хлебопекарна — на газ /Ф5.1/",
+    id: "i87c",
+    label: "I-87в. Хлебопекарна — на газ /Ф5.1/",
     group: "Производства",
     areaUnit: "на пещ",
     areaPer: 0,
@@ -579,8 +1301,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "bakery_electric",
-    label: "87г. Хлебопекарна — на електричество /Ф5.1/",
+    id: "i87d",
+    label: "I-87г. Хлебопекарна — на електричество /Ф5.1/",
     group: "Производства",
     areaUnit: "на пещ",
     areaPer: 0,
@@ -589,16 +1311,24 @@ export const objectTypes: ObjectType[] = [
       { type: "CO₂ 5 кг", count: 1 },
     ],
   },
-
-  // ═══════════════════════════════════════════════════════════════
-  // ГРУПА II — ОБЩЕСТВЕНИ СГРАДИ, ПОМЕЩЕНИЯ, СЪОРЪЖЕНИЯ И
-  //             ИНСТАЛАЦИИ
-  // ═══════════════════════════════════════════════════════════════
-
-  // --- 1. Административни сгради ---
   {
-    id: "admin_corridor",
-    label: "1а. Административна сграда (коридорна система) /Ф4/",
+    id: "i88",
+    label: "I-88. Помпени станции за вода /Ф5.1/",
+    group: "Производства",
+    areaUnit: "на станция",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // ГРУПА II — ОБЩЕСТВЕНИ СГРАДИ И СВОБОДНА ДВОРНА ПЛОЩ КЪМ ТЯХ
+  // ═══════════════════════════════════════════════════════════════
+
+  {
+    id: "ii1a",
+    label: "II-1а. Административна сграда (коридорна система) /Ф4/",
     group: "Обществени сгради",
     areaUnit: "на 60 м коридор",
     areaPer: 60,
@@ -609,8 +1339,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "admin_non_corridor",
-    label: "1б. Административна сграда (некоридорна система) /Ф4/",
+    id: "ii1b",
+    label: "II-1б. Административна сграда (некоридорна система) /Ф4/",
     group: "Обществени сгради",
     areaUnit: "на етаж",
     areaPer: 0,
@@ -620,10 +1350,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 2. Телефонни централи ---
   {
-    id: "telephone_exchange",
-    label: "2. Телефонни централи /Ф4.2/",
+    id: "ii2",
+    label: "II-2. Телефонни централи /Ф4.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 100,
@@ -631,10 +1360,43 @@ export const objectTypes: ObjectType[] = [
       { type: "CO₂ 5 кг", count: 2 },
     ],
   },
-  // --- 5. Електронноизчислителни центрове ---
   {
-    id: "server_room",
-    label: "5. Електронноизчислителен център / Сървърно помещение /Ф4.2/",
+    id: "ii3a",
+    label: "II-3а. Пощенска станция (коридорна система) /Ф3.4/",
+    group: "Обществени сгради",
+    areaUnit: "на 60 м коридор",
+    areaPer: 60,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "ii3b",
+    label: "II-3б. Пощенска станция (некоридорна система) /Ф3.4/",
+    group: "Обществени сгради",
+    areaUnit: "на етаж",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "ii4",
+    label: "II-4. Радиовъзли и радиотелеграфни апаратни /Ф4.2/",
+    group: "Обществени сгради",
+    areaUnit: "на помещение до 300 м²",
+    areaPer: 0,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "ii5",
+    label: "II-5. Електронноизчислителен център / Сървърно помещение /Ф4.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 100,
@@ -642,10 +1404,9 @@ export const objectTypes: ObjectType[] = [
       { type: "CO₂ 5 кг", count: 2 },
     ],
   },
-  // --- 6. Телевизионни и радиостудия ---
   {
-    id: "tv_radio_studio",
-    label: "6. Телевизионни и радиостудия /Ф4.2/",
+    id: "ii6",
+    label: "II-6. Телевизионни и радиостудия /Ф4.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 100,
@@ -654,10 +1415,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 7. Хотели, мотели, хостели ---
   {
-    id: "hotel_corridor",
-    label: "7а. Хотел / Мотел / Хостел (коридорна система) /Ф1.2/",
+    id: "ii7a",
+    label: "II-7а. Хотел / Мотел / Хостел (коридорна система) /Ф1.2/",
     group: "Обществени сгради",
     areaUnit: "на 60 м коридор",
     areaPer: 60,
@@ -668,8 +1428,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "hotel_non_corridor",
-    label: "7б. Хотел / Мотел / Хостел (некоридорна система) /Ф1.2/",
+    id: "ii7b",
+    label: "II-7б. Хотел / Мотел / Хостел (некоридорна система) /Ф1.2/",
     group: "Обществени сгради",
     areaUnit: "на етаж",
     areaPer: 0,
@@ -679,10 +1439,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 8. Здравеопазване и социални грижи ---
   {
-    id: "health_corridor",
-    label: "8а. Болница / Лечебно заведение / Дом за стари хора (коридорна система) /Ф1.1/",
+    id: "ii8a",
+    label: "II-8а. Болница / Лечебно заведение / Дом за стари хора (коридорна система) /Ф1.1/",
     group: "Обществени сгради",
     areaUnit: "на 60 м коридор",
     areaPer: 60,
@@ -692,8 +1451,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "health_non_corridor",
-    label: "8б. Болница / Лечебно заведение / Дом за стари хора (некоридорна система) /Ф1.1/",
+    id: "ii8b",
+    label: "II-8б. Болница / Лечебно заведение / Дом за стари хора (некоридорна система) /Ф1.1/",
     group: "Обществени сгради",
     areaUnit: "на етаж",
     areaPer: 0,
@@ -702,10 +1461,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 9. Електролечебни, рентгенови кабинети ---
   {
-    id: "medical_cabinet",
-    label: "9. Електролечебни, рентгенови кабинети и др. /Ф1.1/",
+    id: "ii9",
+    label: "II-9. Електролечебни, рентгенови кабинети и др. /Ф1.1/",
     group: "Обществени сгради",
     areaUnit: "на кабинет",
     areaPer: 0,
@@ -713,10 +1471,9 @@ export const objectTypes: ObjectType[] = [
       { type: "CO₂ 5 кг", count: 1 },
     ],
   },
-  // --- 10. Дезинфекционни помещения ---
   {
-    id: "disinfection",
-    label: "10. Дезинфекционни помещения /Ф1.1/",
+    id: "ii10",
+    label: "II-10. Дезинфекционни помещения /Ф1.1/",
     group: "Обществени сгради",
     areaUnit: "на помещение",
     areaPer: 0,
@@ -725,10 +1482,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас B)", count: 1 },
     ],
   },
-  // --- 11. Аптеки ---
   {
-    id: "pharmacy",
-    label: "11. Аптека /Ф3.1/",
+    id: "ii11",
+    label: "II-11. Аптека /Ф3.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -738,10 +1494,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 12. Сгради за образование ---
   {
-    id: "school_corridor",
-    label: "12а. Учебно заведение (коридорна система) /Ф4/",
+    id: "ii12a",
+    label: "II-12а. Учебно заведение (коридорна система) /Ф4/",
     group: "Обществени сгради",
     areaUnit: "на 60 м коридор",
     areaPer: 60,
@@ -752,8 +1507,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "school_non_corridor",
-    label: "12б. Учебно заведение (некоридорна система) /Ф4/",
+    id: "ii12b",
+    label: "II-12б. Учебно заведение (некоридорна система) /Ф4/",
     group: "Обществени сгради",
     areaUnit: "на етаж",
     areaPer: 0,
@@ -763,10 +1518,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 13. Учебни кабинети с ЛЗТ и ГТ ---
   {
-    id: "school_lab_flammable",
-    label: "13. Учебни кабинети, в които се използват ЛЗТ и ГТ /Ф4.1/",
+    id: "ii13",
+    label: "II-13. Учебни кабинети, в които се използват ЛЗТ и ГТ /Ф4.1/",
     group: "Обществени сгради",
     areaUnit: "на кабинет",
     areaPer: 0,
@@ -775,10 +1529,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим CO₂ 30 кг", count: 1 },
     ],
   },
-  // --- 14. Библиотеки, читални ---
   {
-    id: "library",
-    label: "14. Библиотека / Читалня /Ф2.1/",
+    id: "ii14",
+    label: "II-14. Библиотека / Читалня /Ф2.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -787,10 +1540,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 15. Закрити физкултурни зали ---
   {
-    id: "gym_hall",
-    label: "15. Закрити физкултурни зали /Ф2.1/",
+    id: "ii15",
+    label: "II-15. Закрити физкултурни зали /Ф2.1/",
     group: "Обществени сгради",
     areaUnit: "на зала",
     areaPer: 0,
@@ -798,10 +1550,20 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 17. Общежития и спални корпуси ---
   {
-    id: "dormitory",
-    label: "17. Общежитие / Спален корпус /Ф1.2/",
+    id: "ii16",
+    label: "II-16. Помещения за съхраняване на спортно имущество /Ф5.2/",
+    group: "Обществени сгради",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "ii17",
+    label: "II-17. Общежитие / Спален корпус /Ф1.2/",
     group: "Обществени сгради",
     areaUnit: "на етаж",
     areaPer: 0,
@@ -810,10 +1572,33 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 19. Сгради за услуги ---
   {
-    id: "service_corridor",
-    label: "19а. Сграда за услуги (коридорна система) /Ф3.4/",
+    id: "ii18a",
+    label: "II-18а. Затвори и затворнически общежития (коридорна система) /Ф1.2/",
+    group: "Обществени сгради",
+    areaUnit: "на 60 м коридор",
+    areaPer: 60,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+      { type: "Прахов BC 12 кг", count: 1 },
+    ],
+  },
+  {
+    id: "ii18b",
+    label: "II-18б. Затвори и затворнически общежития (некоридорна система) /Ф1.2/",
+    group: "Обществени сгради",
+    areaUnit: "на етаж",
+    areaPer: 0,
+    extinguishers: [
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+      { type: "Прахов BC 12 кг", count: 1 },
+    ],
+  },
+  {
+    id: "ii19a",
+    label: "II-19а. Сграда за услуги (коридорна система) /Ф3.4/",
     group: "Обществени сгради",
     areaUnit: "на 60 м коридор",
     areaPer: 60,
@@ -824,8 +1609,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "service_non_corridor",
-    label: "19б. Сграда за услуги (некоридорна система) /Ф3.4/",
+    id: "ii19b",
+    label: "II-19б. Сграда за услуги (некоридорна система) /Ф3.4/",
     group: "Обществени сгради",
     areaUnit: "на етаж",
     areaPer: 0,
@@ -835,10 +1620,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 20. Детски заведения ---
   {
-    id: "kindergarten",
-    label: "20. Детско заведение (детска градина, ясла) /Ф1.1/",
+    id: "ii20",
+    label: "II-20. Детско заведение (детска градина, ясла) /Ф1.1/",
     group: "Обществени сгради",
     areaUnit: "на етаж",
     areaPer: 0,
@@ -847,10 +1631,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 21. Художествени галерии, музеи ---
   {
-    id: "gallery_museum",
-    label: "21. Художествени галерии, музеи, изложбени зали /Ф2.2/",
+    id: "ii21",
+    label: "II-21. Художествени галерии, музеи, изложбени зали /Ф2.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -859,10 +1642,21 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 23. Читалища, клубове (без сцени) ---
   {
-    id: "community_center",
-    label: "23. Читалища, обществени и културни клубове и др. без сцени /Ф2.1/",
+    id: "ii22",
+    label: "II-22. Преместваеми обекти с гъвкаво покритие /Ф2.1/",
+    group: "Обществени сгради",
+    areaUnit: "м²",
+    areaPer: 400,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "ii23",
+    label: "II-23. Читалища, обществени и културни клубове и др. без сцени /Ф2.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 400,
@@ -871,10 +1665,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 24. Дискотеки, казина ---
   {
-    id: "disco_casino",
-    label: "24. Дискотека / Казино / Игрална зала /Ф2.2/",
+    id: "ii24",
+    label: "II-24. Дискотека / Казино / Игрална зала /Ф2.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 400,
@@ -883,10 +1676,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 25. Помещения с култово и религиозно предназначение ---
   {
-    id: "church",
-    label: "25. Помещения с култово и религиозно предназначение /Ф3.4/",
+    id: "ii25",
+    label: "II-25. Помещения с култово и религиозно предназначение /Ф3.4/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 300,
@@ -895,10 +1687,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 26. Театрални, кинозали, концертни зали (със сцени) ---
   {
-    id: "cinema_theater",
-    label: "26. Театрални зали, кинозали, концертни зали със сцени /Ф2.1/",
+    id: "ii26",
+    label: "II-26. Театрални зали, кинозали, концертни зали със сцени /Ф2.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 400,
@@ -908,10 +1699,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 27. Конферентни зали ---
   {
-    id: "conference_hall",
-    label: "27. Конферентни зали /Ф2.1/",
+    id: "ii27",
+    label: "II-27. Конферентни зали /Ф2.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 100,
@@ -920,10 +1710,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 29. Спортни зали ---
   {
-    id: "sports_hall",
-    label: "29. Спортна зала /Ф2.1/",
+    id: "ii29",
+    label: "II-29. Спортна зала /Ф2.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 500,
@@ -932,10 +1721,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 30. Стадиони ---
   {
-    id: "stadium",
-    label: "30. Стадиони /Ф2.1/",
+    id: "ii30",
+    label: "II-30. Стадиони /Ф2.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 1000,
@@ -944,10 +1732,20 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 32. Художествени, фотографски ателиета ---
   {
-    id: "art_studio",
-    label: "32. Художествени, фотографски ателиета и др. /Ф2.2/",
+    id: "ii31",
+    label: "II-31. Стрелбища /Ф2.1/",
+    group: "Обществени сгради",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "ii32",
+    label: "II-32. Художествени, фотографски ателиета и др. /Ф2.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -957,10 +1755,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас B)", count: 1 },
     ],
   },
-  // --- 33. Ателиета за химическо чистене ---
   {
-    id: "dry_cleaning",
-    label: "33. Ателиета за химическо чистене, боядисване и др. /Ф3.4/",
+    id: "ii33",
+    label: "II-33. Ателиета за химическо чистене, боядисване и др. /Ф3.4/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -969,10 +1766,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас B)", count: 1 },
     ],
   },
-  // --- 34. Гладачни, сушилни ---
   {
-    id: "ironing_drying",
-    label: "34. Гладачни, сушилни /Ф3.4/",
+    id: "ii34",
+    label: "II-34. Гладачни, сушилни /Ф3.4/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -981,10 +1777,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 35. Столове, ресторанти ---
   {
-    id: "restaurant",
-    label: "35. Столове, ресторанти /Ф3.2/",
+    id: "ii35",
+    label: "II-35. Столове, ресторанти /Ф3.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 300,
@@ -993,10 +1788,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 36. Кухни ---
   {
-    id: "kitchen_solid_fuel",
-    label: "36а. Кухня — на твърдо гориво /Ф4.2/",
+    id: "ii36a",
+    label: "II-36а. Кухня — на твърдо гориво /Ф4.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -1007,8 +1801,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "kitchen_electric",
-    label: "36б. Кухня — на електричество /Ф4.2/",
+    id: "ii36b",
+    label: "II-36б. Кухня — на електричество /Ф4.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -1019,8 +1813,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "kitchen_liquid_fuel",
-    label: "36в. Кухня — на течно гориво /Ф4.2/",
+    id: "ii36c",
+    label: "II-36в. Кухня — на течно гориво /Ф4.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -1031,8 +1825,8 @@ export const objectTypes: ObjectType[] = [
     ],
   },
   {
-    id: "kitchen_gas",
-    label: "36г. Кухня — на газ /Ф4.2/",
+    id: "ii36d",
+    label: "II-36г. Кухня — на газ /Ф4.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -1042,10 +1836,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Пожарно одеяло 1,5×1,5 м", count: 1 },
     ],
   },
-  // --- 37. Супермаркети и универсални магазини ---
   {
-    id: "supermarket",
-    label: "37. Супермаркет / Универсален магазин /Ф3.1/",
+    id: "ii37",
+    label: "II-37. Супермаркет / Универсален магазин /Ф3.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 200,
@@ -1054,10 +1847,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 38. Магазини за текстил, обувки, галантерия ---
   {
-    id: "shop_textile",
-    label: "38. Магазин за текстил / обувки / галантерия /Ф3.1/",
+    id: "ii38",
+    label: "II-38. Магазин за текстил / обувки / галантерия /Ф3.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 100,
@@ -1066,10 +1858,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 39. Книжарници ---
   {
-    id: "bookstore",
-    label: "39. Книжарница /Ф3.1/",
+    id: "ii39",
+    label: "II-39. Книжарница /Ф3.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 100,
@@ -1078,10 +1869,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 40. Магазини за бои, лакове, разтворители ---
   {
-    id: "shop_paints",
-    label: "40. Магазин за бои / лакове / разтворители (ЛЗТ) /Ф3.1/",
+    id: "ii40",
+    label: "II-40. Магазин за бои / лакове / разтворители (ЛЗТ) /Ф3.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 100,
@@ -1090,10 +1880,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас B)", count: 1 },
     ],
   },
-  // --- 41. Магазини за спиртни напитки ---
   {
-    id: "shop_alcohol",
-    label: "41. Магазин за спиртни напитки /Ф3.1/",
+    id: "ii41",
+    label: "II-41. Магазин за спиртни напитки /Ф3.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 100,
@@ -1102,10 +1891,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 42. Магазини за пиротехнически изделия ---
   {
-    id: "shop_pyrotechnics",
-    label: "42. Магазин за пиротехнически изделия /Ф3.1/",
+    id: "ii42",
+    label: "II-42. Магазин за пиротехнически изделия /Ф3.1/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 100,
@@ -1115,10 +1903,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 43. Сладкарници, закусвални ---
   {
-    id: "bakery_cafe",
-    label: "43. Сладкарница / Закусвалня /Ф3.2/",
+    id: "ii43",
+    label: "II-43. Сладкарница / Закусвалня /Ф3.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -1127,10 +1914,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 44. Въводни устройства и главни ел. табла ---
   {
-    id: "electric_panel",
-    label: "44. Помещение за въводни устройства и главни разпределителни ел. табла",
+    id: "ii44",
+    label: "II-44. Помещение за въводни устройства и главни разпределителни ел. табла",
     group: "Обществени сгради",
     areaUnit: "на помещение",
     areaPer: 0,
@@ -1138,10 +1924,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Прахов ABC 6 кг", count: 1 },
     ],
   },
-  // --- 45. Фургони и офис-контейнери (Група II) ---
   {
-    id: "furgon_public",
-    label: "45. Фургон / Офис-контейнер (обществена сграда) /Ф4.2/",
+    id: "ii45",
+    label: "II-45. Фургон / Офис-контейнер (обществена сграда) /Ф4.2/",
     group: "Обществени сгради",
     areaUnit: "на фургон",
     areaPer: 0,
@@ -1149,10 +1934,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Прахов ABC 6 кг", count: 1 },
     ],
   },
-  // --- 46. Панаирни палати ---
   {
-    id: "fair_palace",
-    label: "46. Панаирни палати /Ф2.2/",
+    id: "ii46",
+    label: "II-46. Панаирни палати /Ф2.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 500,
@@ -1162,10 +1946,9 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 47. Гардеробни ---
   {
-    id: "wardrobe",
-    label: "47. Гардеробни /Ф4.2/",
+    id: "ii47",
+    label: "II-47. Гардеробни /Ф4.2/",
     group: "Обществени сгради",
     areaUnit: "м²",
     areaPer: 150,
@@ -1180,10 +1963,9 @@ export const objectTypes: ObjectType[] = [
   //              СЕЛСКОСТОПАНСКИ СГРАДИ, ЗАКРИТИ СКЛАДОВЕ
   // ═══════════════════════════════════════════════════════════════
 
-  // --- 1. Складове за ЛЗТ и ГТ ---
   {
-    id: "warehouse_flammable",
-    label: "III-1. Помещения за съхраняване на ЛЗТ и ГТ /Ф5.2/",
+    id: "iii1",
+    label: "III-1. Складове за ЛЗТ и ГТ /Ф5.2/",
     group: "Складове и гаражи",
     areaUnit: "м²",
     areaPer: 200,
@@ -1193,9 +1975,8 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим CO₂ 30 кг", count: 2 },
     ],
   },
-  // --- 2. Складове за горими химикали ---
   {
-    id: "warehouse_chemicals",
+    id: "iii2",
     label: "III-2. Складове за горими химикали /Ф5.2/",
     group: "Складове и гаражи",
     areaUnit: "м²",
@@ -1206,9 +1987,28 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим CO₂ 30 кг", count: 1 },
     ],
   },
-  // --- 5. Складове за текстил, хартия и др. горими ---
   {
-    id: "warehouse_solid",
+    id: "iii3",
+    label: "III-3. Складове за киселини /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 300,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii4",
+    label: "III-4. Складове за калциев карбид /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 100,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii5",
     label: "III-5. Складове за текстил, хартия и др. горими материали /Ф5.2/",
     group: "Складове и гаражи",
     areaUnit: "м²",
@@ -1218,9 +2018,19 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 2 },
     ],
   },
-  // --- 7. Складове за хранителни продукти ---
   {
-    id: "warehouse_food",
+    id: "iii6",
+    label: "III-6. Складове за въглища /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "iii7",
     label: "III-7. Складове за хранителни продукти /Ф5.2/",
     group: "Складове и гаражи",
     areaUnit: "м²",
@@ -1230,9 +2040,31 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 2 },
     ],
   },
-  // --- 10. Складове за негорими в горима опаковка ---
   {
-    id: "warehouse_noncombustible",
+    id: "iii8",
+    label: "III-8. Вещеви складове /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 200,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "iii9",
+    label: "III-9. Складове за техническо имущество, резервни части /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "CO₂ 5 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "iii10",
     label: "III-10. Складове за негорими материали в горима опаковка /Ф5.2/",
     group: "Складове и гаражи",
     areaUnit: "м²",
@@ -1242,9 +2074,8 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 11. Складове за горими материали ---
   {
-    id: "warehouse_combustible",
+    id: "iii11",
     label: "III-11. Складове за горими материали /Ф5.2/",
     group: "Складове и гаражи",
     areaUnit: "м²",
@@ -1254,9 +2085,19 @@ export const objectTypes: ObjectType[] = [
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 13. Складове за бутилки горими газове ---
   {
-    id: "warehouse_gas_bottles",
+    id: "iii12",
+    label: "III-12. Складове за зърнени храни и брашно /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "iii13",
     label: "III-13. Склад за бутилки със сгъстени и втечнени горими газове /Ф5.2/",
     group: "Складове и гаражи",
     areaUnit: "м²",
@@ -1267,86 +2108,257 @@ export const objectTypes: ObjectType[] = [
       { type: "Возим CO₂ 30 кг", count: 1 },
     ],
   },
-  // --- 19. Архивохранилища ---
   {
-    id: "archive",
-    label: "III-19. Архивохранилища /Ф5.2/",
+    id: "iii14",
+    label: "III-14. Складове за целулоза /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "iii15",
+    label: "III-15. Складове за стъкло в горима опаковка /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "iii16",
+    label: "III-16. Складове за всички видове влакна /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "iii17",
+    label: "III-17. Складове за кожени, каучукови и пластмасови изделия /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "iii18",
+    label: "III-18. Складове за кибрит /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 150,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "iii19a",
+    label: "III-19а. Складове към лечебни заведения — за лекарства, ЛЗТ и ГТ /Ф5.2/",
     group: "Складове и гаражи",
     areaUnit: "м²",
     areaPer: 50,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii19b",
+    label: "III-19б. Складове към лечебни заведения — за постелъчни и горими материали /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "на помещение",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "iii20",
+    label: "III-20. Помещения за бутилки с горими газове /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 100,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 2 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii21",
+    label: "III-21. Навес за автомобили, строителна техника и материали /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "iii22",
+    label: "III-22. Гаражи /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 400,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii27",
+    label: "III-27. Архивохранилища /Ф5.2/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 100,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
       { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 20. Хангари ---
   {
-    id: "hangar",
-    label: "III-20. Хангари /Ф5.2/",
+    id: "iii28",
+    label: "III-28. Фургони и офис-контейнери /Ф5.2/",
     group: "Складове и гаражи",
-    areaUnit: "м²",
-    areaPer: 300,
-    extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 2 },
-      { type: "CO₂ 5 кг", count: 2 },
-      { type: "Воден 9 л (клас B)", count: 1 },
-      { type: "Возим CO₂ 30 кг", count: 1 },
-    ],
-  },
-  // --- 21. Гаражи до 3 МПС ---
-  {
-    id: "garage_small",
-    label: "III-21. Гараж (до 3 МПС) /Ф5.2/",
-    group: "Складове и гаражи",
-    areaUnit: "на гараж",
+    areaUnit: "на фургон",
     areaPer: 0,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
     ],
   },
-  // --- 22. Гаражи/паркинги над 3 МПС ---
   {
-    id: "garage_large",
-    label: "III-22. Гараж / Паркинг (над 3 МПС) /Ф5.2/",
+    id: "iii29a",
+    label: "III-29а. Автоснабдителна станция — за сградата /Ф5.3/",
     group: "Складове и гаражи",
     areaUnit: "м²",
-    areaPer: 200,
+    areaPer: 50,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii29b",
+    label: "III-29б. Автоснабдителна станция — до 4 колонки",
+    group: "Складове и гаражи",
+    areaUnit: "на обект",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 12 кг", count: 2 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii29c",
+    label: "III-29в. Автоснабдителна станция — от 4 до 7 колонки",
+    group: "Складове и гаражи",
+    areaUnit: "на обект",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 12 кг", count: 3 },
+      { type: "Воден 9 л (клас B)", count: 1 },
+      { type: "Возим CO₂ 30 кг", count: 2 },
+    ],
+  },
+  {
+    id: "iii29d",
+    label: "III-29г. Автоснабдителна станция — над 7 колонки",
+    group: "Складове и гаражи",
+    areaUnit: "на обект",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 12 кг", count: 5 },
+      { type: "Воден 9 л (клас B)", count: 2 },
+      { type: "Возим CO₂ 30 кг", count: 3 },
+      { type: "Возим прахов BC 50 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii29e",
+    label: "III-29д. Автоснабдителна станция — за резервоара с газ",
+    group: "Складове и гаражи",
+    areaUnit: "на обект",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов BC 6 кг", count: 1 },
+      { type: "Прахов BC 12 кг", count: 2 },
+      { type: "Возим CO₂ 30 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii30",
+    label: "III-30. Закрити складове за тревен фураж /Ф5.4/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 600,
+    extinguishers: [
+      { type: "Воден 9 л (клас A)", count: 2 },
+    ],
+  },
+  {
+    id: "iii31",
+    label: "III-31. Животновъдни сгради /Ф5.4/",
+    group: "Складове и гаражи",
+    areaUnit: "на сграда",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "iii32",
+    label: "III-32. Птицевъдни сгради /Ф5.4/",
+    group: "Складове и гаражи",
+    areaUnit: "на сграда",
+    areaPer: 0,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
+    ],
+  },
+  {
+    id: "iii33",
+    label: "III-33. Хранителни кухни за животни, фуражомелки и др. /Ф5.4/",
+    group: "Складове и гаражи",
+    areaUnit: "м²",
+    areaPer: 400,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
+      { type: "CO₂ 5 кг", count: 1 },
+    ],
+  },
+  {
+    id: "iii34",
+    label: "III-34. Доилни зали /Ф5.4/",
+    group: "Складове и гаражи",
+    areaUnit: "на зала",
+    areaPer: 0,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
-      { type: "Воден 9 л (клас B)", count: 1 },
-      { type: "Возим прахов ABC 50 кг", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 1 },
     ],
   },
-  // --- 24. Автоснабдителни станции за ЛЗТ ---
   {
-    id: "gas_station_lzt",
-    label: "III-24а. Автоснабдителна станция за бензин и дизел",
-    group: "Складове и гаражи",
-    areaUnit: "на обект",
-    areaPer: 0,
-    extinguishers: [
-      { type: "Прахов BC 12 кг", count: 2 },
-      { type: "Возим прахов BC 50 кг", count: 2 },
-      { type: "Пожарно одеяло 1,5×1,5 м", count: 1 },
-    ],
-  },
-  // --- 24б. Автоснабдителни станции за ГГ ---
-  {
-    id: "gas_station_lpg",
-    label: "III-24б. Автоснабдителна станция за газ (LPG/CNG)",
-    group: "Складове и гаражи",
-    areaUnit: "на обект",
-    areaPer: 0,
-    extinguishers: [
-      { type: "Прахов BC 12 кг", count: 2 },
-      { type: "Возим прахов BC 50 кг", count: 2 },
-      { type: "Пожарно одеяло 1,5×1,5 м", count: 1 },
-    ],
-  },
-  // --- 25. Селскостопански сгради ---
-  {
-    id: "farm_building",
-    label: "III-25. Селскостопански сгради за животни, фураж и др. /Ф5.2/",
+    id: "iii35",
+    label: "III-35. Навес за селскостопанска техника и материали /Ф5.4/",
     group: "Складове и гаражи",
     areaUnit: "м²",
     areaPer: 500,
@@ -1360,40 +2372,75 @@ export const objectTypes: ObjectType[] = [
   // ГРУПА IV — ОТКРИТИ СКЛАДОВЕ И СВОБОДНА ДВОРНА ПЛОЩ
   // ═══════════════════════════════════════════════════════════════
 
-  // --- 1. Открити складове за горими материали ---
   {
-    id: "open_storage_solid",
-    label: "IV-1. Открит склад за горими твърди материали",
+    id: "iv1",
+    label: "IV-1. Открит склад за коноп, хартия и др. /Ф5.2/",
+    group: "Открити площи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "iv2",
+    label: "IV-2. Открит склад за дървесни отпадъци /Ф5.2/",
+    group: "Открити площи",
+    areaUnit: "м²",
+    areaPer: 600,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "iv3",
+    label: "IV-3. Открит склад за дървен и пластмасов амбалаж /Ф5.2/",
+    group: "Открити площи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "iv4",
+    label: "IV-4. Открит склад за каменни въглища /Ф5.2/",
+    group: "Открити площи",
+    areaUnit: "м²",
+    areaPer: 500,
+    extinguishers: [
+      { type: "Прахов ABC 6 кг", count: 2 },
+    ],
+  },
+  {
+    id: "iv5",
+    label: "IV-5. Открит склад за дървен материал /Ф5.2/",
     group: "Открити площи",
     areaUnit: "м²",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
+      { type: "Воден 9 л (клас A)", count: 2 },
     ],
   },
-  // --- 2. Открити складове за ЛЗТ и ГТ ---
   {
-    id: "open_storage_flammable",
-    label: "IV-2. Открит склад за ЛЗТ и ГТ",
+    id: "iv6",
+    label: "IV-6. Открит склад за сено, слама и други видове фураж /Ф5.4/",
     group: "Открити площи",
     areaUnit: "м²",
-    areaPer: 300,
+    areaPer: 600,
     extinguishers: [
-      { type: "Прахов BC 12 кг", count: 2 },
-      { type: "Возим прахов BC 50 кг", count: 1 },
+      { type: "Прахов ABC 6 кг", count: 2 },
     ],
   },
-  // --- 3. Свободна дворна площ ---
   {
-    id: "outdoor_area",
-    label: "IV-3. Свободна дворна площ",
+    id: "iv7",
+    label: "IV-7. Открит склад за горими материали в горима опаковка /Ф5.2/",
     group: "Открити площи",
     areaUnit: "м²",
     areaPer: 500,
     extinguishers: [
-      { type: "Прахов ABC 6 кг", count: 1 },
-      { type: "Воден 9 л (клас A)", count: 1 },
+      { type: "Прахов ABC 6 кг", count: 2 },
     ],
   },
 ];
