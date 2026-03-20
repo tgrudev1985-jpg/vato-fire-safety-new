@@ -33,6 +33,14 @@ const Navbar = () => {
               </a>
             ))}
             <a
+              href="https://www.google.com/maps/search/ВАТО+Пожарна+Безопасност+Варна"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              Посетете ни
+            </a>
+            <a
               href="#contact"
               className="border-l border-border pl-8 text-primary font-bold uppercase hover:text-primary/80 transition-colors"
             >
@@ -70,6 +78,15 @@ const Navbar = () => {
                   {l.label}
                 </a>
               ))}
+              <a
+                href="https://www.google.com/maps/search/ВАТО+Пожарна+Безопасност+Варна"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="block px-3 py-2 rounded-md font-medium text-foreground hover:text-primary hover:bg-muted transition-colors"
+              >
+                Посетете ни
+              </a>
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}
