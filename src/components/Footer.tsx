@@ -7,10 +7,10 @@ const Footer = () => (
         <div className="text-center md:text-left">
           <div className="flex items-center gap-2 justify-center md:justify-start mb-4">
             <Flame className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold uppercase italic">ВАТО Пожарна</span>
+            <span className="text-2xl font-bold uppercase italic">ВАТО Пожарна Безопасност ООД</span>
           </div>
           <p className="text-muted-foreground max-w-sm">
-            Ние не просто продаваме пожарогасители, ние осигуряваме Вашето спокойствие чрез професионализъм и опит.
+            Вашата пожарна безопасност е в ръцете на професионалисти — доверете се на нашия дългогодишен опит.
           </p>
         </div>
         <div className="text-center md:text-right text-sm text-muted-foreground space-y-1">

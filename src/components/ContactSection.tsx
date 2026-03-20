@@ -52,7 +52,7 @@ const ContactSection = () => {
             {/* Google Maps embed */}
             <div className="mt-10 rounded-2xl overflow-hidden border border-border shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2907.5!2d27.8873338!3d43.2370432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a455751c2d0d41%3A0x22951dd09e0fa20c!2z0JLQsNGC0L4t0J_QvtC20LDRgNC90LAg0LHQtdC30L7Qv9Cw0YHQvdC-0YHRgiIgRU9P0JQ!5e0!3m2!1sbg!2sbg!4v1710000000000!5m2!1sbg!2sbg"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2907.5!2d27.8873338!3d43.2370432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a455751c2d0d41%3A0x22951dd09e0fa20c!2z0JLQsNGC0L4t0J_QvtC20LDRgNC90LAg0LHQtdC30L7Qv9Cw0YHQvdC-0YHRgiIg0J7QntCU!5e0!3m2!1sbg!2sbg!4v1710000000000!5m2!1sbg!2sbg"
                 width="100%"
                 height="250"
                 style={{ border: 0 }}
