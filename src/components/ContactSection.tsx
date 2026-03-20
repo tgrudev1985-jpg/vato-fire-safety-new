@@ -4,10 +4,36 @@ import { motion } from "framer-motion";
 
 const ContactSection = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      // Изпращане към Netlify Forms
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        form.reset(); // изчиства полетата
+      } else {
+        throw new Error("Грешка при изпращане");
+      }
+    } catch (err) {
+      setError("Възникна грешка. Моля, опитайте отново.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -76,16 +102,26 @@ const ContactSection = () => {
               <Flame className="h-32 w-32" />
             </div>
             <h3 className="text-2xl font-bold mb-8">Бързо запитване</h3>
-            <form className="space-y-6 relative z-10" onSubmit={handleSubmit}>
+            <form
+              className="space-y-6 relative z-10"
+              onSubmit={handleSubmit}
+              method="POST"
+              data-netlify="true"
+              name="contact"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
                   type="text"
+                  name="name"
                   placeholder="Име"
                   required
                   className="bg-primary-foreground/10 p-4 rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary w-full placeholder:text-muted-foreground"
                 />
                 <input
                   type="tel"
+                  name="phone"
                   placeholder="Телефон"
                   required
                   className="bg-primary-foreground/10 p-4 rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary w-full placeholder:text-muted-foreground"
@@ -93,11 +129,15 @@ const ContactSection = () => {
               </div>
               <input
                 type="email"
+                name="email"
                 placeholder="Имейл адрес"
                 required
                 className="w-full bg-primary-foreground/10 p-4 rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
               />
-              <select className="w-full bg-primary-foreground/10 p-4 rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer text-muted-foreground">
+              <select
+                name="service"
+                className="w-full bg-primary-foreground/10 p-4 rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer text-muted-foreground"
+              >
                 <option value="">Изберете услуга</option>
                 <option value="check">Проверка на пожарогасители</option>
                 <option value="refill">Презареждане</option>
@@ -105,6 +145,7 @@ const ContactSection = () => {
                 <option value="other">Друго</option>
               </select>
               <textarea
+                name="message"
                 placeholder="Как можем да Ви помогнем?"
                 rows={4}
                 className="w-full bg-primary-foreground/10 p-4 rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
@@ -117,11 +158,18 @@ const ContactSection = () => {
                 </div>
               )}
 
+              {error && (
+                <div className="flex items-center gap-2 bg-red-500/20 border border-red-500 p-4 rounded-xl text-sm font-medium text-red-300">
+                  {error}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-primary text-primary-foreground py-5 rounded-2xl font-bold hover:bg-primary/90 transition shadow-lg uppercase tracking-widest text-sm"
+                disabled={loading}
+                className="w-full bg-primary text-primary-foreground py-5 rounded-2xl font-bold hover:bg-primary/90 transition shadow-lg uppercase tracking-widest text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Изпрати Съобщение
+                {loading ? "Изпращане..." : "Изпрати Съобщение"}
               </button>
             </form>
           </motion.div>
@@ -159,4 +207,4 @@ const ContactInfo = ({
   </div>
 );
 
-export default ContactSection;
+export default ContactSection;6
