@@ -5,12 +5,10 @@ import { motion } from "framer-motion";
 const ContactSection = () => {
   const [submitted, setSubmitted] = useState(false);
 
-  // Проверка за параметър в URL след пренасочване от Formsubmit
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("submitted") === "true") {
       setSubmitted(true);
-      // Премахваме параметъра, за да не се показва съобщението при презареждане
       window.history.replaceState({}, "", window.location.pathname);
     }
   }, []);
@@ -18,15 +16,15 @@ const ContactSection = () => {
   return (
     <section id="contact" className="py-16 md:py-24 bg-background border-t border-border">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid md:grid-cols-2 gap-8 md:gap-16"
+        >
           {/* Лява колона – информация и карта */}
-          <motion.div
-            className="order-2 md:order-1 w-full"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="order-2 md:order-1 w-full">
             <h2 className="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8 italic uppercase tracking-tighter text-foreground break-words">
               Свържете се <br />
               <span className="text-primary">с професионалистите</span>
@@ -67,16 +65,10 @@ const ContactSection = () => {
                 title="ВАТО Пожарна Безопасност - Google Maps"
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* Дясна колона – форма */}
-          <motion.div
-            className="surface-dark p-6 sm:p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden order-1 md:order-2 w-full"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="surface-dark p-6 sm:p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative order-1 md:order-2 w-full">
             <div className="absolute top-0 right-0 p-6 opacity-10">
               <Flame className="h-20 w-20 md:h-32 md:w-32" />
             </div>
@@ -99,7 +91,7 @@ const ContactSection = () => {
               <input type="hidden" name="_next" value="https://vato-firesafety.com/?submitted=true" />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="relative">
+                <div>
                   <label htmlFor="name" className="sr-only">Име</label>
                   <input
                     type="text"
@@ -110,7 +102,7 @@ const ContactSection = () => {
                     className="w-full bg-primary-foreground/10 p-3 md:p-4 rounded-xl md:rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
                   />
                 </div>
-                <div className="relative">
+                <div>
                   <label htmlFor="phone" className="sr-only">Телефон</label>
                   <input
                     type="tel"
@@ -122,7 +114,7 @@ const ContactSection = () => {
                   />
                 </div>
               </div>
-              <div className="relative">
+              <div>
                 <label htmlFor="email" className="sr-only">Имейл адрес</label>
                 <input
                   type="email"
@@ -133,7 +125,7 @@ const ContactSection = () => {
                   className="w-full bg-primary-foreground/10 p-3 md:p-4 rounded-xl md:rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
                 />
               </div>
-              <div className="relative">
+              <div>
                 <label htmlFor="service" className="sr-only">Изберете услуга</label>
                 <select
                   id="service"
@@ -147,7 +139,7 @@ const ContactSection = () => {
                   <option value="other">Друго</option>
                 </select>
               </div>
-              <div className="relative">
+              <div>
                 <label htmlFor="message" className="sr-only">Как можем да Ви помогнем?</label>
                 <textarea
                   id="message"
@@ -165,24 +157,14 @@ const ContactSection = () => {
                 Изпрати Съобщение
               </button>
             </form>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
-const ContactInfo = ({
-  icon: Icon,
-  label,
-  value,
-  href,
-}: {
-  icon: typeof Phone;
-  label: string;
-  value: string;
-  href?: string;
-}) => (
+const ContactInfo = ({ icon: Icon, label, value, href }: any) => (
   <div className="flex items-start gap-4 w-full">
     <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
       <Icon className="h-4 w-4 md:h-5 md:w-5" />

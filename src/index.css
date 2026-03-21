@@ -87,10 +87,15 @@
     color: hsl(var(--success));
   }
 }
+
 /* reCAPTCHA visibility fix */
 .g-recaptcha {
   margin: 1rem 0;
   min-height: 78px;
+  clear: both;
+}
+.g-recaptcha > div {
+  margin: 0 auto;
 }
 .g-recaptcha iframe {
   visibility: visible !important;
