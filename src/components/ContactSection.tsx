@@ -37,17 +37,17 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-background border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
         <div className="grid md:grid-cols-2 gap-8 md:gap-16">
           {/* Лява колона – информация и карта */}
           <motion.div
-            className="order-2 md:order-1"
+            className="order-2 md:order-1 w-full"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8 italic uppercase tracking-tighter text-foreground">
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8 italic uppercase tracking-tighter text-foreground break-words">
               Свържете се <br />
               <span className="text-primary">с професионалистите</span>
             </h2>
@@ -60,12 +60,12 @@ const ContactSection = () => {
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
                   <Phone className="h-4 w-4 md:h-5 md:w-5" />
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className="text-xs md:text-sm uppercase font-bold text-muted-foreground">Телефон</p>
-                  <a href="tel:+359898701900" className="text-lg md:text-2xl font-bold text-foreground block hover:text-primary transition-colors">
+                  <a href="tel:+359898701900" className="text-lg md:text-2xl font-bold text-foreground block hover:text-primary transition-colors break-words">
                     0898 701 900
                   </a>
-                  <a href="tel:+359896741869" className="text-base md:text-lg font-semibold text-muted-foreground block hover:text-primary transition-colors">
+                  <a href="tel:+359896741869" className="text-base md:text-lg font-semibold text-muted-foreground block hover:text-primary transition-colors break-words">
                     0896 741 869
                   </a>
                 </div>
@@ -75,7 +75,7 @@ const ContactSection = () => {
             </div>
 
             {/* Карта – гарантирано няма да излезе от екрана */}
-            <div className="mt-8 md:mt-10 rounded-2xl overflow-hidden border border-border shadow-lg">
+            <div className="mt-8 md:mt-10 rounded-2xl overflow-hidden border border-border shadow-lg w-full">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2907.5!2d27.8873338!3d43.2370432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a455751c2d0d41%3A0x22951dd09e0fa20c!2z0JLQsNGC0L4t0J_QvtC20LDRgNC90LAg0LHQtdC30L7Qv9Cw0YHQvdC-0YHRgiIg0J7QntCU!5e0!3m2!1sbg!2sbg!4v1710000000000!5m2!1sbg!2sbg"
                 width="100%"
@@ -91,7 +91,7 @@ const ContactSection = () => {
 
           {/* Дясна колона – форма */}
           <motion.div
-            className="surface-dark p-6 sm:p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden order-1 md:order-2"
+            className="surface-dark p-6 sm:p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden order-1 md:order-2 w-full"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -102,7 +102,7 @@ const ContactSection = () => {
             </div>
             <h3 className="text-xl md:text-2xl font-bold mb-6">Бързо запитване</h3>
             <form
-              className="space-y-5 relative z-10"
+              className="space-y-5 relative z-10 w-full"
               onSubmit={handleSubmit}
               method="POST"
             >
@@ -189,7 +189,7 @@ const ContactInfo = ({
   value: string;
   href?: string;
 }) => (
-  <div className="flex items-start gap-4">
+  <div className="flex items-start gap-4 w-full">
     <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
       <Icon className="h-4 w-4 md:h-5 md:w-5" />
     </div>
