@@ -1,22 +1,46 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Calculator, Info, ChevronDown, Search, X } from "lucide-react";
-import { objectTypes, groups } from "@/data/objectTypes";
+import { Calculator, Info, ChevronDown, Search, X, Upload, Download, RefreshCw, Shield } from "lucide-react";
+import { objectTypes as defaultObjectTypes, groups as defaultGroups } from "@/data/objectTypes";
 
-interface CalculationResult {
-  items: { type: string; count: number }[];
-  objectLabel: string;
+interface ObjectType {
+  id: string;
+  label: string;
+  group: string;
   areaUnit: string;
-  multiplier: number;
+  areaPer: number;
+  extinguishers: { type: string; count: number }[];
 }
 
-// Помощна функция за определяне на сходство между низове
+// Ключ за localStorage
+const STORAGE_KEY = "vato_calculator_data";
+
+// Зареждане на данни от localStorage или използване на defaults
+const loadData = (): { objectTypes: ObjectType[]; groups: string[] } => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const data = JSON.parse(saved);
+      // Валидация – ако липсват групи, ги генерираме наново
+      const groups = [...new Set(data.objectTypes.map((t: ObjectType) => t.group))];
+      return { objectTypes: data.objectTypes, groups };
+    }
+  } catch (e) {
+    console.warn("Failed to load calculator data", e);
+  }
+  return { objectTypes: defaultObjectTypes, groups: defaultGroups };
+};
+
+// Запазване на данни в localStorage
+const saveData = (objectTypes: ObjectType[]) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ objectTypes }));
+};
+
 const getSimilarityScore = (query: string, label: string): number => {
   const q = query.toLowerCase().trim();
   const l = label.toLowerCase();
-  if (l === q) return 1; // точно съвпадение
-  if (l.includes(q)) return 0.8; // съдържа се
-  // брой общи думи (просто)
+  if (l === q) return 1;
+  if (l.includes(q)) return 0.8;
   const qWords = q.split(/\s+/);
   const lWords = l.split(/\s+/);
   const matchCount = qWords.filter(w => lWords.some(lw => lw.includes(w))).length;
@@ -24,33 +48,46 @@ const getSimilarityScore = (query: string, label: string): number => {
 };
 
 const CalculatorSection = () => {
+  // Състояние за данните
+  const [data, setData] = useState(loadData);
   const [selectedId, setSelectedId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [area, setArea] = useState("");
   const [units, setUnits] = useState("");
   const [result, setResult] = useState<CalculationResult | null>(null);
+  // Състояние за администраторския модал
+  const [adminOpen, setAdminOpen] = useState(false);
+  const [adminPassword, setAdminPassword] = useState("");
+  const [adminError, setAdminError] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Филтрирани и сортирани обекти според търсенето
+  // Проверка на парола (проста, може да я смените)
+  const checkAdmin = (pwd: string) => {
+    if (pwd === "vato2025") { // Сменете с ваша парола
+      setIsAuthenticated(true);
+      setAdminError("");
+      setAdminPassword("");
+    } else {
+      setAdminError("Невалидна парола");
+    }
+  };
+
   const filteredObjects = useMemo(() => {
     if (!searchQuery.trim()) return [];
     const query = searchQuery.trim();
-    const scored = objectTypes
-      .map(obj => ({
-        obj,
-        score: getSimilarityScore(query, obj.label),
-      }))
+    const scored = data.objectTypes
+      .map(obj => ({ obj, score: getSimilarityScore(query, obj.label) }))
       .filter(item => item.score > 0)
       .sort((a, b) => b.score - a.score);
     return scored.map(item => item.obj);
-  }, [searchQuery]);
+  }, [searchQuery, data.objectTypes]);
 
-  // Най-сходен обект (ако няма точен)
   const bestMatch = useMemo(() => {
     if (!searchQuery.trim()) return null;
     const query = searchQuery.trim();
-    let best = null;
+    let best: ObjectType | null = null;
     let bestScore = 0;
-    for (const obj of objectTypes) {
+    for (const obj of data.objectTypes) {
       const score = getSimilarityScore(query, obj.label);
       if (score > bestScore) {
         bestScore = score;
@@ -58,13 +95,13 @@ const CalculatorSection = () => {
       }
     }
     return best && bestScore > 0.3 ? best : null;
-  }, [searchQuery]);
+  }, [searchQuery, data.objectTypes]);
 
-  const selectedObj = objectTypes.find((t) => t.id === selectedId);
+  const selectedObj = data.objectTypes.find(t => t.id === selectedId);
   const needsArea = selectedObj ? selectedObj.areaPer > 0 : false;
   const isFixedUnit = selectedObj
     ? selectedObj.areaPer === 0 &&
-      !["на етаж", "на камера"].some((u) => selectedObj.areaUnit.includes(u)) &&
+      !["на етаж", "на камера"].some(u => selectedObj.areaUnit.includes(u)) &&
       !selectedObj.areaUnit.includes("коридор")
     : false;
   const needsUnits = selectedObj
@@ -73,7 +110,6 @@ const CalculatorSection = () => {
 
   const calculate = () => {
     if (!selectedObj) return;
-
     let multiplier = 1;
     if (needsArea) {
       const sqm = parseFloat(area);
@@ -84,12 +120,8 @@ const CalculatorSection = () => {
       if (!u || u <= 0) return;
       multiplier = u;
     }
-
     setResult({
-      items: selectedObj.extinguishers.map((e) => ({
-        type: e.type,
-        count: e.count * multiplier,
-      })),
+      items: selectedObj.extinguishers.map(e => ({ type: e.type, count: e.count * multiplier })),
       objectLabel: selectedObj.label,
       areaUnit: selectedObj.areaUnit,
       multiplier,
@@ -98,16 +130,14 @@ const CalculatorSection = () => {
 
   const getInputLabel = () => {
     if (!selectedObj) return "";
-    if (needsArea)
-      return `Площ на обекта (кв.м.) — изчислява се на всеки ${selectedObj.areaPer} м²`;
+    if (needsArea) return `Площ на обекта (кв.м.) — изчислява се на всеки ${selectedObj.areaPer} м²`;
     if (selectedObj.areaUnit.includes("етаж")) return "Брой етажи";
-    if (selectedObj.areaUnit.includes("коридор"))
-      return "Дължина на коридора (м)";
+    if (selectedObj.areaUnit.includes("коридор")) return "Дължина на коридора (м)";
     if (selectedObj.areaUnit.includes("камера")) return "Брой камери";
     return "";
   };
 
-  const selectObject = (obj: typeof objectTypes[0]) => {
+  const selectObject = (obj: ObjectType) => {
     setSelectedId(obj.id);
     setSearchQuery("");
     setResult(null);
@@ -115,12 +145,133 @@ const CalculatorSection = () => {
     setUnits("");
   };
 
-  const clearSearch = () => {
-    setSearchQuery("");
+  const clearSearch = () => setSearchQuery("");
+
+  // Експорт на данни
+  const exportData = () => {
+    const dataStr = JSON.stringify(data.objectTypes, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "objectTypes.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // Импорт на данни от файл
+  const importData = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const imported = JSON.parse(e.target?.result as string);
+        if (Array.isArray(imported) && imported.length > 0 && imported[0].id && imported[0].label) {
+          const newGroups = [...new Set(imported.map((t: ObjectType) => t.group))];
+          setData({ objectTypes: imported, groups: newGroups });
+          saveData(imported);
+          setAdminOpen(false);
+          setIsAuthenticated(false);
+          setSelectedId("");
+          setResult(null);
+          alert("Данните са обновени успешно!");
+        } else {
+          throw new Error("Невалиден формат");
+        }
+      } catch (err) {
+        alert("Грешка при импортиране: невалиден JSON файл.");
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  // Възстановяване на оригиналните данни от наредбата
+  const resetToDefault = () => {
+    if (confirm("Сигурни ли сте, че искате да възстановите оригиналните данни от наредбата?")) {
+      setData({ objectTypes: defaultObjectTypes, groups: defaultGroups });
+      saveData(defaultObjectTypes);
+      setSelectedId("");
+      setResult(null);
+      alert("Данните са възстановени.");
+      setAdminOpen(false);
+      setIsAuthenticated(false);
+    }
   };
 
   return (
-    <section id="calculator" className="py-16 md:py-24 bg-background overflow-hidden">
+    <section id="calculator" className="py-16 md:py-24 bg-background overflow-hidden relative">
+      {/* Администраторска икона (само за достъп) */}
+      <button
+        onClick={() => setAdminOpen(true)}
+        className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/90 transition"
+        aria-label="Администраторски панел"
+      >
+        <Shield className="h-6 w-6" />
+      </button>
+
+      {/* Модал за администратор */}
+      {adminOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-card rounded-2xl shadow-xl max-w-md w-full p-6 relative">
+            <button
+              onClick={() => { setAdminOpen(false); setIsAuthenticated(false); setAdminPassword(""); setAdminError(""); }}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <h3 className="text-xl font-bold mb-4">Администраторски панел</h3>
+            {!isAuthenticated ? (
+              <>
+                <p className="text-sm text-muted-foreground mb-4">Въведете парола за достъп до управление на данните.</p>
+                <input
+                  type="password"
+                  value={adminPassword}
+                  onChange={(e) => setAdminPassword(e.target.value)}
+                  placeholder="Парола"
+                  className="w-full p-3 rounded-xl border border-border bg-background mb-3"
+                />
+                {adminError && <p className="text-red-500 text-sm mb-3">{adminError}</p>}
+                <button
+                  onClick={() => checkAdmin(adminPassword)}
+                  className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90"
+                >
+                  Вход
+                </button>
+              </>
+            ) : (
+              <div className="space-y-4">
+                <p className="text-sm text-muted-foreground">Управление на базата данни от наредбата.</p>
+                <div className="grid grid-cols-1 gap-3">
+                  <button
+                    onClick={exportData}
+                    className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"
+                  >
+                    <Download className="h-4 w-4" /> Експортирай данни (JSON)
+                  </button>
+                  <label className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold cursor-pointer hover:bg-primary/20">
+                    <Upload className="h-4 w-4" /> Импортирай данни (JSON)
+                    <input
+                      type="file"
+                      accept=".json"
+                      onChange={(e) => e.target.files && importData(e.target.files[0])}
+                      className="hidden"
+                    />
+                  </label>
+                  <button
+                    onClick={resetToDefault}
+                    className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"
+                  >
+                    <RefreshCw className="h-4 w-4" /> Възстанови оригинални данни
+                  </button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Внимание: Импортирането или възстановяването на данни ще презапише текущите.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -135,13 +286,9 @@ const CalculatorSection = () => {
           <div className="w-24 h-1.5 bg-primary mx-auto rounded-full mb-6" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Изчислете необходимите пожаротехнически средства по{" "}
-            <span className="font-semibold text-foreground">
-              Приложение 2
-            </span>{" "}
+            <span className="font-semibold text-foreground">Приложение 2</span>{" "}
             към{" "}
-            <span className="font-semibold text-foreground">
-              Наредба № Iз-1971
-            </span>
+            <span className="font-semibold text-foreground">Наредба № Iз-1971</span>
           </p>
         </motion.div>
 
@@ -155,9 +302,7 @@ const CalculatorSection = () => {
           >
             {/* Търсачка */}
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-foreground mb-2">
-                Търсене на обект
-              </label>
+              <label className="block text-sm font-semibold text-foreground mb-2">Търсене на обект</label>
               <div className="relative">
                 <input
                   type="text"
@@ -172,14 +317,11 @@ const CalculatorSection = () => {
                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
               </div>
 
-              {/* Резултати от търсенето */}
               {searchQuery.trim() && (
                 <div className="mt-3 space-y-2">
                   {filteredObjects.length > 0 ? (
                     <>
-                      <div className="text-sm font-medium text-muted-foreground">
-                        Намерени обекти:
-                      </div>
+                      <div className="text-sm font-medium text-muted-foreground">Намерени обекти:</div>
                       <div className="max-h-64 overflow-y-auto rounded-xl border border-border bg-background divide-y divide-border">
                         {filteredObjects.map((obj) => (
                           <button
@@ -222,12 +364,10 @@ const CalculatorSection = () => {
               )}
             </div>
 
-            {/* Ръчно избиране чрез селект (като алтернатива) */}
+            {/* Ръчно избиране чрез селект */}
             {!searchQuery.trim() && (
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-foreground mb-2">
-                  Или изберете от списъка
-                </label>
+                <label className="block text-sm font-semibold text-foreground mb-2">Или изберете от списъка</label>
                 <div className="relative">
                   <select
                     value={selectedId}
@@ -240,9 +380,9 @@ const CalculatorSection = () => {
                     className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition appearance-none pr-10"
                   >
                     <option value="">-- Изберете тип обект --</option>
-                    {groups.map((group) => (
+                    {data.groups.map((group) => (
                       <optgroup key={group} label={group}>
-                        {objectTypes
+                        {data.objectTypes
                           .filter((t) => t.group === group)
                           .map((t) => (
                             <option key={t.id} value={t.id}>
@@ -257,25 +397,19 @@ const CalculatorSection = () => {
               </div>
             )}
 
-            {/* Показваме избрания обект за яснота */}
+            {/* Показване на избрания обект */}
             {selectedObj && (
               <div className="mb-6 p-4 bg-primary/5 rounded-xl border border-primary/20">
-                <div className="text-sm font-medium text-foreground">
-                  Избран обект:
-                </div>
+                <div className="text-sm font-medium text-foreground">Избран обект:</div>
                 <div className="font-bold text-primary">{selectedObj.label}</div>
-                <div className="text-xs text-muted-foreground mt-1">
-                  Група: {selectedObj.group}
-                </div>
+                <div className="text-xs text-muted-foreground mt-1">Група: {selectedObj.group}</div>
               </div>
             )}
 
-            {/* Поля за входни данни */}
+            {/* Полета за входни данни */}
             {selectedObj && needsArea && (
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-foreground mb-2">
-                  {getInputLabel()}
-                </label>
+                <label className="block text-sm font-semibold text-foreground mb-2">{getInputLabel()}</label>
                 <input
                   type="number"
                   min="1"
@@ -292,9 +426,7 @@ const CalculatorSection = () => {
 
             {selectedObj && needsUnits && (
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-foreground mb-2">
-                  {getInputLabel()}
-                </label>
+                <label className="block text-sm font-semibold text-foreground mb-2">{getInputLabel()}</label>
                 <input
                   type="number"
                   min="1"
@@ -313,9 +445,7 @@ const CalculatorSection = () => {
               <div className="mb-6 p-4 bg-muted/50 rounded-xl text-sm text-muted-foreground">
                 <Info className="inline h-4 w-4 mr-1" />
                 Изискванията са фиксирани —{" "}
-                <strong className="text-foreground">
-                  {selectedObj.areaUnit}
-                </strong>
+                <strong className="text-foreground">{selectedObj.areaUnit}</strong>
               </div>
             )}
 
@@ -337,9 +467,7 @@ const CalculatorSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-2xl"
               >
-                <h3 className="text-lg font-bold text-foreground mb-1">
-                  Резултат:
-                </h3>
+                <h3 className="text-lg font-bold text-foreground mb-1">Резултат:</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   {result.objectLabel} — {result.areaUnit}
                   {result.multiplier > 1 && ` × ${result.multiplier}`}
@@ -351,12 +479,8 @@ const CalculatorSection = () => {
                       key={i}
                       className="flex items-center justify-between p-3 bg-background rounded-xl border border-border"
                     >
-                      <span className="text-foreground font-medium text-sm break-words pr-2">
-                        {item.type}
-                      </span>
-                      <span className="text-xl font-bold text-primary shrink-0">
-                        {item.count} бр.
-                      </span>
+                      <span className="text-foreground font-medium text-sm break-words pr-2">{item.type}</span>
+                      <span className="text-xl font-bold text-primary shrink-0">{item.count} бр.</span>
                     </div>
                   ))}
                 </div>
@@ -371,10 +495,7 @@ const CalculatorSection = () => {
                     професионален одит.
                   </span>
                 </div>
-                <a
-                  href="#contact"
-                  className="mt-4 inline-block text-primary font-semibold hover:underline text-sm"
-                >
+                <a href="#contact" className="mt-4 inline-block text-primary font-semibold hover:underline text-sm">
                   → Поискай безплатна консултация
                 </a>
               </motion.div>
@@ -385,5 +506,12 @@ const CalculatorSection = () => {
     </section>
   );
 };
+
+interface CalculationResult {
+  items: { type: string; count: number }[];
+  objectLabel: string;
+  areaUnit: string;
+  multiplier: number;
+}
 
 export default CalculatorSection;
