@@ -16,7 +16,6 @@ const ContactSection = () => {
     const formData = new FormData(form);
 
     try {
-      // Изпращане към Formsubmit (или Formspree)
       const response = await fetch("https://formsubmit.co/vato2009@abv.bg", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -39,8 +38,8 @@ const ContactSection = () => {
   return (
     <section id="contact" className="py-16 md:py-24 bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20">
-          {/* Info */}
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+          {/* Лява колона – информация и карта */}
           <motion.div
             className="order-2 md:order-1"
             initial={{ opacity: 0, x: -30 }}
@@ -57,7 +56,7 @@ const ContactSection = () => {
             </p>
 
             <div className="space-y-6">
-              <div className="flex items-start gap-4 md:gap-6">
+              <div className="flex items-start gap-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
                   <Phone className="h-4 w-4 md:h-5 md:w-5" />
                 </div>
@@ -75,7 +74,7 @@ const ContactSection = () => {
               <ContactInfo icon={MapPin} label="Адрес" value="гр. Варна, бул. 3 март, ж.к. Възраждане 2, с.о. Кочмар, бл. 264" />
             </div>
 
-            {/* Google Maps embed - responsive */}
+            {/* Карта – гарантирано няма да излезе от екрана */}
             <div className="mt-8 md:mt-10 rounded-2xl overflow-hidden border border-border shadow-lg">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2907.5!2d27.8873338!3d43.2370432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a455751c2d0d41%3A0x22951dd09e0fa20c!2z0JLQsNGC0L4t0J_QvtC20LDRgNC90LAg0LHQtdC30L7Qv9Cw0YHQvdC-0YHRgiIg0J7QntCU!5e0!3m2!1sbg!2sbg!4v1710000000000!5m2!1sbg!2sbg"
@@ -90,7 +89,7 @@ const ContactSection = () => {
             </div>
           </motion.div>
 
-          {/* Form */}
+          {/* Дясна колона – форма */}
           <motion.div
             className="surface-dark p-6 sm:p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden order-1 md:order-2"
             initial={{ opacity: 0, x: 30 }}
@@ -190,11 +189,11 @@ const ContactInfo = ({
   value: string;
   href?: string;
 }) => (
-  <div className="flex items-start gap-4 md:gap-6">
+  <div className="flex items-start gap-4">
     <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
       <Icon className="h-4 w-4 md:h-5 md:w-5" />
     </div>
-    <div>
+    <div className="flex-1 min-w-0">
       <p className="text-xs md:text-sm uppercase font-bold text-muted-foreground">{label}</p>
       {href ? (
         <a href={href} className="text-base md:text-2xl font-bold text-foreground hover:text-primary transition-colors break-words">
