@@ -15,7 +15,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full z-50 bg-card/95 backdrop-blur-md shadow-md border-b border-border">
+    <nav className="fixed w-full z-50 bg-card/90 backdrop-blur-sm shadow-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <a href="#home" className="flex items-center gap-2">
@@ -26,8 +26,8 @@ const Navbar = () => {
           </a>
 
           {/* Desktop */}
-          <div className="hidden md:flex items-center gap-8 font-semibold text-muted-foreground">
-            {navLinks.map((l) => (
+          <div className="hidden md:flex items-center gap-8 font-semibold text-foreground/80">
+             {navLinks.map((l) => (
               <a key={l.href} href={l.href} className="hover:text-primary transition-colors">
                 {l.label}
               </a>
