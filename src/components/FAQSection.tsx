@@ -20,7 +20,7 @@ const faqData: FaqItem[] = [
   {
     question: "Кой е най-подходящият тип гасително вещество за административни и търговски помещения?",
     answer:
-      'За повечето офиси, хотели и магазини универсалното и законово изисквано решение е прахов пожарогасител тип ABC. Въпреки това, за помещения с много компютърна техника, сървърни стаи или скъпа апаратура, силно препоръчваме пожарогасители с въглероден диоксид (CO2). Те са ефективни при електрически пожари и се изпаряват напълно, без да оставят разрушителни следи по електрониката.',
+      'За повечето офиси, хотели и магазини универсалното и законово изисквано решение е прахов пожарогасител тип ABC. Въпреки това, за помещения с много компютърна техника, сървърни стаи или скъпа апаратура, силно препоръчваме пожарогасители с въглероден диоксид (CO₂). Те са ефективни при електрически пожари и се изпаряват напълно, без да оставят разрушителни следи по електрониката.',
     categories: ["technical"],
   },
   {
@@ -60,20 +60,20 @@ const FAQSection = () => {
       : faqData.filter((f) => f.categories.includes(activeFilter));
 
   return (
-    <section id="faq" className="py-24 bg-card">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 uppercase tracking-tighter text-foreground">
-            Експертни Отговори
+    <section id="faq" className="py-16 md:py-24 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 italic uppercase tracking-tighter text-foreground">
+            ЕКСПЕРТНИ <span className="text-primary">ОТГОВОРИ</span>
           </h2>
           <div className="w-24 h-1.5 bg-primary mx-auto rounded-full mb-6" />
-          <p className="text-muted-foreground">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Важна информация относно нормативната уредба и техническата поддръжка
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        {/* Филтри – адаптивни за мобилни */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
           {filters.map((f) => (
             <button
               key={f.value}
@@ -81,10 +81,10 @@ const FAQSection = () => {
                 setActiveFilter(f.value);
                 setOpenIndex(null);
               }}
-              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all ${
+              className={`px-4 sm:px-6 py-2 rounded-full font-semibold text-sm transition-all ${
                 activeFilter === f.value
                   ? "bg-primary text-primary-foreground shadow-md"
-                  : "bg-muted text-muted-foreground hover:bg-accent"
+                  : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground"
               }`}
             >
               {f.label}
@@ -92,20 +92,22 @@ const FAQSection = () => {
           ))}
         </div>
 
-        {/* FAQ Items */}
-        <div className="space-y-4">
+        {/* Въпроси и отговори */}
+        <div className="max-w-3xl mx-auto space-y-4">
           {filtered.map((item, i) => {
             const isOpen = openIndex === i;
             return (
               <div
                 key={item.question}
-                className="bg-muted rounded-2xl border border-border overflow-hidden"
+                className="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex items-center justify-between w-full p-6 text-left font-bold text-foreground text-lg"
+                  className="flex items-center justify-between w-full p-5 text-left font-semibold text-foreground hover:bg-muted/30 transition-colors"
                 >
-                  <span className="pr-6">{item.question}</span>
+                  <span className="text-base md:text-lg pr-4 break-words">
+                    {item.question}
+                  </span>
                   <ChevronDown
                     className={`h-5 w-5 text-primary shrink-0 transition-transform duration-300 ${
                       isOpen ? "rotate-180" : ""
@@ -121,7 +123,7 @@ const FAQSection = () => {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="p-6 pt-0 text-muted-foreground leading-relaxed border-t border-border">
+                      <div className="p-5 pt-0 text-muted-foreground leading-relaxed border-t border-border">
                         {item.answer}
                       </div>
                     </motion.div>
