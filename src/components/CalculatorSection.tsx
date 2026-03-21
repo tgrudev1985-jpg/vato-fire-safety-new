@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Calculator, Info, ChevronDown, Search, X, Upload, Download, RefreshCw, Shield, Lock } from "lucide-react";
+import { Calculator, Info, ChevronDown, Search, X, Upload, Download, RefreshCw, Shield, Lock, Unlock } from "lucide-react";
 import { objectTypes as defaultObjectTypes, groups as defaultGroups } from "@/data/objectTypes";
 
 interface ObjectType {
@@ -13,6 +13,7 @@ interface ObjectType {
 }
 
 const STORAGE_KEY = "vato_calculator_data";
+const UNLOCK_KEY = "calculator_unlocked";
 
 const loadData = (): { objectTypes: ObjectType[]; groups: string[] } => {
   try {
@@ -45,9 +46,13 @@ const getSimilarityScore = (query: string, label: string): number => {
 
 const CalculatorSection = () => {
   // Състояние за отключване на калкулатора
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(() => {
+    return localStorage.getItem(UNLOCK_KEY) === "true";
+  });
+
   const [passwordInput, setPasswordInput] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showUnlockModal, setShowUnlockModal] = useState(false);
 
   const [data, setData] = useState(loadData);
   const [selectedId, setSelectedId] = useState("");
@@ -60,19 +65,25 @@ const CalculatorSection = () => {
   const [adminError, setAdminError] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Функция за проверка на паролата за отключване на калкулатора
+  // Запазваме състоянието на отключване в localStorage
+  useEffect(() => {
+    localStorage.setItem(UNLOCK_KEY, isUnlocked.toString());
+  }, [isUnlocked]);
+
   const unlockCalculator = (pwd: string) => {
-    // СМЕНЕТЕ ТУК ПАРОЛАТА ЗА ДОСТЪП ДО КАЛКУЛАТОРА
+    // Парола за достъп до калкулатора (можете да я смените)
     if (pwd === "vato1952") {
       setIsUnlocked(true);
       setPasswordError("");
       setPasswordInput("");
+      setShowUnlockModal(false);
     } else {
       setPasswordError("Невалидна парола");
     }
   };
 
   const checkAdmin = (pwd: string) => {
+    // Администраторска парола (може да е същата)
     if (pwd === "vato1952") {
       setIsAuthenticated(true);
       setAdminError("");
@@ -204,42 +215,65 @@ const CalculatorSection = () => {
     }
   };
 
-  // Ако калкулаторът не е отключен, показваме екран за парола
+  // Ако калкулаторът не е отключен, показваме само икона за отключване
   if (!isUnlocked) {
     return (
-      <section id="calculator" className="py-16 md:py-24 bg-background overflow-hidden relative min-h-screen flex items-center justify-center">
-        <div className="max-w-md mx-auto px-4 text-center">
-          <div className="bg-card border border-border rounded-2xl shadow-lg p-8">
-            <Lock className="h-16 w-16 text-primary mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-2 text-foreground">Калкулаторът е заключен</h2>
-            <p className="text-muted-foreground mb-6">Моля, въведете парола за достъп.</p>
-            <input
-              type="password"
-              value={passwordInput}
-              onChange={(e) => setPasswordInput(e.target.value)}
-              placeholder="Парола"
-              className="w-full p-3 rounded-xl border border-border bg-background mb-3"
-            />
-            {passwordError && <p className="text-red-500 text-sm mb-3">{passwordError}</p>}
-            <button
-              onClick={() => unlockCalculator(passwordInput)}
-              className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90"
-            >
-                              Отключи
-            </button>
-            <p className="text-xs text-muted-foreground mt-4">
-              Ако нямате парола, свържете се с администратора.
-            </p>
+      <div className="relative">
+        {/* Икона за отключване (щит) */}
+        <button
+          onClick={() => setShowUnlockModal(true)}
+          className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/90 transition"
+          aria-label="Отключи калкулатора"
+        >
+          <Shield className="h-6 w-6" />
+        </button>
+
+        {/* Модал за въвеждане на парола */}
+        {showUnlockModal && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+            <div className="bg-card rounded-2xl shadow-xl max-w-md w-full p-6 relative">
+              <button
+                onClick={() => { setShowUnlockModal(false); setPasswordError(""); setPasswordInput(""); }}
+                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <h3 className="text-xl font-bold mb-4">Отключване на калкулатора</h3>
+              <p className="text-sm text-muted-foreground mb-4">Въведете парола за достъп до калкулатора.</p>
+              <input
+                type="password"
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
+                placeholder="Парола"
+                className="w-full p-3 rounded-xl border border-border bg-background mb-3"
+              />
+              {passwordError && <p className="text-red-500 text-sm mb-3">{passwordError}</p>}
+              <button
+                onClick={() => unlockCalculator(passwordInput)}
+                className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90"
+              >
+                Отключи
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
+        )}
+      </div>
     );
   }
 
-  // Отключен калкулатор – показваме нормалния интерфейс
+  // Отключен калкулатор – показваме пълния интерфейс
   return (
     <section id="calculator" className="py-16 md:py-24 bg-background overflow-hidden relative">
-      {/* Икона за администраторски панел (щит) – винаги видима, когато калкулаторът е отключен */}
+      {/* Бутон за заключване (катинар) */}
+      <button
+        onClick={() => setIsUnlocked(false)}
+        className="fixed bottom-6 left-6 z-50 bg-primary/20 text-primary p-3 rounded-full shadow-lg hover:bg-primary/40 transition"
+        aria-label="Заключи калкулатора"
+      >
+        <Lock className="h-6 w-6" />
+      </button>
+
+      {/* Икона за администраторски панел (щит) */}
       <button
         onClick={() => setAdminOpen(true)}
         className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/90 transition"
