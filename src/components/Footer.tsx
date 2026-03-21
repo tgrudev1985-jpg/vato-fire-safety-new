@@ -7,16 +7,24 @@ const Footer = () => (
         <div className="text-center md:text-left">
           <div className="flex items-center gap-2 justify-center md:justify-start mb-4">
             <Flame className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold uppercase italic">ВАТО Пожарна Безопасност ООД</span>
+            <span className="text-xl sm:text-2xl font-bold uppercase italic">
+              ВАТО Пожарна Безопасност ООД
+            </span>
           </div>
           <p className="text-muted-foreground max-w-sm">
             Вашата пожарна безопасност е в ръцете на професионалисти — доверете се на нашия дългогодишен опит.
           </p>
         </div>
         <div className="text-center md:text-right text-sm text-muted-foreground space-y-1">
-          <a href="tel:+359898701900" className="block hover:text-primary-foreground transition-colors">0898 701 900</a>
-          <a href="tel:+359896741869" className="block hover:text-primary-foreground transition-colors">0896 741 869</a>
-          <a href="mailto:vato2009@abv.bg" className="block hover:text-primary-foreground transition-colors">vato2009@abv.bg</a>
+          <a href="tel:+359898701900" className="block hover:text-primary-foreground transition-colors">
+            0898 701 900
+          </a>
+          <a href="tel:+359896741869" className="block hover:text-primary-foreground transition-colors">
+            0896 741 869
+          </a>
+          <a href="mailto:vato2009@abv.bg" className="block hover:text-primary-foreground transition-colors">
+            vato2009@abv.bg
+          </a>
         </div>
       </div>
       <div className="border-t border-primary-foreground/5 mt-12 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">

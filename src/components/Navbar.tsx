@@ -15,19 +15,19 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full z-50 bg-card/90 backdrop-blur-sm shadow-md border-b border-border">
+    <nav className="fixed w-full z-50 bg-card shadow-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <a href="#home" className="flex items-center gap-2">
             <Flame className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold tracking-tighter text-foreground uppercase">
+            <span className="text-base sm:text-xl font-bold tracking-tighter text-foreground uppercase">
               ВАТО <span className="text-primary">Пожарна Безопасност</span> ООД
             </span>
           </a>
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-8 font-semibold text-foreground/80">
-             {navLinks.map((l) => (
+            {navLinks.map((l) => (
               <a key={l.href} href={l.href} className="hover:text-primary transition-colors">
                 {l.label}
               </a>

@@ -52,11 +52,17 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 0 72% 45%;
   }
-}
 
-@layer base {
+  /* Prevent horizontal scroll on all devices */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
   * {
-    @apply border-border;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   body {

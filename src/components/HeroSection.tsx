@@ -20,8 +20,14 @@ const features = [
 ];
 
 const HeroSection = () => (
-  <section id="home" className="hero-gradient min-h-screen flex items-center pt-20 text-primary-foreground">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
+  <section
+    id="home"
+    className="hero-gradient min-h-screen flex items-center pt-20 text-primary-foreground relative overflow-hidden"
+  >
+    {/* Semi‑transparent overlay to improve text contrast */}
+    <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px] z-0"></div>
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
