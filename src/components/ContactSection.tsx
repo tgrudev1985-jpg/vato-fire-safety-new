@@ -106,7 +106,7 @@ const ContactSection = () => {
               onSubmit={handleSubmit}
               method="POST"
             >
-              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_captcha" value="true" /> {/* 👈 ВКЛЮЧЕНА CAPTCHA */}
               <input type="hidden" name="_subject" value="Ново запитване от сайта" />
               <input type="hidden" name="_next" value="https://vato-firesafety.com/" />
 
