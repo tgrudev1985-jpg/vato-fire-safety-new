@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Calculator, Info, ChevronDown, Search, X, Upload, Download, RefreshCw, Shield } from "lucide-react";
+import { Calculator, Info, ChevronDown, Search, X, Upload, Download, RefreshCw, Shield, Lock } from "lucide-react";
 import { objectTypes as defaultObjectTypes, groups as defaultGroups } from "@/data/objectTypes";
 
 interface ObjectType {
@@ -12,16 +12,13 @@ interface ObjectType {
   extinguishers: { type: string; count: number }[];
 }
 
-// Ключ за localStorage
 const STORAGE_KEY = "vato_calculator_data";
 
-// Зареждане на данни от localStorage или използване на defaults
 const loadData = (): { objectTypes: ObjectType[]; groups: string[] } => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const data = JSON.parse(saved);
-      // Валидация – ако липсват групи, ги генерираме наново
       const groups = [...new Set(data.objectTypes.map((t: ObjectType) => t.group))];
       return { objectTypes: data.objectTypes, groups };
     }
@@ -31,7 +28,6 @@ const loadData = (): { objectTypes: ObjectType[]; groups: string[] } => {
   return { objectTypes: defaultObjectTypes, groups: defaultGroups };
 };
 
-// Запазване на данни в localStorage
 const saveData = (objectTypes: ObjectType[]) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify({ objectTypes }));
 };
@@ -48,22 +44,36 @@ const getSimilarityScore = (query: string, label: string): number => {
 };
 
 const CalculatorSection = () => {
-  // Състояние за данните
+  // Състояние за отключване на калкулатора
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const [data, setData] = useState(loadData);
   const [selectedId, setSelectedId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [area, setArea] = useState("");
   const [units, setUnits] = useState("");
   const [result, setResult] = useState<CalculationResult | null>(null);
-  // Състояние за администраторския модал
   const [adminOpen, setAdminOpen] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
   const [adminError, setAdminError] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Проверка на парола (проста, може да я смените)
+  // Функция за проверка на паролата за отключване на калкулатора
+  const unlockCalculator = (pwd: string) => {
+    // СМЕНЕТЕ ТУК ПАРОЛАТА ЗА ДОСТЪП ДО КАЛКУЛАТОРА
+    if (pwd === "vato1952") {
+      setIsUnlocked(true);
+      setPasswordError("");
+      setPasswordInput("");
+    } else {
+      setPasswordError("Невалидна парола");
+    }
+  };
+
   const checkAdmin = (pwd: string) => {
-    if (pwd === "vato2025") { // Сменете с ваша парола
+    if (pwd === "vato1952") {
       setIsAuthenticated(true);
       setAdminError("");
       setAdminPassword("");
@@ -147,7 +157,6 @@ const CalculatorSection = () => {
 
   const clearSearch = () => setSearchQuery("");
 
-  // Експорт на данни
   const exportData = () => {
     const dataStr = JSON.stringify(data.objectTypes, null, 2);
     const blob = new Blob([dataStr], { type: "application/json" });
@@ -159,7 +168,6 @@ const CalculatorSection = () => {
     URL.revokeObjectURL(url);
   };
 
-  // Импорт на данни от файл
   const importData = (file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -184,7 +192,6 @@ const CalculatorSection = () => {
     reader.readAsText(file);
   };
 
-  // Възстановяване на оригиналните данни от наредбата
   const resetToDefault = () => {
     if (confirm("Сигурни ли сте, че искате да възстановите оригиналните данни от наредбата?")) {
       setData({ objectTypes: defaultObjectTypes, groups: defaultGroups });
@@ -197,9 +204,42 @@ const CalculatorSection = () => {
     }
   };
 
+  // Ако калкулаторът не е отключен, показваме екран за парола
+  if (!isUnlocked) {
+    return (
+      <section id="calculator" className="py-16 md:py-24 bg-background overflow-hidden relative min-h-screen flex items-center justify-center">
+        <div className="max-w-md mx-auto px-4 text-center">
+          <div className="bg-card border border-border rounded-2xl shadow-lg p-8">
+            <Lock className="h-16 w-16 text-primary mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-2 text-foreground">Калкулаторът е заключен</h2>
+            <p className="text-muted-foreground mb-6">Моля, въведете парола за достъп.</p>
+            <input
+              type="password"
+              value={passwordInput}
+              onChange={(e) => setPasswordInput(e.target.value)}
+              placeholder="Парола"
+              className="w-full p-3 rounded-xl border border-border bg-background mb-3"
+            />
+            {passwordError && <p className="text-red-500 text-sm mb-3">{passwordError}</p>}
+            <button
+              onClick={() => unlockCalculator(passwordInput)}
+              className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90"
+            >
+                              Отключи
+            </button>
+            <p className="text-xs text-muted-foreground mt-4">
+              Ако нямате парола, свържете се с администратора.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Отключен калкулатор – показваме нормалния интерфейс
   return (
     <section id="calculator" className="py-16 md:py-24 bg-background overflow-hidden relative">
-      {/* Администраторска икона (само за достъп) */}
+      {/* Икона за администраторски панел (щит) – винаги видима, когато калкулаторът е отключен */}
       <button
         onClick={() => setAdminOpen(true)}
         className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/90 transition"
