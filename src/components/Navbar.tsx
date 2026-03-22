@@ -18,7 +18,7 @@ const Navbar = () => {
   const [error, setError] = useState("");
   const { unlock } = useCalculatorLock();
 
-  const handleDoubleClickLogo = () => {
+  const handleDoubleClickFlame = () => {
     setShowPasswordModal(true);
   };
 
@@ -37,18 +37,16 @@ const Navbar = () => {
       <nav className="fixed w-full z-50 bg-card shadow-lg border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
-            <a
-              href="#home"
-              className="flex items-center gap-2 cursor-pointer"
-              onDoubleClick={handleDoubleClickLogo}
-            >
-              <Flame className="h-8 w-8 text-primary" />
+            <a href="#home" className="flex items-center gap-2">
+              <div onDoubleClick={handleDoubleClickFlame} className="cursor-pointer">
+                <Flame className="h-8 w-8 text-primary" />
+              </div>
               <span className="text-base sm:text-xl font-bold tracking-tighter text-foreground uppercase">
                 ВАТО <span className="text-primary">Пожарна Безопасност</span> ООД
               </span>
             </a>
 
-            {/* Desktop */}
+            {/* Desktop меню */}
             <div className="hidden md:flex items-center gap-8 font-semibold text-foreground/80">
               {navLinks.map((l) => (
                 <a key={l.href} href={l.href} className="hover:text-primary transition-colors">
@@ -123,12 +121,16 @@ const Navbar = () => {
         </AnimatePresence>
       </nav>
 
-      {/* Модал за въвеждане на парола */}
+      {/* Модал за парола */}
       {showPasswordModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-card rounded-2xl shadow-xl max-w-md w-full p-6 relative">
             <button
-              onClick={() => { setShowPasswordModal(false); setPassword(""); setError(""); }}
+              onClick={() => {
+                setShowPasswordModal(false);
+                setPassword("");
+                setError("");
+              }}
               className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
             >
               <X className="h-5 w-5" />

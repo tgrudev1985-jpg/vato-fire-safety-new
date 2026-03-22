@@ -20,7 +20,8 @@ export const CalculatorLockProvider = ({ children }: { children: ReactNode }) =>
   }, [isUnlocked]);
 
   const unlock = (password: string): boolean => {
-    if (password === 'vato1952') {  // ← тук сменете паролата, ако искате
+    // Сменете паролата тук, ако искате
+    if (password === 'vato2025') {
       setIsUnlocked(true);
       return true;
     }
