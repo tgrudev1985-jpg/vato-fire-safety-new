@@ -149,16 +149,20 @@ const CalculatorSection = () => {
     });
   };
 
-  // Коригирана функция getInputLabel – първо проверява за коридор
+  // ⭐⭐⭐ КОРИГИРАНА ФУНКЦИЯ за определяне на етикета на входа
   const getInputLabel = () => {
     if (!selectedObj) return "";
-    if (selectedObj.areaUnit.includes("коридор")) {
-      return `Дължина на коридора (м) — изчислява се на всеки ${selectedObj.areaPer} м`;
+    const unit = selectedObj.areaUnit.toLowerCase();
+    const per = selectedObj.areaPer;
+    // Ако единицата съдържа "коридор" или "m" без квадрат (и не е "м²"/"кв.м"), и не е за етаж/камера
+    if (unit.includes("коридор") || (unit.includes("m") && !unit.includes("²") && !unit.includes("кв.м") && !unit.includes("етаж") && !unit.includes("камера"))) {
+      return `Дължина на коридора (м) — изчислява се на всеки ${per} м`;
     }
-    if (needsArea) return `Площ на обекта (кв.м.) — изчислява се на всеки ${selectedObj.areaPer} м²`;
-    if (selectedObj.areaUnit.includes("етаж")) return "Брой етажи";
-    if (selectedObj.areaUnit.includes("коридор")) return "Дължина на коридора (м)";
-    if (selectedObj.areaUnit.includes("камера")) return "Брой камери";
+    if (needsArea) {
+      return `Площ на обекта (кв.м.) — изчислява се на всеки ${per} м²`;
+    }
+    if (unit.includes("етаж")) return "Брой етажи";
+    if (unit.includes("камера")) return "Брой камери";
     return "";
   };
 
