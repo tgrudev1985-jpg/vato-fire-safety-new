@@ -24,7 +24,6 @@ const HeroSection = () => (
     id="home"
     className="hero-gradient min-h-screen flex items-center pt-20 text-primary-foreground relative overflow-hidden"
   >
-    {/* Semi‑transparent overlay to improve text contrast */}
     <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px] z-0"></div>
 
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
@@ -40,7 +39,7 @@ const HeroSection = () => (
           Вашата сигурност е наш приоритет
         </h1>
         <p className="text-xl mb-8 opacity-90">
-          Пълно обслужване на пожарогасители, пожароизвестителни системи и консултации по ПБ за бизнеса и дома.
+          Пълно обслужване на пожарогасители, пожароизвестителни системи и консултации по ПБ, инструктажи за бизнеса и дома. Проектираме, изграждаме, обслужваме пожароизвестителни системи.
         </p>
         <div className="flex flex-wrap gap-4">
           <a
@@ -55,6 +54,9 @@ const HeroSection = () => (
           >
             <Phone className="h-5 w-5" /> 0898 701 900
           </a>
+        </div>
+        <div className="mt-4 text-sm opacity-80">
+          Email: <a href="mailto:vato2009@abv.bg" className="underline">vato2009@abv.bg</a>
         </div>
       </motion.div>
 

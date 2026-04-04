@@ -71,7 +71,7 @@ const CalculatorSection = () => {
   }, [isUnlocked]);
 
   const unlockCalculator = (pwd: string) => {
-    // Парола за достъп до калкулатора (можете да я смените)
+    // Парола за достъп до калкулатора – променена на vato1952
     if (pwd === "vato1952") {
       setIsUnlocked(true);
       setPasswordError("");
@@ -83,7 +83,7 @@ const CalculatorSection = () => {
   };
 
   const checkAdmin = (pwd: string) => {
-    // Администраторска парола (може да е същата)
+    // Администраторска парола – променена на vato1952
     if (pwd === "vato1952") {
       setIsAuthenticated(true);
       setAdminError("");
@@ -149,8 +149,12 @@ const CalculatorSection = () => {
     });
   };
 
+  // Коригирана функция getInputLabel – първо проверява за коридор
   const getInputLabel = () => {
     if (!selectedObj) return "";
+    if (selectedObj.areaUnit.includes("коридор")) {
+      return `Дължина на коридора (м) — изчислява се на всеки ${selectedObj.areaPer} м`;
+    }
     if (needsArea) return `Площ на обекта (кв.м.) — изчислява се на всеки ${selectedObj.areaPer} м²`;
     if (selectedObj.areaUnit.includes("етаж")) return "Брой етажи";
     if (selectedObj.areaUnit.includes("коридор")) return "Дължина на коридора (м)";
