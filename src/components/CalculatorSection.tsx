@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Calculator, Info, ChevronDown, Search, X, Upload, Download, RefreshCw, Shield, Lock, Unlock } from "lucide-react";
+import { Calculator, Info, ChevronDown, Search, X, Upload, Download, RefreshCw, Shield, Lock } from "lucide-react";
 import { objectTypes as defaultObjectTypes, groups as defaultGroups } from "@/data/objectTypes";
 
 interface ObjectType {
@@ -45,15 +45,10 @@ const getSimilarityScore = (query: string, label: string): number => {
 };
 
 const CalculatorSection = () => {
-  // Състояние за отключване на калкулатора
-  const [isUnlocked, setIsUnlocked] = useState(() => {
-    return localStorage.getItem(UNLOCK_KEY) === "true";
-  });
-
+  const [isUnlocked, setIsUnlocked] = useState(() => localStorage.getItem(UNLOCK_KEY) === "true");
   const [passwordInput, setPasswordInput] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showUnlockModal, setShowUnlockModal] = useState(false);
-
   const [data, setData] = useState(loadData);
   const [selectedId, setSelectedId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -65,13 +60,11 @@ const CalculatorSection = () => {
   const [adminError, setAdminError] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Запазваме състоянието на отключване в localStorage
   useEffect(() => {
     localStorage.setItem(UNLOCK_KEY, isUnlocked.toString());
   }, [isUnlocked]);
 
   const unlockCalculator = (pwd: string) => {
-    // Парола за достъп до калкулатора – променена на vato1952
     if (pwd === "vato1952") {
       setIsUnlocked(true);
       setPasswordError("");
@@ -83,7 +76,6 @@ const CalculatorSection = () => {
   };
 
   const checkAdmin = (pwd: string) => {
-    // Администраторска парола – променена на vato1952
     if (pwd === "vato1952") {
       setIsAuthenticated(true);
       setAdminError("");
@@ -119,51 +111,64 @@ const CalculatorSection = () => {
   }, [searchQuery, data.objectTypes]);
 
   const selectedObj = data.objectTypes.find(t => t.id === selectedId);
-  const needsArea = selectedObj ? selectedObj.areaPer > 0 : false;
-  const isFixedUnit = selectedObj
-    ? selectedObj.areaPer === 0 &&
-      !["на етаж", "на камера"].some(u => selectedObj.areaUnit.includes(u)) &&
-      !selectedObj.areaUnit.includes("коридор")
-    : false;
-  const needsUnits = selectedObj
-    ? selectedObj.areaPer === 0 && !isFixedUnit
-    : false;
+
+  // Коригирана функция – приоритет на площ
+  const getInputMetadata = () => {
+    if (!selectedObj) return { type: "none", label: "", placeholder: "", multiplierType: "none" };
+    const unit = selectedObj.areaUnit.toLowerCase();
+    const per = selectedObj.areaPer;
+
+    // 1. Площ (квадратни метри)
+    if (unit.includes("м²") || unit.includes("кв.м") || unit.includes("m²") || unit.includes("m2") || unit.includes("m?")) {
+      return { type: "area", label: "Площ на обекта (кв.м)", placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
+    }
+    // 2. Дължина на коридор (само ако изрично е "коридор")
+    if (unit.includes("коридор")) {
+      return { type: "length", label: "Дължина на коридора (м)", placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
+    }
+    // 3. Брой етажи
+    if (unit.includes("етаж")) {
+      return { type: "floors", label: "Брой етажи", placeholder: "Напр. 3", multiplierType: "units" };
+    }
+    // 4. Брой камери
+    if (unit.includes("камера")) {
+      return { type: "chambers", label: "Брой камери", placeholder: "Напр. 3", multiplierType: "units" };
+    }
+    // 5. Фиксирани изисквания
+    if (selectedObj.areaPer === 0) {
+      return { type: "fixed", label: "", placeholder: "", multiplierType: "none", fixedText: selectedObj.areaUnit };
+    }
+    // 6. По подразбиране – приемаме площ
+    return { type: "area", label: "Площ на обекта (кв.м)", placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
+  };
+
+  const inputMeta = getInputMetadata();
+  const needsInput = inputMeta.type !== "none" && inputMeta.type !== "fixed";
+  const isFixed = inputMeta.type === "fixed";
 
   const calculate = () => {
     if (!selectedObj) return;
     let multiplier = 1;
-    if (needsArea) {
-      const sqm = parseFloat(area);
-      if (!sqm || sqm <= 0) return;
-      multiplier = Math.max(1, Math.ceil(sqm / selectedObj.areaPer));
-    } else if (needsUnits) {
-      const u = parseInt(units);
-      if (!u || u <= 0) return;
-      multiplier = u;
+    if (needsInput) {
+      let val = 0;
+      if (inputMeta.multiplierType === "area") {
+        val = parseFloat(area);
+        if (!val || val <= 0) return;
+        multiplier = Math.max(1, Math.ceil(val / selectedObj.areaPer));
+      } else if (inputMeta.multiplierType === "units") {
+        val = parseInt(units);
+        if (!val || val <= 0) return;
+        multiplier = val;
+      }
     }
     setResult({
       items: selectedObj.extinguishers.map(e => ({ type: e.type, count: e.count * multiplier })),
       objectLabel: selectedObj.label,
       areaUnit: selectedObj.areaUnit,
       multiplier,
+      inputType: inputMeta.type,
+      inputValue: inputMeta.multiplierType === "area" ? area : units,
     });
-  };
-
-  // ⭐⭐⭐ КОРИГИРАНА ФУНКЦИЯ за определяне на етикета на входа
-  const getInputLabel = () => {
-    if (!selectedObj) return "";
-    const unit = selectedObj.areaUnit.toLowerCase();
-    const per = selectedObj.areaPer;
-    // Ако единицата съдържа "коридор" или "m" без квадрат (и не е "м²"/"кв.м"), и не е за етаж/камера
-    if (unit.includes("коридор") || (unit.includes("m") && !unit.includes("²") && !unit.includes("кв.м") && !unit.includes("етаж") && !unit.includes("камера"))) {
-      return `Дължина на коридора (м) — изчислява се на всеки ${per} м`;
-    }
-    if (needsArea) {
-      return `Площ на обекта (кв.м.) — изчислява се на всеки ${per} м²`;
-    }
-    if (unit.includes("етаж")) return "Брой етажи";
-    if (unit.includes("камера")) return "Брой камери";
-    return "";
   };
 
   const selectObject = (obj: ObjectType) => {
@@ -223,45 +228,23 @@ const CalculatorSection = () => {
     }
   };
 
-  // Ако калкулаторът не е отключен, показваме само икона за отключване
   if (!isUnlocked) {
     return (
       <div className="relative">
-        {/* Икона за отключване (щит) */}
-        <button
-          onClick={() => setShowUnlockModal(true)}
-          className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/90 transition"
-          aria-label="Отключи калкулатора"
-        >
+        <button onClick={() => setShowUnlockModal(true)} className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/90 transition">
           <Shield className="h-6 w-6" />
         </button>
-
-        {/* Модал за въвеждане на парола */}
         {showUnlockModal && (
           <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
             <div className="bg-card rounded-2xl shadow-xl max-w-md w-full p-6 relative">
-              <button
-                onClick={() => { setShowUnlockModal(false); setPasswordError(""); setPasswordInput(""); }}
-                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
-              >
+              <button onClick={() => { setShowUnlockModal(false); setPasswordError(""); setPasswordInput(""); }} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground">
                 <X className="h-5 w-5" />
               </button>
               <h3 className="text-xl font-bold mb-4">Отключване на калкулатора</h3>
               <p className="text-sm text-muted-foreground mb-4">Въведете парола за достъп до калкулатора.</p>
-              <input
-                type="password"
-                value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
-                placeholder="Парола"
-                className="w-full p-3 rounded-xl border border-border bg-background mb-3"
-              />
+              <input type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} placeholder="Парола" className="w-full p-3 rounded-xl border border-border bg-background mb-3" />
               {passwordError && <p className="text-red-500 text-sm mb-3">{passwordError}</p>}
-              <button
-                onClick={() => unlockCalculator(passwordInput)}
-                className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90"
-              >
-                Отключи
-              </button>
+              <button onClick={() => unlockCalculator(passwordInput)} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90">Отключи</button>
             </div>
           </div>
         )}
@@ -269,136 +252,50 @@ const CalculatorSection = () => {
     );
   }
 
-  // Отключен калкулатор – показваме пълния интерфейс
   return (
     <section id="calculator" className="py-16 md:py-24 bg-background overflow-hidden relative">
-      {/* Бутон за заключване (катинар) */}
-      <button
-        onClick={() => setIsUnlocked(false)}
-        className="fixed bottom-6 left-6 z-50 bg-primary/20 text-primary p-3 rounded-full shadow-lg hover:bg-primary/40 transition"
-        aria-label="Заключи калкулатора"
-      >
-        <Lock className="h-6 w-6" />
-      </button>
-
-      {/* Икона за администраторски панел (щит) */}
-      <button
-        onClick={() => setAdminOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/90 transition"
-        aria-label="Администраторски панел"
-      >
-        <Shield className="h-6 w-6" />
-      </button>
-
-      {/* Модал за администратор */}
+      <button onClick={() => setIsUnlocked(false)} className="fixed bottom-6 left-6 z-50 bg-primary/20 text-primary p-3 rounded-full shadow-lg hover:bg-primary/40 transition"><Lock className="h-6 w-6" /></button>
+      <button onClick={() => setAdminOpen(true)} className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/90 transition"><Shield className="h-6 w-6" /></button>
       {adminOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-card rounded-2xl shadow-xl max-w-md w-full p-6 relative">
-            <button
-              onClick={() => { setAdminOpen(false); setIsAuthenticated(false); setAdminPassword(""); setAdminError(""); }}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
-            >
-              <X className="h-5 w-5" />
-            </button>
+            <button onClick={() => { setAdminOpen(false); setIsAuthenticated(false); setAdminPassword(""); setAdminError(""); }} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"><X className="h-5 w-5" /></button>
             <h3 className="text-xl font-bold mb-4">Администраторски панел</h3>
             {!isAuthenticated ? (
               <>
                 <p className="text-sm text-muted-foreground mb-4">Въведете парола за достъп до управление на данните.</p>
-                <input
-                  type="password"
-                  value={adminPassword}
-                  onChange={(e) => setAdminPassword(e.target.value)}
-                  placeholder="Парола"
-                  className="w-full p-3 rounded-xl border border-border bg-background mb-3"
-                />
+                <input type="password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} placeholder="Парола" className="w-full p-3 rounded-xl border border-border bg-background mb-3" />
                 {adminError && <p className="text-red-500 text-sm mb-3">{adminError}</p>}
-                <button
-                  onClick={() => checkAdmin(adminPassword)}
-                  className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90"
-                >
-                  Вход
-                </button>
+                <button onClick={() => checkAdmin(adminPassword)} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90">Вход</button>
               </>
             ) : (
               <div className="space-y-4">
                 <p className="text-sm text-muted-foreground">Управление на базата данни от наредбата.</p>
                 <div className="grid grid-cols-1 gap-3">
-                  <button
-                    onClick={exportData}
-                    className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"
-                  >
-                    <Download className="h-4 w-4" /> Експортирай данни (JSON)
-                  </button>
-                  <label className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold cursor-pointer hover:bg-primary/20">
-                    <Upload className="h-4 w-4" /> Импортирай данни (JSON)
-                    <input
-                      type="file"
-                      accept=".json"
-                      onChange={(e) => e.target.files && importData(e.target.files[0])}
-                      className="hidden"
-                    />
-                  </label>
-                  <button
-                    onClick={resetToDefault}
-                    className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"
-                  >
-                    <RefreshCw className="h-4 w-4" /> Възстанови оригинални данни
-                  </button>
+                  <button onClick={exportData} className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"><Download className="h-4 w-4" /> Експортирай данни (JSON)</button>
+                  <label className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold cursor-pointer hover:bg-primary/20"><Upload className="h-4 w-4" /> Импортирай данни (JSON)<input type="file" accept=".json" onChange={(e) => e.target.files && importData(e.target.files[0])} className="hidden" /></label>
+                  <button onClick={resetToDefault} className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"><RefreshCw className="h-4 w-4" /> Възстанови оригинални данни</button>
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">
-                  Внимание: Импортирането или възстановяването на данни ще презапише текущите.
-                </p>
+                <p className="text-xs text-muted-foreground mt-2">Внимание: Импортирането или възстановяването на данни ще презапише текущите.</p>
               </div>
             )}
           </div>
         </div>
       )}
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 md:mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 italic uppercase tracking-tighter text-foreground">
-            <span className="text-primary">Калкулатор</span>
-          </h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 italic uppercase tracking-tighter text-foreground"><span className="text-primary">Калкулатор</span></h2>
           <div className="w-24 h-1.5 bg-primary mx-auto rounded-full mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Изчислете необходимите пожаротехнически средства по{" "}
-            <span className="font-semibold text-foreground">Приложение 2</span>{" "}
-            към{" "}
-            <span className="font-semibold text-foreground">Наредба № Iз-1971</span>
-          </p>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Изчислете необходимите пожаротехнически средства по <span className="font-semibold text-foreground">Приложение 2</span> към <span className="font-semibold text-foreground">Наредба № Iз-1971</span></p>
         </motion.div>
-
         <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="bg-card border border-border rounded-2xl shadow-lg p-6 md:p-8"
-          >
-            {/* Търсачка */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }} className="bg-card border border-border rounded-2xl shadow-lg p-6 md:p-8">
             <div className="mb-6">
               <label className="block text-sm font-semibold text-foreground mb-2">Търсене на обект</label>
               <div className="relative">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    if (!e.target.value.trim()) setSelectedId("");
-                  }}
-                  placeholder="Напишете име на обект (напр. магазин, офис, склад...)"
-                  className="w-full px-4 py-3 pr-10 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition"
-                />
+                <input type="text" value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); if (!e.target.value.trim()) setSelectedId(""); }} placeholder="Напишете име на обект (напр. магазин, офис, склад...)" className="w-full px-4 py-3 pr-10 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition" />
                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
               </div>
-
               {searchQuery.trim() && (
                 <div className="mt-3 space-y-2">
                   {filteredObjects.length > 0 ? (
@@ -406,71 +303,31 @@ const CalculatorSection = () => {
                       <div className="text-sm font-medium text-muted-foreground">Намерени обекти:</div>
                       <div className="max-h-64 overflow-y-auto rounded-xl border border-border bg-background divide-y divide-border">
                         {filteredObjects.map((obj) => (
-                          <button
-                            key={obj.id}
-                            onClick={() => selectObject(obj)}
-                            className="w-full text-left px-4 py-3 hover:bg-muted transition-colors flex items-center justify-between"
-                          >
+                          <button key={obj.id} onClick={() => selectObject(obj)} className="w-full text-left px-4 py-3 hover:bg-muted transition-colors flex items-center justify-between">
                             <span className="text-foreground">{obj.label}</span>
-                            <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-full">
-                              {obj.group}
-                            </span>
+                            <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-full">{obj.group}</span>
                           </button>
                         ))}
                       </div>
                     </>
                   ) : (
                     <div className="p-4 bg-muted/50 rounded-xl text-sm text-muted-foreground">
-                      Няма точен резултат за „{searchQuery}“.
-                      {bestMatch && (
-                        <div className="mt-2">
-                          Най-сходният обект е:{" "}
-                          <button
-                            onClick={() => selectObject(bestMatch)}
-                            className="text-primary font-semibold hover:underline"
-                          >
-                            {bestMatch.label}
-                          </button>
-                          .
-                        </div>
-                      )}
+                      Няма точен резултат за „{searchQuery}“. {bestMatch && (<div className="mt-2">Най-сходният обект е: <button onClick={() => selectObject(bestMatch)} className="text-primary font-semibold hover:underline">{bestMatch.label}</button>.</div>)}
                     </div>
                   )}
-                  <button
-                    onClick={clearSearch}
-                    className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 ml-auto"
-                  >
-                    <X className="h-3 w-3" /> Изчисти
-                  </button>
+                  <button onClick={clearSearch} className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 ml-auto"><X className="h-3 w-3" /> Изчисти</button>
                 </div>
               )}
             </div>
-
-            {/* Ръчно избиране чрез селект */}
             {!searchQuery.trim() && (
               <div className="mb-6">
                 <label className="block text-sm font-semibold text-foreground mb-2">Или изберете от списъка</label>
                 <div className="relative">
-                  <select
-                    value={selectedId}
-                    onChange={(e) => {
-                      setSelectedId(e.target.value);
-                      setResult(null);
-                      setArea("");
-                      setUnits("");
-                    }}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition appearance-none pr-10"
-                  >
+                  <select value={selectedId} onChange={(e) => { setSelectedId(e.target.value); setResult(null); setArea(""); setUnits(""); }} className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition appearance-none pr-10">
                     <option value="">-- Изберете тип обект --</option>
                     {data.groups.map((group) => (
                       <optgroup key={group} label={group}>
-                        {data.objectTypes
-                          .filter((t) => t.group === group)
-                          .map((t) => (
-                            <option key={t.id} value={t.id}>
-                              {t.label}
-                            </option>
-                          ))}
+                        {data.objectTypes.filter((t) => t.group === group).map((t) => (<option key={t.id} value={t.id}>{t.label}</option>))}
                       </optgroup>
                     ))}
                   </select>
@@ -478,8 +335,6 @@ const CalculatorSection = () => {
                 </div>
               </div>
             )}
-
-            {/* Показване на избрания обект */}
             {selectedObj && (
               <div className="mb-6 p-4 bg-primary/5 rounded-xl border border-primary/20">
                 <div className="text-sm font-medium text-foreground">Избран обект:</div>
@@ -487,99 +342,47 @@ const CalculatorSection = () => {
                 <div className="text-xs text-muted-foreground mt-1">Група: {selectedObj.group}</div>
               </div>
             )}
-
-            {/* Полета за входни данни */}
-            {selectedObj && needsArea && (
+            {selectedObj && needsInput && (
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-foreground mb-2">{getInputLabel()}</label>
-                <input
-                  type="number"
-                  min="1"
-                  value={area}
-                  onChange={(e) => {
-                    setArea(e.target.value);
-                    setResult(null);
-                  }}
-                  placeholder={`Напр. ${selectedObj.areaPer * 3}`}
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition"
-                />
+                <label className="block text-sm font-semibold text-foreground mb-2">
+                  {inputMeta.label}
+                  {selectedObj.areaPer > 0 && inputMeta.type !== "floors" && inputMeta.type !== "chambers" && (<span className="text-xs text-muted-foreground ml-2">(на всеки {selectedObj.areaPer} {inputMeta.type === "length" ? "м" : "м²"})</span>)}
+                </label>
+                <input type="number" min="1" value={inputMeta.multiplierType === "area" ? area : units} onChange={(e) => { if (inputMeta.multiplierType === "area") setArea(e.target.value); else setUnits(e.target.value); setResult(null); }} placeholder={inputMeta.placeholder} className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition" />
               </div>
             )}
-
-            {selectedObj && needsUnits && (
-              <div className="mb-6">
-                <label className="block text-sm font-semibold text-foreground mb-2">{getInputLabel()}</label>
-                <input
-                  type="number"
-                  min="1"
-                  value={units}
-                  onChange={(e) => {
-                    setUnits(e.target.value);
-                    setResult(null);
-                  }}
-                  placeholder="Напр. 3"
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition"
-                />
-              </div>
-            )}
-
-            {selectedObj && isFixedUnit && (
+            {selectedObj && isFixed && (
               <div className="mb-6 p-4 bg-muted/50 rounded-xl text-sm text-muted-foreground">
-                <Info className="inline h-4 w-4 mr-1" />
-                Изискванията са фиксирани —{" "}
-                <strong className="text-foreground">{selectedObj.areaUnit}</strong>
+                <Info className="inline h-4 w-4 mr-1" /> Изискванията са фиксирани — <strong className="text-foreground">{selectedObj.areaUnit}</strong>
               </div>
             )}
-
-            <button
-              onClick={calculate}
-              disabled={
-                !selectedObj ||
-                (needsArea && (!area || parseFloat(area) <= 0)) ||
-                (needsUnits && (!units || parseInt(units) <= 0))
-              }
-              className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-bold hover:bg-primary/90 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-            >
+            <button onClick={calculate} disabled={!selectedObj || (needsInput && inputMeta.multiplierType === "area" && (!area || parseFloat(area) <= 0)) || (needsInput && inputMeta.multiplierType === "units" && (!units || parseInt(units) <= 0))} className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-bold hover:bg-primary/90 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
               <Calculator className="h-5 w-5" /> Изчисли
             </button>
-
             {result && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-2xl"
-              >
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-2xl">
                 <h3 className="text-lg font-bold text-foreground mb-1">Резултат:</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  {result.objectLabel} — {result.areaUnit}
+                  {result.objectLabel}
+                  {result.inputType === "length" && result.inputValue && ` — ${result.inputValue} м дължина`}
+                  {result.inputType === "area" && result.inputValue && ` — ${result.inputValue} м² площ`}
+                  {result.inputType === "floors" && result.inputValue && ` — ${result.inputValue} етажа`}
+                  {result.inputType === "chambers" && result.inputValue && ` — ${result.inputValue} камери`}
                   {result.multiplier > 1 && ` × ${result.multiplier}`}
                 </p>
-
                 <div className="space-y-3">
                   {result.items.map((item, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center justify-between p-3 bg-background rounded-xl border border-border"
-                    >
+                    <div key={i} className="flex items-center justify-between p-3 bg-background rounded-xl border border-border">
                       <span className="text-foreground font-medium text-sm break-words pr-2">{item.type}</span>
                       <span className="text-xl font-bold text-primary shrink-0">{item.count} бр.</span>
                     </div>
                   ))}
                 </div>
-
                 <div className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">
                   <Info className="h-4 w-4 shrink-0 mt-0.5" />
-                  <span className="break-words">
-                    Данните са съгласно Приложение 2 към Наредба № Iз-1971 от
-                    2009 г. (обн. ДВ бр. 96/2009 г., посл. изм. и доп. ДВ бр.
-                    91/2024 г., доп. ДВ бр. 46 от 6.VI.2025 г.). Изчислението е
-                    ориентировъчно. За точна оценка, свържете се с нас за
-                    професионален одит.
-                  </span>
+                  <span className="break-words">Данните са съгласно Приложение 2 към Наредба № Iз-1971 от 2009 г. (обн. ДВ бр. 96/2009 г., посл. изм. и доп. ДВ бр. 91/2024 г., доп. ДВ бр. 46 от 6.VI.2025 г.). Изчислението е ориентировъчно. За точна оценка, свържете се с нас за професионален одит.</span>
                 </div>
-                <a href="#contact" className="mt-4 inline-block text-primary font-semibold hover:underline text-sm">
-                  → Поискай безплатна консултация
-                </a>
+                <a href="#contact" className="mt-4 inline-block text-primary font-semibold hover:underline text-sm">→ Поискай безплатна консултация</a>
               </motion.div>
             )}
           </motion.div>
@@ -594,6 +397,8 @@ interface CalculationResult {
   objectLabel: string;
   areaUnit: string;
   multiplier: number;
+  inputType: string;
+  inputValue: string;
 }
 
 export default CalculatorSection;

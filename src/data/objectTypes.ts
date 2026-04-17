@@ -18,7 +18,7 @@ export const objectTypes: ObjectType[] = [
     id: "i1",
     label: "Предприятия за първоначална преработка на дървесината, за профилиране на дървен материал, разфасовъчни и др. под./Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -29,7 +29,7 @@ export const objectTypes: ObjectType[] = [
     id: "i2",
     label: "Дървообработващи производства, моделни, мебелни, тапицерски и др. под., при които се използват пълнители, пластификатори, лепила и други свързващи вещества и лакове/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -84,7 +84,7 @@ export const objectTypes: ObjectType[] = [
     id: "i5",
     label: "Помещения за шлифоване и полиране на изделия от дървесина/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -95,7 +95,7 @@ export const objectTypes: ObjectType[] = [
     id: "i6",
     label: "Бояджийни, лакозаливни и други подобни помещения за горими материали/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 1 },
@@ -106,7 +106,7 @@ export const objectTypes: ObjectType[] = [
     id: "i7",
     label: "Помещения за изготвяне и ремонт на горими изделия и амбалаж/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -117,7 +117,7 @@ export const objectTypes: ObjectType[] = [
     id: "i8",
     label: "Помещения за изготвяне на изделия и детайли с използване на горими материали (пластмаси, полиетилен, полиуретан и др.)/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -128,7 +128,7 @@ export const objectTypes: ObjectType[] = [
     id: "i9",
     label: "Химически производства, свързани с обработка на ЛЗТ и ГТ/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов BC 12 кг", count: 2 },
@@ -141,7 +141,7 @@ export const objectTypes: ObjectType[] = [
     id: "i10",
     label: "Помпени станции за ЛЗТ и ГТ/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 2 },
@@ -201,7 +201,7 @@ export const objectTypes: ObjectType[] = [
     id: "i14",
     label: "Кислородни станции/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
@@ -212,7 +212,7 @@ export const objectTypes: ObjectType[] = [
     id: "i15",
     label: "Ацетиленови станции/Ф5.1",
     group: "Производства",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 1 },
@@ -223,7 +223,7 @@ export const objectTypes: ObjectType[] = [
     id: "i16",
     label: "Водородни станции/Ф5.1",
     group: "Производства",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 1 },
@@ -234,7 +234,7 @@ export const objectTypes: ObjectType[] = [
     id: "i17",
     label: "Помещения за приготвяне на бои, лакове, лепила и други подобни смеси с използване на ЛЗТ и ГТ/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов BC 12 кг", count: 1 },
@@ -255,7 +255,7 @@ export const objectTypes: ObjectType[] = [
     id: "i19",
     label: "Участъци за промивка, обезмасляване на изделия и детайли с ЛЗТ и ГТ/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов BC 12 кг", count: 1 },
@@ -267,7 +267,7 @@ export const objectTypes: ObjectType[] = [
     id: "i20",
     label: "Помещения за металопокрития с използване на ЛЗТ и ГТ/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов BC 12 кг", count: 1 },
@@ -279,7 +279,7 @@ export const objectTypes: ObjectType[] = [
     id: "i21",
     label: "Помещения за приготвяне и извършване на пропитка със състави, представляващи ЛЗТ и ГТ/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 2 },
@@ -291,7 +291,7 @@ export const objectTypes: ObjectType[] = [
     id: "i22",
     label: "Помещения за консервация с използване на ЛЗТ и ГТ/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -303,7 +303,7 @@ export const objectTypes: ObjectType[] = [
     id: "i23",
     label: "Производства, свързани с употреба на метален натрий, алуминий и др. под./Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов D 6 кг", count: 1 },
@@ -314,7 +314,7 @@ export const objectTypes: ObjectType[] = [
     id: "i24",
     label: "Бояджийни, полировъчни и други подобни помещения в металообработващи обекти (алкални и алкалоземни метали)/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [{ type: "Прахов D 6 кг", count: 2 }],
   },
@@ -334,7 +334,7 @@ export const objectTypes: ObjectType[] = [
     id: "i26",
     label: "Монтажни и изпитвателни помещения в автомобилни, ремонтни и други подобни предприятия, автосервизи, ремонтни бази, автобази/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -346,7 +346,7 @@ export const objectTypes: ObjectType[] = [
     id: "i27",
     label: "Монтажни и ремонтни сгради и помещения за техническо обслужване на самолети и хеликоптери/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 2 },
@@ -359,7 +359,7 @@ export const objectTypes: ObjectType[] = [
     id: "i28",
     label: "Помещения за производство, ремонт и монтаж на радио-, телевизионни и други видове електронни елементи и детайли/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [{ type: "CO₂ 5 кг", count: 2 }],
   },
@@ -367,7 +367,7 @@ export const objectTypes: ObjectType[] = [
     id: "i29a",
     label: "Ковашки и пресови производства/Ф5.1, работещи с твърдо гориво",
     group: "Производства",
-    areaUnit: "1000 m2",
+    areaUnit: "1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -401,7 +401,7 @@ export const objectTypes: ObjectType[] = [
     id: "i30",
     label: "Прокатни производства/Ф5.1",
     group: "Производства",
-    areaUnit: "1000 m2",
+    areaUnit: "1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -412,7 +412,7 @@ export const objectTypes: ObjectType[] = [
     id: "i31",
     label: "Леярски производства/Ф5.1",
     group: "Производства",
-    areaUnit: "1000 m2",
+    areaUnit: "1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -424,7 +424,7 @@ export const objectTypes: ObjectType[] = [
     id: "i32",
     label: "Заваръчни производства/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -460,7 +460,7 @@ export const objectTypes: ObjectType[] = [
     id: "i35a",
     label: "Термични производства/Ф5.1 – работещи с твърдо гориво",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -494,7 +494,7 @@ export const objectTypes: ObjectType[] = [
     id: "i36",
     label: "Сгради и помещения за байцване, шлифоване и фосфатиране на материали/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -505,7 +505,7 @@ export const objectTypes: ObjectType[] = [
     id: "i37",
     label: "Механични цехове (помещения) за студена обработка, механо-монтажни, тенекеджийски цехове и др. под./Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
@@ -538,7 +538,7 @@ export const objectTypes: ObjectType[] = [
     id: "i40",
     label: "Монтажни помещения с наличие на горими материали/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -550,7 +550,7 @@ export const objectTypes: ObjectType[] = [
     id: "i41",
     label: "Вагоностроителни и ремонтни производства и вагонни депа/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -561,7 +561,7 @@ export const objectTypes: ObjectType[] = [
     id: "i42",
     label: "Електроремонтни помещения/Ф5.1",
     group: "Производства",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -572,7 +572,7 @@ export const objectTypes: ObjectType[] = [
     id: "i43",
     label: "Помещения с маслени трансформатори, токоизправители и други подобни маслонапълнени съоръжения/Ф5.1",
     group: "Производства",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [{ type: "Прахов BC 12 кг", count: 2 }],
   },
@@ -580,7 +580,7 @@ export const objectTypes: ObjectType[] = [
     id: "i44",
     label: "Помещения за КИП, командни пултове/Ф5.1",
     group: "Производства",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [{ type: "CO₂ 5 кг", count: 2 }],
   },
@@ -588,7 +588,7 @@ export const objectTypes: ObjectType[] = [
     id: "i45",
     label: "Производство на стоманобетонни елементи и строителни продукти; бетонови възли/Ф5.1",
     group: "Производства",
-    areaUnit: "1500 m2",
+    areaUnit: "1500 m?",
     areaPer: 1500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -610,7 +610,7 @@ export const objectTypes: ObjectType[] = [
     id: "i46b",
     label: "Производство на целулоза/Ф5.1 – за обработка на целулозата (с изключение на мокрите процеси)",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -621,7 +621,7 @@ export const objectTypes: ObjectType[] = [
     id: "i47a",
     label: "Производство на хартия – машинни зали/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -632,7 +632,7 @@ export const objectTypes: ObjectType[] = [
     id: "i47b",
     label: "Производство на хартия – помещения за оформяне/Ф5.1",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -643,7 +643,7 @@ export const objectTypes: ObjectType[] = [
     id: "i48a",
     label: "Текстилни предприятия/Ф5.1 – шивачни",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -655,7 +655,7 @@ export const objectTypes: ObjectType[] = [
     id: "i48b",
     label: "Текстилни предприятия/Ф5.1 – предачни",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -667,7 +667,7 @@ export const objectTypes: ObjectType[] = [
     id: "i48c",
     label: "Текстилни предприятия/Ф5.1 – сушилни",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -679,7 +679,7 @@ export const objectTypes: ObjectType[] = [
     id: "i48d",
     label: "Текстилни предприятия/Ф5.1 – багрилни",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -691,7 +691,7 @@ export const objectTypes: ObjectType[] = [
     id: "i49a",
     label: "Производство на стъклени и порцеланови изделия – стъклопроизводство/Ф5.1",
     group: "Производства",
-    areaUnit: "1000 m2",
+    areaUnit: "1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 3 },
@@ -703,7 +703,7 @@ export const objectTypes: ObjectType[] = [
     id: "i49b",
     label: "Производство на стъклени и порцеланови изделия – стъклоопаковка/Ф5.1",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -714,7 +714,7 @@ export const objectTypes: ObjectType[] = [
     id: "i49c",
     label: "Производство на стъклени и порцеланови изделия – порцеланови изделия и опаковка/Ф5.1",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -725,7 +725,7 @@ export const objectTypes: ObjectType[] = [
     id: "i50",
     label: "Керамични предприятия, работещи на твърдо гориво/Ф5.1",
     group: "Производства",
-    areaUnit: "1000 m2",
+    areaUnit: "1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
@@ -755,7 +755,7 @@ export const objectTypes: ObjectType[] = [
     id: "i52a",
     label: "Циментови производства/Ф5.1 – производствени и други сгради, в които се работи с течно гориво",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов BC 12 кг", count: 2 },
@@ -766,7 +766,7 @@ export const objectTypes: ObjectType[] = [
     id: "i52b",
     label: "Циментови производства/Ф5.1 – производствени и други сгради, в които се работи с горим газ",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [{ type: "Прахов BC 12 кг", count: 3 }],
   },
@@ -774,7 +774,7 @@ export const objectTypes: ObjectType[] = [
     id: "i52c",
     label: "Циментови производства/Ф5.1 – опаковка на продукцията",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -785,7 +785,7 @@ export const objectTypes: ObjectType[] = [
     id: "i53a",
     label: "Обогатителни производства – надземни сгради/Ф5.1",
     group: "Производства",
-    areaUnit: "1000 m2",
+    areaUnit: "1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -796,7 +796,7 @@ export const objectTypes: ObjectType[] = [
     id: "i53b",
     label: "Обогатителни производства – сортировка и дробилни отделения/Ф5.1",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -807,7 +807,7 @@ export const objectTypes: ObjectType[] = [
     id: "i53c",
     label: "Обогатителни производства – сушилни отделения/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -818,7 +818,7 @@ export const objectTypes: ObjectType[] = [
     id: "i53d",
     label: "Обогатителни производства – флотационни отделения/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [{ type: "Прахов ABC 6 кг", count: 1 }],
   },
@@ -826,7 +826,7 @@ export const objectTypes: ObjectType[] = [
     id: "i53e",
     label: "Обогатителни производства – помещения за ремонт и зареждане на бензинови и акумулаторни лампи/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -837,7 +837,7 @@ export const objectTypes: ObjectType[] = [
     id: "i54",
     label: "Брикетни производства/Ф5.1",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -918,7 +918,7 @@ export const objectTypes: ObjectType[] = [
     id: "i58c",
     label: "Трансформаторни постове/Ф5.1 – в сгради и пристроени, за закрити разпределителни уредби (ЗРУ) средно напрежение",
     group: "Производства",
-    areaUnit: "20 m2",
+    areaUnit: "20 m?",
     areaPer: 20,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 1 },
@@ -929,7 +929,7 @@ export const objectTypes: ObjectType[] = [
     id: "i58d",
     label: "Трансформаторни постове/Ф5.1 – в сгради и пристроени, за ЗРУ ниско напрежение до 1000 V",
     group: "Производства",
-    areaUnit: "20 m2",
+    areaUnit: "20 m?",
     areaPer: 20,
     extinguishers: [{ type: "CO₂ 5 кг", count: 1 }],
   },
@@ -1036,7 +1036,7 @@ export const objectTypes: ObjectType[] = [
     id: "i61f",
     label: "Закрити разпределителни уредби на трансформаторни подстанции – кабелни помещения/Ф5.1",
     group: "Производства",
-    areaUnit: "на 100 m2",
+    areaUnit: "на 100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1047,7 +1047,7 @@ export const objectTypes: ObjectType[] = [
     id: "i61g",
     label: "Закрити разпределителни уредби на трансформаторни подстанции – командни и релейни зали/Ф5.1",
     group: "Производства",
-    areaUnit: "на 50 m2",
+    areaUnit: "на 50 m?",
     areaPer: 50,
     extinguishers: [{ type: "CO₂ 5 кг", count: 1 }],
   },
@@ -1090,7 +1090,7 @@ export const objectTypes: ObjectType[] = [
     id: "i64",
     label: "Помещение за зареждане и съхранение на киселинни и алкални акумулатори/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [{ type: "CO₂ 5 кг", count: 2 }],
   },
@@ -1122,7 +1122,7 @@ export const objectTypes: ObjectType[] = [
     id: "i66a",
     label: "Изпитвателни станции – за електродвигатели/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -1133,7 +1133,7 @@ export const objectTypes: ObjectType[] = [
     id: "i66b",
     label: "Изпитвателни станции – за двигатели с вътрешно горене/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -1144,7 +1144,7 @@ export const objectTypes: ObjectType[] = [
     id: "i67",
     label: "Лаборатории, в които се използват ГТ и ЛЗТ/Ф5.1",
     group: "Производства",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 1 },
@@ -1157,7 +1157,7 @@ export const objectTypes: ObjectType[] = [
     id: "i68",
     label: "Лаборатории за други цели/Ф5.1",
     group: "Производства",
-    areaUnit: "помещение с площ до 100 m2",
+    areaUnit: "помещение с площ до 100 m?",
     areaPer: 0,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1182,7 +1182,7 @@ export const objectTypes: ObjectType[] = [
     id: "i70",
     label: "Операторни помещения, командни зали и др. под./Ф5.1",
     group: "Производства",
-    areaUnit: "помещение с площ до 300 m2",
+    areaUnit: "помещение с площ до 300 m?",
     areaPer: 0,
     extinguishers: [{ type: "CO₂ 5 кг", count: 1 }],
   },
@@ -1214,7 +1214,7 @@ export const objectTypes: ObjectType[] = [
     id: "i73",
     label: "Площадки на автоналивно-изливни устройства/Ф5.1",
     group: "Производства",
-    areaUnit: "400 m2",
+    areaUnit: "400 m?",
     areaPer: 400,
     extinguishers: [
       { type: "Прахов BC 12 кг", count: 2 },
@@ -1262,7 +1262,7 @@ export const objectTypes: ObjectType[] = [
     id: "i77",
     label: "Полиграфическа промишленост. Помещение с печатащи съоръжения, за подвързия и експедиция на книжни изделия/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1274,7 +1274,7 @@ export const objectTypes: ObjectType[] = [
     id: "i78",
     label: "Предприятия на кожухарската, обувната промишленост и др. под. (с изключение на помещенията с мокри процеси)/Ф5.1",
     group: "Производства",
-    areaUnit: "200 m2",
+    areaUnit: "200 m?",
     areaPer: 200,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -1285,7 +1285,7 @@ export const objectTypes: ObjectType[] = [
     id: "i79",
     label: "Тютюневи и ферментационни заводи, цигарени фабрики/Ф5.1",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -1296,7 +1296,7 @@ export const objectTypes: ObjectType[] = [
     id: "i80",
     label: "Мелници, нишестени производства и производства за фураж/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -1307,7 +1307,7 @@ export const objectTypes: ObjectType[] = [
     id: "i81",
     label: "Маслодобивни предприятия/Ф5.1",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -1318,7 +1318,7 @@ export const objectTypes: ObjectType[] = [
     id: "i82a",
     label: "Строителни обекти – район на строителната площадка",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1348,7 +1348,7 @@ export const objectTypes: ObjectType[] = [
     id: "i82d",
     label: "Строителни обекти – открити площадки за съхраняване на оборудване",
     group: "Производства",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1359,7 +1359,7 @@ export const objectTypes: ObjectType[] = [
     id: "i82e",
     label: "Строителни обекти – закрити временни складове за оборудване",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1370,7 +1370,7 @@ export const objectTypes: ObjectType[] = [
     id: "i82f",
     label: "Строителни обекти – при полагане на хидроизолация с битум",
     group: "Производства",
-    areaUnit: "1000 m2",
+    areaUnit: "1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1389,7 +1389,7 @@ export const objectTypes: ObjectType[] = [
     id: "i82h",
     label: "Строителни обекти – временни канцеларии, общежития и др. под.",
     group: "Производства",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1408,7 +1408,7 @@ export const objectTypes: ObjectType[] = [
     id: "i84",
     label: "Производство на хранителни продукти/Ф5.1",
     group: "Производства",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
@@ -1419,7 +1419,7 @@ export const objectTypes: ObjectType[] = [
     id: "i85",
     label: "Хладилни камери/Ф5.1",
     group: "Производства",
-    areaUnit: "200 m2",
+    areaUnit: "200 m?",
     areaPer: 200,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -1545,7 +1545,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii2",
     label: "Телефонни централи/Ф4.2",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [{ type: "CO₂ 5 кг", count: 2 }],
   },
@@ -1577,7 +1577,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii4",
     label: "Радиовъзли и радиотелеграфни апаратни/Ф4.2",
     group: "Обществени сгради",
-    areaUnit: "помещение с площ до 300 m2",
+    areaUnit: "помещение с площ до 300 m?",
     areaPer: 0,
     extinguishers: [{ type: "CO₂ 5 кг", count: 1 }],
   },
@@ -1585,7 +1585,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii5",
     label: "Електронноизчислителни центрове/Ф4.2",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [{ type: "CO₂ 5 кг", count: 2 }],
   },
@@ -1593,7 +1593,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii6",
     label: "Телевизионни и радиостудия/Ф4.2",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
@@ -1669,7 +1669,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii11",
     label: "Аптеки/Ф3.1",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1716,7 +1716,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii14",
     label: "Библиотеки, читални и др. под./Ф2.1",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
@@ -1735,7 +1735,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii16",
     label: "Помещения за съхраняване на спортно имущество/Ф5.2",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1816,7 +1816,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii21",
     label: "Художествени галерии, музеи, изложбени зали и др. под./Ф2.2",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
@@ -1827,7 +1827,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii22",
     label: "Преместваеми обекти с гъвкаво покритие",
     group: "Обществени сгради",
-    areaUnit: "400 m2",
+    areaUnit: "400 m?",
     areaPer: 400,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -1839,7 +1839,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii23",
     label: "Читалища, обществени и културни клубове и др. под. без сцени/Ф2.1",
     group: "Обществени сгради",
-    areaUnit: "400 m2",
+    areaUnit: "400 m?",
     areaPer: 400,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1850,7 +1850,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii24",
     label: "Дискотеки, казина и др. под./Ф2.2",
     group: "Обществени сгради",
-    areaUnit: "400 m2",
+    areaUnit: "400 m?",
     areaPer: 400,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1861,7 +1861,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii25",
     label: "Помещения с култово и религиозно предназначение/Ф3.4",
     group: "Обществени сгради",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1884,7 +1884,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii26b",
     label: "Театрални зали, кинозали и концертни зали, читалища и др. под. със сцени/Ф2.1 – помещения за декори",
     group: "Обществени сгради",
-    areaUnit: "50 m2",
+    areaUnit: "50 m?",
     areaPer: 50,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1940,7 +1940,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii27",
     label: "Конферентни зали/Ф2.1",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1962,7 +1962,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii28b",
     label: "Зали и фоайета, използвани за изложения с щандове – тип фоайе/Ф2.1",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1973,7 +1973,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii29",
     label: "Спортни зали/Ф2.1",
     group: "Обществени сгради",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1984,7 +1984,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii30",
     label: "Стадиони/Ф2.1",
     group: "Обществени сгради",
-    areaUnit: "1000 m2",
+    areaUnit: "1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -1995,7 +1995,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii31",
     label: "Стрелбища/Ф2.1",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2006,7 +2006,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii32",
     label: "Художествени, фотографски ателиета и др. под./Ф2.2",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2018,7 +2018,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii33",
     label: "Ателиета за химическо чистене, боядисване и др. под./Ф3.4",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2029,7 +2029,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii34",
     label: "Гладачни, сушилни/Ф3.4",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2040,7 +2040,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii35",
     label: "Столове, ресторанти/Ф3.2",
     group: "Обществени сгради",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2051,7 +2051,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii36a",
     label: "Кухни – на твърдо гориво/Ф4.2",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2063,7 +2063,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii36b",
     label: "Кухни – на електричество/Ф4.2",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
@@ -2075,7 +2075,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii36c",
     label: "Кухни – на течно гориво/Ф4.2",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов BC 12 кг", count: 1 },
@@ -2087,7 +2087,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii36d",
     label: "Кухни – на газ/Ф4.2",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов BC 12 кг", count: 2 },
@@ -2099,7 +2099,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii37",
     label: "Супермаркети и универсални магазини/Ф3.1",
     group: "Обществени сгради",
-    areaUnit: "200 m2",
+    areaUnit: "200 m?",
     areaPer: 200,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2110,7 +2110,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii38",
     label: "Магазини за текстил, обувки, галантерия, кожарски изделия и др. под./Ф3.1",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2121,7 +2121,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii39",
     label: "Книжарници/Ф3.1",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "CO₂ 5 кг", count: 1 },
@@ -2132,7 +2132,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii40",
     label: "Магазини за бои, лакове, разтворители и други видове ЛЗТ/Ф3.1",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -2143,7 +2143,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii41",
     label: "Магазини за спиртни напитки/Ф3.1",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2154,7 +2154,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii42",
     label: "Магазини за пиротехнически изделия/Ф3.1",
     group: "Обществени сгради",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2166,7 +2166,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii43",
     label: "Сладкарници, закусвални и др. под./Ф3.2",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2193,7 +2193,7 @@ export const objectTypes: ObjectType[] = [
     id: "ii46",
     label: "Панаирни палати/Ф2.2",
     group: "Обществени сгради",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2205,13 +2205,13 @@ export const objectTypes: ObjectType[] = [
     id: "ii47",
     label: "Гардеробни/Ф4.2",
     group: "Обществени сгради",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [{ type: "Воден 9 л (клас A)", count: 1 }],
   },
   {
     id: "ii48a",
-    label: "Къмпинги с площ от 200 до 1000 m2",
+    label: "Къмпинги с площ от 200 до 1000 m?",
     group: "Обществени сгради",
     areaUnit: "на къмпинг",
     areaPer: 0,
@@ -2223,9 +2223,9 @@ export const objectTypes: ObjectType[] = [
   },
   {
     id: "ii48b",
-    label: "Къмпинги с площ над 1000 m2",
+    label: "Къмпинги с площ над 1000 m?",
     group: "Обществени сгради",
-    areaUnit: "на всеки 1000 m2",
+    areaUnit: "на всеки 1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2242,7 +2242,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii1",
     label: "Помещения за съхраняване на ЛЗТ и ГТ/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "200 m2",
+    areaUnit: "200 m?",
     areaPer: 200,
     extinguishers: [
       { type: "Прахов BC 12 кг", count: 2 },
@@ -2254,7 +2254,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii2",
     label: "Складове за горими химикали/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "200 m2",
+    areaUnit: "200 m?",
     areaPer: 200,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -2266,7 +2266,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii3",
     label: "Складове за киселини/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [{ type: "Прахов ABC 6 кг", count: 1 }],
   },
@@ -2274,7 +2274,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii4",
     label: "Складове за калциев карбид/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [{ type: "Прахов ABC 6 кг", count: 1 }],
   },
@@ -2282,7 +2282,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii5",
     label: "Складове за текстил, хартия и други подобни горими материали/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "300 m2",
+    areaUnit: "300 m?",
     areaPer: 300,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -2293,7 +2293,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii6",
     label: "Складове за въглища/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -2304,7 +2304,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii7",
     label: "Складове за хранителни продукти/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -2315,7 +2315,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii8",
     label: "Вещеви складове/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "200 m2",
+    areaUnit: "200 m?",
     areaPer: 200,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -2326,7 +2326,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii9",
     label: "Складове за техническо имущество, резервни части и детайли/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2338,7 +2338,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii10",
     label: "Складове за негорими материали в горима опаковка/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2349,7 +2349,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii11",
     label: "Складове за горими материали/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -2360,7 +2360,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii12",
     label: "Складове за зърнени храни и брашно/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2371,7 +2371,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii13",
     label: "Складове за бутилки със сгъстени и втечнени горими газове/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "200 m2",
+    areaUnit: "200 m?",
     areaPer: 200,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 1 },
@@ -2383,7 +2383,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii14",
     label: "Складове за целулоза/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -2394,7 +2394,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii15",
     label: "Складове за стъкло и за изделия от стъкло в горима опаковка/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2405,7 +2405,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii16",
     label: "Складове за всички видове влакна/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -2416,7 +2416,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii17",
     label: "Складове за кожени, каучукови и пластмасови изделия/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 12 кг", count: 1 },
@@ -2427,7 +2427,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii18",
     label: "Складове за кибрит/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "150 m2",
+    areaUnit: "150 m?",
     areaPer: 150,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2438,7 +2438,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii19a",
     label: "Складове към лечебни заведения – за лекарства и препарати, за ЛЗТ и ГТ/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "50 m2",
+    areaUnit: "50 m?",
     areaPer: 50,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 1 },
@@ -2461,7 +2461,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii20",
     label: "Помещения за бутилки с ГГ/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [
       { type: "Прахов BC 6 кг", count: 2 },
@@ -2472,7 +2472,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii21",
     label: "Навес за автомобили и строителна техника и материали/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -2483,7 +2483,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii22",
     label: "Гаражи/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "400 m2",
+    areaUnit: "400 m?",
     areaPer: 400,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 2 },
@@ -2492,7 +2492,7 @@ export const objectTypes: ObjectType[] = [
   },
   {
     id: "iii23a",
-    label: "Открити площадки за автомобили/Ф5.2 – от 200 до 1000 m2",
+    label: "Открити площадки за автомобили/Ф5.2 – от 200 до 1000 m?",
     group: "Складове и гаражи",
     areaUnit: "на площадка",
     areaPer: 0,
@@ -2504,9 +2504,9 @@ export const objectTypes: ObjectType[] = [
   },
   {
     id: "iii23b",
-    label: "Открити площадки за автомобили/Ф5.2 – над 1000 m2",
+    label: "Открити площадки за автомобили/Ф5.2 – над 1000 m?",
     group: "Складове и гаражи",
-    areaUnit: "на всеки 1000 m2",
+    areaUnit: "на всеки 1000 m?",
     areaPer: 1000,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2519,7 +2519,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii24",
     label: "Трамвайни и тролейбусни паркове/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [{ type: "Прахов ABC 12 кг", count: 2 }],
   },
@@ -2590,7 +2590,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii27",
     label: "Архиви/Ф5.2",
     group: "Складове и гаражи",
-    areaUnit: "100 m2",
+    areaUnit: "100 m?",
     areaPer: 100,
     extinguishers: [{ type: "CO₂ 5 кг", count: 1 }],
   },
@@ -2606,7 +2606,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii29a",
     label: "Автоснабдителни станции/Ф5.3 – за сградата",
     group: "Складове и гаражи",
-    areaUnit: "50 m2",
+    areaUnit: "50 m?",
     areaPer: 50,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2667,7 +2667,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii30",
     label: "Закрити складове за тревен фураж/Ф5.4",
     group: "Складове и гаражи",
-    areaUnit: "600 m2",
+    areaUnit: "600 m?",
     areaPer: 600,
     extinguishers: [{ type: "Воден 9 л (клас A)", count: 2 }],
   },
@@ -2697,7 +2697,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii33",
     label: "Хранителни кухни за животни, фуражомелки и др. под./Ф5.4",
     group: "Складове и гаражи",
-    areaUnit: "400 m2",
+    areaUnit: "400 m?",
     areaPer: 400,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2720,7 +2720,7 @@ export const objectTypes: ObjectType[] = [
     id: "iii35",
     label: "Навес за селскостопанска техника и материали/Ф5.4",
     group: "Складове и гаражи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2735,7 +2735,7 @@ export const objectTypes: ObjectType[] = [
     id: "iv1",
     label: "Складове за коноп, хартия и др./Ф5.2",
     group: "Открити площи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [{ type: "Прахов ABC 12 кг", count: 2 }],
   },
@@ -2743,7 +2743,7 @@ export const objectTypes: ObjectType[] = [
     id: "iv2",
     label: "Складове за дървесни отпадъци/Ф5.2",
     group: "Открити площи",
-    areaUnit: "600 m2",
+    areaUnit: "600 m?",
     areaPer: 600,
     extinguishers: [{ type: "Прахов ABC 12 кг", count: 2 }],
   },
@@ -2751,7 +2751,7 @@ export const objectTypes: ObjectType[] = [
     id: "iv3",
     label: "Складове за дървен и пластмасов амбалаж/Ф5.2",
     group: "Открити площи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [{ type: "Прахов ABC 12 кг", count: 2 }],
   },
@@ -2759,7 +2759,7 @@ export const objectTypes: ObjectType[] = [
     id: "iv4",
     label: "Складове за каменни въглища/Ф5.2",
     group: "Открити площи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [{ type: "Прахов ABC 12 кг", count: 2 }],
   },
@@ -2767,7 +2767,7 @@ export const objectTypes: ObjectType[] = [
     id: "iv5",
     label: "Складове за дървен материал/Ф5.2",
     group: "Открити площи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [
       { type: "Прахов ABC 6 кг", count: 1 },
@@ -2778,7 +2778,7 @@ export const objectTypes: ObjectType[] = [
     id: "iv6",
     label: "Складове за сено, слама и други видове фураж/Ф5.4",
     group: "Открити площи",
-    areaUnit: "600 m2",
+    areaUnit: "600 m?",
     areaPer: 600,
     extinguishers: [{ type: "Прахов ABC 12 кг", count: 2 }],
   },
@@ -2786,7 +2786,7 @@ export const objectTypes: ObjectType[] = [
     id: "iv7",
     label: "Складове за горими материали в горима опаковка/Ф5.2",
     group: "Открити площи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [{ type: "Прахов ABC 12 кг", count: 2 }],
   },
@@ -2794,7 +2794,7 @@ export const objectTypes: ObjectType[] = [
     id: "iv8",
     label: "Складове за негорими материали в горима опаковка/Ф5.2",
     group: "Открити площи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [{ type: "Прахов ABC 12 кг", count: 2 }],
   },
@@ -2802,7 +2802,7 @@ export const objectTypes: ObjectType[] = [
     id: "iv9",
     label: "Складове за машини и съоръжения/Ф5.2",
     group: "Открити площи",
-    areaUnit: "500 m2",
+    areaUnit: "500 m?",
     areaPer: 500,
     extinguishers: [{ type: "Прахов ABC 12 кг", count: 2 }],
   },
