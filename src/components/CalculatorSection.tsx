@@ -112,22 +112,23 @@ const CalculatorSection = () => {
 
   const selectedObj = data.objectTypes.find(t => t.id === selectedId);
 
-  // Коригирана функция за определяне на типа вход
   const getInputMetadata = () => {
     if (!selectedObj) return { type: "none", label: "", placeholder: "", multiplierType: "none" };
     const unit = selectedObj.areaUnit.toLowerCase();
     const per = selectedObj.areaPer;
 
-    // 1. Площ (квадратни метри) – включва "m²", "м²", "кв.м", "m2", "m?" (грешни данни)
-    if (unit.includes("м²") || unit.includes("кв.м") || unit.includes("m²") || unit.includes("m2") || unit.includes("m?")) {
-      return { type: "area", label: "Площ на обекта (кв.м)", placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
-    }
-    // 2. Дължина (метри) – когато единицата съдържа "m" без квадрат и не е етаж/камера
-    if (unit.includes("m") && !unit.includes("²") && !unit.includes("м²") && !unit.includes("кв.м") && !unit.includes("m2") && !unit.includes("m?") && !unit.includes("етаж") && !unit.includes("камера")) {
-      // Ако единицата съдържа "коридор", показваме специфичен текст
+    // 1. Дължина (метри) – приоритет най-отгоре
+    const isLength = unit.includes("m") && !unit.includes("²") && !unit.includes("м²") && !unit.includes("кв.м") && !unit.includes("m2") && !unit.includes("m?") && !unit.includes("етаж") && !unit.includes("камера");
+    if (isLength) {
       const label = unit.includes("коридор") ? "Дължина на коридора (м)" : "Дължина (м)";
       return { type: "length", label: label, placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
     }
+
+    // 2. Площ (квадратни метри)
+    if (unit.includes("м²") || unit.includes("кв.м") || unit.includes("m²") || unit.includes("m2") || unit.includes("m?")) {
+      return { type: "area", label: "Площ на обекта (кв.м)", placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
+    }
+
     // 3. Брой етажи
     if (unit.includes("етаж")) {
       return { type: "floors", label: "Брой етажи", placeholder: "Напр. 3", multiplierType: "units" };
@@ -140,7 +141,7 @@ const CalculatorSection = () => {
     if (selectedObj.areaPer === 0) {
       return { type: "fixed", label: "", placeholder: "", multiplierType: "none", fixedText: selectedObj.areaUnit };
     }
-    // 6. По подразбиране – ако нищо друго, приемаме площ
+    // 6. По подразбиране – площ
     return { type: "area", label: "Площ на обекта (кв.м)", placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
   };
 
@@ -403,5 +404,4 @@ interface CalculationResult {
   inputValue: string;
 }
 
-export default CalculatorSection;
 export default CalculatorSection;
