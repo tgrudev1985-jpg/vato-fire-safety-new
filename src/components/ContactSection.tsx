@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Phone, Mail, MapPin, Flame, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const ContactSection = () => {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -16,21 +18,21 @@ const ContactSection = () => {
   return (
     <section id="contact" className="py-16 md:py-24 bg-background border-t border-border">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="grid md:grid-cols-2 gap-8 md:gap-16"
-        >
-          {/* Лява колона – информация и карта */}
-          <div className="order-2 md:order-1 w-full">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+          {/* Left column – info and map */}
+          <motion.div
+            className="order-2 md:order-1 w-full"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8 italic uppercase tracking-tighter text-foreground break-words">
-              Свържете се <br />
-              <span className="text-primary">с професионалистите</span>
+              {t("contact.title")} <br />
+              <span className="text-primary">{t("contact.subtitle")}</span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 md:mb-12">
-              ВАТО Пожарна Безопасност ООД – Вашият надежден партньор в сигурността.
+              {t("contact.description")}
             </p>
 
             <div className="space-y-6">
@@ -39,7 +41,7 @@ const ContactSection = () => {
                   <Phone className="h-4 w-4 md:h-5 md:w-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs md:text-sm uppercase font-bold text-muted-foreground">Телефон</p>
+                  <p className="text-xs md:text-sm uppercase font-bold text-muted-foreground">{t("contact.phoneLabel")}</p>
                   <a href="tel:+359898701900" className="text-lg md:text-2xl font-bold text-foreground block hover:text-primary transition-colors break-words">
                     0898 701 900
                   </a>
@@ -48,11 +50,11 @@ const ContactSection = () => {
                   </a>
                 </div>
               </div>
-              <ContactInfo icon={Mail} label="Имейл" value="vato2009@abv.bg" href="mailto:vato2009@abv.bg" />
-              <ContactInfo icon={MapPin} label="Адрес" value="гр. Варна, бул. 3 март, ж.к. Възраждане 2, с.о. Кочмар, бл. 264" />
+              <ContactInfo icon={Mail} label={t("contact.emailLabel")} value="vato2009@abv.bg" href="mailto:vato2009@abv.bg" />
+              <ContactInfo icon={MapPin} label={t("contact.addressLabel")} value={t("contact.address")} />
             </div>
 
-            {/* Карта */}
+            {/* Map */}
             <div className="mt-8 md:mt-10 rounded-2xl overflow-hidden border border-border shadow-lg w-full">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2907.5!2d27.8873338!3d43.2370432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a455751c2d0d41%3A0x22951dd09e0fa20c!2z0JLQsNGC0L4t0J_QvtC20LDRgNC90LAg0LHQtdC30L7Qv9Cw0YHQvdC-0YHRgiIg0J7QntCU!5e0!3m2!1sbg!2sbg!4v1710000000000!5m2!1sbg!2sbg"
@@ -65,19 +67,25 @@ const ContactSection = () => {
                 title="ВАТО Пожарна Безопасност - Google Maps"
               />
             </div>
-          </div>
+          </motion.div>
 
-          {/* Дясна колона – форма */}
-          <div className="surface-dark p-6 sm:p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative order-1 md:order-2 w-full">
+          {/* Right column – form */}
+          <motion.div
+            className="surface-dark p-6 sm:p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative order-1 md:order-2 w-full"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <div className="absolute top-0 right-0 p-6 opacity-10">
               <Flame className="h-20 w-20 md:h-32 md:w-32" />
             </div>
-            <h3 className="text-xl md:text-2xl font-bold mb-6">Бързо запитване</h3>
+            <h3 className="text-xl md:text-2xl font-bold mb-6">{t("contact.formTitle")}</h3>
 
             {submitted && (
               <div className="mb-6 flex items-center gap-2 bg-green-500/20 border border-green-500 p-3 rounded-xl text-sm font-medium text-green-300">
                 <CheckCircle className="h-4 w-4" />
-                Вашето запитване беше изпратено успешно. Очаквайте отговор скоро.
+                {t("contact.success")}
               </div>
             )}
 
@@ -92,47 +100,47 @@ const ContactSection = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="sr-only">Име</label>
+                  <label htmlFor="name" className="sr-only">{t("contact.namePlaceholder")}</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="Име"
+                    placeholder={t("contact.namePlaceholder")}
                     required
                     className="w-full bg-primary-foreground/10 p-3 md:p-4 rounded-xl md:rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="sr-only">Телефон</label>
+                  <label htmlFor="phone" className="sr-only">{t("contact.phonePlaceholder")}</label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
-                    placeholder="Телефон"
+                    placeholder={t("contact.phonePlaceholder")}
                     required
                     className="w-full bg-primary-foreground/10 p-3 md:p-4 rounded-xl md:rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
                   />
                 </div>
               </div>
               <div>
-                <label htmlFor="email" className="sr-only">Имейл адрес</label>
+                <label htmlFor="email" className="sr-only">{t("contact.emailPlaceholder")}</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="Имейл адрес"
+                  placeholder={t("contact.emailPlaceholder")}
                   required
                   className="w-full bg-primary-foreground/10 p-3 md:p-4 rounded-xl md:rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
                 />
               </div>
               <div>
-                <label htmlFor="service" className="sr-only">Изберете услуга</label>
+                <label htmlFor="service" className="sr-only">{t("contact.servicePlaceholder")}</label>
                 <select
                   id="service"
                   name="service"
                   className="w-full bg-primary-foreground/10 p-3 md:p-4 rounded-xl md:rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer text-muted-foreground"
                 >
-                  <option value="">Изберете услуга</option>
+                  <option value="">{t("contact.servicePlaceholder")}</option>
                   <option value="check">Проверка на пожарогасители</option>
                   <option value="refill">Презареждане</option>
                   <option value="docs">Документация/Проектиране</option>
@@ -140,11 +148,11 @@ const ContactSection = () => {
                 </select>
               </div>
               <div>
-                <label htmlFor="message" className="sr-only">Как можем да Ви помогнем?</label>
+                <label htmlFor="message" className="sr-only">{t("contact.messagePlaceholder")}</label>
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Как можем да Ви помогнем?"
+                  placeholder={t("contact.messagePlaceholder")}
                   rows={4}
                   className="w-full bg-primary-foreground/10 p-3 md:p-4 rounded-xl md:rounded-2xl border border-primary-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
                 />
@@ -154,11 +162,11 @@ const ContactSection = () => {
                 type="submit"
                 className="w-full bg-primary text-primary-foreground py-4 rounded-xl md:rounded-2xl font-bold hover:bg-primary/90 transition shadow-lg uppercase tracking-widest text-sm"
               >
-                Изпрати Съобщение
+                {t("contact.submitButton")}
               </button>
             </form>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

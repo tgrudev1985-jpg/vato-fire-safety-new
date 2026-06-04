@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calculator, Info, ChevronDown, Search, X, Upload, Download, RefreshCw, Shield, Lock } from "lucide-react";
 import { objectTypes as defaultObjectTypes, groups as defaultGroups } from "@/data/objectTypes";
+import { useTranslation } from "react-i18next";
 
 interface ObjectType {
   id: string;
@@ -45,6 +46,7 @@ const getSimilarityScore = (query: string, label: string): number => {
 };
 
 const CalculatorSection = () => {
+  const { t } = useTranslation();
   const [isUnlocked, setIsUnlocked] = useState(() => localStorage.getItem(UNLOCK_KEY) === "true");
   const [passwordInput, setPasswordInput] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -71,7 +73,7 @@ const CalculatorSection = () => {
       setPasswordInput("");
       setShowUnlockModal(false);
     } else {
-      setPasswordError("Невалидна парола");
+      setPasswordError(t("calculator.unlockError", "Невалидна парола"));
     }
   };
 
@@ -81,7 +83,7 @@ const CalculatorSection = () => {
       setAdminError("");
       setAdminPassword("");
     } else {
-      setAdminError("Невалидна парола");
+      setAdminError(t("calculator.unlockError", "Невалидна парола"));
     }
   };
 
@@ -117,32 +119,32 @@ const CalculatorSection = () => {
     const unit = selectedObj.areaUnit.toLowerCase();
     const per = selectedObj.areaPer;
 
-    // 1. Дължина (метри) – приоритет най-отгоре
+    // Дължина (метри) – приоритет най-отгоре
     const isLength = unit.includes("m") && !unit.includes("²") && !unit.includes("м²") && !unit.includes("кв.м") && !unit.includes("m2") && !unit.includes("m?") && !unit.includes("етаж") && !unit.includes("камера");
     if (isLength) {
-      const label = unit.includes("коридор") ? "Дължина на коридора (м)" : "Дължина (м)";
-      return { type: "length", label: label, placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
+      const label = unit.includes("коридор") ? t("calculator.lengthLabelCorridor", "Дължина на коридора (м)") : t("calculator.lengthLabel", "Дължина (м)");
+      return { type: "length", label: label, placeholder: t("calculator.example", `Напр. ${per * 3}`), multiplierType: "area" };
     }
 
-    // 2. Площ (квадратни метри)
+    // Площ (квадратни метри)
     if (unit.includes("м²") || unit.includes("кв.м") || unit.includes("m²") || unit.includes("m2") || unit.includes("m?")) {
-      return { type: "area", label: "Площ на обекта (кв.м)", placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
+      return { type: "area", label: t("calculator.areaLabel", "Площ на обекта (кв.м)"), placeholder: t("calculator.example", `Напр. ${per * 3}`), multiplierType: "area" };
     }
 
-    // 3. Брой етажи
+    // Брой етажи
     if (unit.includes("етаж")) {
-      return { type: "floors", label: "Брой етажи", placeholder: "Напр. 3", multiplierType: "units" };
+      return { type: "floors", label: t("calculator.floorsLabel", "Брой етажи"), placeholder: t("calculator.exampleFloors", "Напр. 3"), multiplierType: "units" };
     }
-    // 4. Брой камери
+    // Брой камери
     if (unit.includes("камера")) {
-      return { type: "chambers", label: "Брой камери", placeholder: "Напр. 3", multiplierType: "units" };
+      return { type: "chambers", label: t("calculator.chambersLabel", "Брой камери"), placeholder: t("calculator.exampleChambers", "Напр. 3"), multiplierType: "units" };
     }
-    // 5. Фиксирани изисквания (без множител)
+    // Фиксирани изисквания (без множител)
     if (selectedObj.areaPer === 0) {
       return { type: "fixed", label: "", placeholder: "", multiplierType: "none", fixedText: selectedObj.areaUnit };
     }
-    // 6. По подразбиране – площ
-    return { type: "area", label: "Площ на обекта (кв.м)", placeholder: `Напр. ${per * 3}`, multiplierType: "area" };
+    // По подразбиране – площ
+    return { type: "area", label: t("calculator.areaLabel", "Площ на обекта (кв.м)"), placeholder: t("calculator.example", `Напр. ${per * 3}`), multiplierType: "area" };
   };
 
   const inputMeta = getInputMetadata();
@@ -208,24 +210,24 @@ const CalculatorSection = () => {
           setIsAuthenticated(false);
           setSelectedId("");
           setResult(null);
-          alert("Данните са обновени успешно!");
+          alert(t("calculator.importSuccess", "Данните са обновени успешно!"));
         } else {
           throw new Error("Невалиден формат");
         }
       } catch (err) {
-        alert("Грешка при импортиране: невалиден JSON файл.");
+        alert(t("calculator.importError", "Грешка при импортиране: невалиден JSON файл."));
       }
     };
     reader.readAsText(file);
   };
 
   const resetToDefault = () => {
-    if (confirm("Сигурни ли сте, че искате да възстановите оригиналните данни от наредбата?")) {
+    if (confirm(t("calculator.resetConfirm", "Сигурни ли сте, че искате да възстановите оригиналните данни от наредбата?"))) {
       setData({ objectTypes: defaultObjectTypes, groups: defaultGroups });
       saveData(defaultObjectTypes);
       setSelectedId("");
       setResult(null);
-      alert("Данните са възстановени.");
+      alert(t("calculator.resetSuccess", "Данните са възстановени."));
       setAdminOpen(false);
       setIsAuthenticated(false);
     }
@@ -243,11 +245,11 @@ const CalculatorSection = () => {
               <button onClick={() => { setShowUnlockModal(false); setPasswordError(""); setPasswordInput(""); }} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground">
                 <X className="h-5 w-5" />
               </button>
-              <h3 className="text-xl font-bold mb-4">Отключване на калкулатора</h3>
-              <p className="text-sm text-muted-foreground mb-4">Въведете парола за достъп до калкулатора.</p>
-              <input type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} placeholder="Парола" className="w-full p-3 rounded-xl border border-border bg-background mb-3" />
+              <h3 className="text-xl font-bold mb-4">{t("calculator.unlockTitle", "Отключване на калкулатора")}</h3>
+              <p className="text-sm text-muted-foreground mb-4">{t("calculator.unlockDescription", "Въведете парола за достъп до калкулатора.")}</p>
+              <input type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} placeholder={t("calculator.passwordPlaceholder", "Парола")} className="w-full p-3 rounded-xl border border-border bg-background mb-3" />
               {passwordError && <p className="text-red-500 text-sm mb-3">{passwordError}</p>}
-              <button onClick={() => unlockCalculator(passwordInput)} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90">Отключи</button>
+              <button onClick={() => unlockCalculator(passwordInput)} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90">{t("calculator.unlockButton", "Отключи")}</button>
             </div>
           </div>
         )}
@@ -263,23 +265,23 @@ const CalculatorSection = () => {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-card rounded-2xl shadow-xl max-w-md w-full p-6 relative">
             <button onClick={() => { setAdminOpen(false); setIsAuthenticated(false); setAdminPassword(""); setAdminError(""); }} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"><X className="h-5 w-5" /></button>
-            <h3 className="text-xl font-bold mb-4">Администраторски панел</h3>
+            <h3 className="text-xl font-bold mb-4">{t("calculator.adminTitle", "Администраторски панел")}</h3>
             {!isAuthenticated ? (
               <>
-                <p className="text-sm text-muted-foreground mb-4">Въведете парола за достъп до управление на данните.</p>
-                <input type="password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} placeholder="Парола" className="w-full p-3 rounded-xl border border-border bg-background mb-3" />
+                <p className="text-sm text-muted-foreground mb-4">{t("calculator.adminDescription", "Въведете парола за достъп до управление на данните.")}</p>
+                <input type="password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} placeholder={t("calculator.passwordPlaceholder", "Парола")} className="w-full p-3 rounded-xl border border-border bg-background mb-3" />
                 {adminError && <p className="text-red-500 text-sm mb-3">{adminError}</p>}
-                <button onClick={() => checkAdmin(adminPassword)} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90">Вход</button>
+                <button onClick={() => checkAdmin(adminPassword)} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90">{t("calculator.adminLogin", "Вход")}</button>
               </>
             ) : (
               <div className="space-y-4">
-                <p className="text-sm text-muted-foreground">Управление на базата данни от наредбата.</p>
+                <p className="text-sm text-muted-foreground">{t("calculator.adminManage", "Управление на базата данни от наредбата.")}</p>
                 <div className="grid grid-cols-1 gap-3">
-                  <button onClick={exportData} className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"><Download className="h-4 w-4" /> Експортирай данни (JSON)</button>
-                  <label className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold cursor-pointer hover:bg-primary/20"><Upload className="h-4 w-4" /> Импортирай данни (JSON)<input type="file" accept=".json" onChange={(e) => e.target.files && importData(e.target.files[0])} className="hidden" /></label>
-                  <button onClick={resetToDefault} className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"><RefreshCw className="h-4 w-4" /> Възстанови оригинални данни</button>
+                  <button onClick={exportData} className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"><Download className="h-4 w-4" /> {t("calculator.export", "Експортирай данни (JSON)")}</button>
+                  <label className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold cursor-pointer hover:bg-primary/20"><Upload className="h-4 w-4" /> {t("calculator.import", "Импортирай данни (JSON)")}<input type="file" accept=".json" onChange={(e) => e.target.files && importData(e.target.files[0])} className="hidden" /></label>
+                  <button onClick={resetToDefault} className="flex items-center justify-center gap-2 bg-primary/10 text-primary p-3 rounded-xl font-semibold hover:bg-primary/20"><RefreshCw className="h-4 w-4" /> {t("calculator.reset", "Възстанови оригинални данни")}</button>
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">Внимание: Импортирането или възстановяването на данни ще презапише текущите.</p>
+                <p className="text-xs text-muted-foreground mt-2">{t("calculator.warning", "Внимание: Импортирането или възстановяването на данни ще презапише текущите.")}</p>
               </div>
             )}
           </div>
@@ -287,23 +289,23 @@ const CalculatorSection = () => {
       )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 italic uppercase tracking-tighter text-foreground"><span className="text-primary">Калкулатор</span></h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 italic uppercase tracking-tighter text-foreground"><span className="text-primary">{t("calculator.title", "Калкулатор")}</span></h2>
           <div className="w-24 h-1.5 bg-primary mx-auto rounded-full mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Изчислете необходимите пожаротехнически средства по <span className="font-semibold text-foreground">Приложение 2</span> към <span className="font-semibold text-foreground">Наредба № Iз-1971</span></p>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" dangerouslySetInnerHTML={{ __html: t("calculator.description") }} />
         </motion.div>
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }} className="bg-card border border-border rounded-2xl shadow-lg p-6 md:p-8">
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-foreground mb-2">Търсене на обект</label>
+              <label className="block text-sm font-semibold text-foreground mb-2">{t("calculator.searchLabel", "Търсене на обект")}</label>
               <div className="relative">
-                <input type="text" value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); if (!e.target.value.trim()) setSelectedId(""); }} placeholder="Напишете име на обект (напр. магазин, офис, склад...)" className="w-full px-4 py-3 pr-10 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition" />
+                <input type="text" value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); if (!e.target.value.trim()) setSelectedId(""); }} placeholder={t("calculator.searchPlaceholder", "Напишете име на обект (напр. магазин, офис, склад...)")} className="w-full px-4 py-3 pr-10 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition" />
                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
               </div>
               {searchQuery.trim() && (
                 <div className="mt-3 space-y-2">
                   {filteredObjects.length > 0 ? (
                     <>
-                      <div className="text-sm font-medium text-muted-foreground">Намерени обекти:</div>
+                      <div className="text-sm font-medium text-muted-foreground">{t("calculator.foundObjects", "Намерени обекти:")}</div>
                       <div className="max-h-64 overflow-y-auto rounded-xl border border-border bg-background divide-y divide-border">
                         {filteredObjects.map((obj) => (
                           <button key={obj.id} onClick={() => selectObject(obj)} className="w-full text-left px-4 py-3 hover:bg-muted transition-colors flex items-center justify-between">
@@ -315,19 +317,20 @@ const CalculatorSection = () => {
                     </>
                   ) : (
                     <div className="p-4 bg-muted/50 rounded-xl text-sm text-muted-foreground">
-                      Няма точен резултат за „{searchQuery}“. {bestMatch && (<div className="mt-2">Най-сходният обект е: <button onClick={() => selectObject(bestMatch)} className="text-primary font-semibold hover:underline">{bestMatch.label}</button>.</div>)}
+                      {t("calculator.noResults", "Няма точен резултат за „{query}“.", { query: searchQuery })}
+                      {bestMatch && (<div className="mt-2">{t("calculator.bestMatch", "Най-сходният обект е:")} <button onClick={() => selectObject(bestMatch)} className="text-primary font-semibold hover:underline">{bestMatch.label}</button>.</div>)}
                     </div>
                   )}
-                  <button onClick={clearSearch} className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 ml-auto"><X className="h-3 w-3" /> Изчисти</button>
+                  <button onClick={clearSearch} className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 ml-auto"><X className="h-3 w-3" /> {t("calculator.clear", "Изчисти")}</button>
                 </div>
               )}
             </div>
             {!searchQuery.trim() && (
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-foreground mb-2">Или изберете от списъка</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">{t("calculator.orSelect", "Или изберете от списъка")}</label>
                 <div className="relative">
                   <select value={selectedId} onChange={(e) => { setSelectedId(e.target.value); setResult(null); setArea(""); setUnits(""); }} className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition appearance-none pr-10">
-                    <option value="">-- Изберете тип обект --</option>
+                    <option value="">-- {t("calculator.selectObject", "Изберете тип обект")} --</option>
                     {data.groups.map((group) => (
                       <optgroup key={group} label={group}>
                         {data.objectTypes.filter((t) => t.group === group).map((t) => (<option key={t.id} value={t.id}>{t.label}</option>))}
@@ -340,52 +343,52 @@ const CalculatorSection = () => {
             )}
             {selectedObj && (
               <div className="mb-6 p-4 bg-primary/5 rounded-xl border border-primary/20">
-                <div className="text-sm font-medium text-foreground">Избран обект:</div>
+                <div className="text-sm font-medium text-foreground">{t("calculator.selectedObject", "Избран обект:")}</div>
                 <div className="font-bold text-primary">{selectedObj.label}</div>
-                <div className="text-xs text-muted-foreground mt-1">Група: {selectedObj.group}</div>
+                <div className="text-xs text-muted-foreground mt-1">{t("calculator.group", "Група")}: {selectedObj.group}</div>
               </div>
             )}
             {selectedObj && needsInput && (
               <div className="mb-6">
                 <label className="block text-sm font-semibold text-foreground mb-2">
                   {inputMeta.label}
-                  {selectedObj.areaPer > 0 && inputMeta.type !== "floors" && inputMeta.type !== "chambers" && (<span className="text-xs text-muted-foreground ml-2">(на всеки {selectedObj.areaPer} {inputMeta.type === "length" ? "м" : "м²"})</span>)}
+                  {selectedObj.areaPer > 0 && inputMeta.type !== "floors" && inputMeta.type !== "chambers" && (<span className="text-xs text-muted-foreground ml-2">({t("calculator.per", "на всеки")} {selectedObj.areaPer} {inputMeta.type === "length" ? "м" : "м²"})</span>)}
                 </label>
                 <input type="number" min="1" value={inputMeta.multiplierType === "area" ? area : units} onChange={(e) => { if (inputMeta.multiplierType === "area") setArea(e.target.value); else setUnits(e.target.value); setResult(null); }} placeholder={inputMeta.placeholder} className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition" />
               </div>
             )}
             {selectedObj && isFixed && (
               <div className="mb-6 p-4 bg-muted/50 rounded-xl text-sm text-muted-foreground">
-                <Info className="inline h-4 w-4 mr-1" /> Изискванията са фиксирани — <strong className="text-foreground">{selectedObj.areaUnit}</strong>
+                <Info className="inline h-4 w-4 mr-1" /> {t("calculator.fixedRequirements", "Изискванията са фиксирани")} — <strong className="text-foreground">{selectedObj.areaUnit}</strong>
               </div>
             )}
             <button onClick={calculate} disabled={!selectedObj || (needsInput && inputMeta.multiplierType === "area" && (!area || parseFloat(area) <= 0)) || (needsInput && inputMeta.multiplierType === "units" && (!units || parseInt(units) <= 0))} className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-bold hover:bg-primary/90 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
-              <Calculator className="h-5 w-5" /> Изчисли
+              <Calculator className="h-5 w-5" /> {t("calculator.calculate", "Изчисли")}
             </button>
             {result && (
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-2xl">
-                <h3 className="text-lg font-bold text-foreground mb-1">Резултат:</h3>
+                <h3 className="text-lg font-bold text-foreground mb-1">{t("calculator.resultTitle", "Резултат")}:</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   {result.objectLabel}
-                  {result.inputType === "length" && result.inputValue && ` — ${result.inputValue} м дължина`}
-                  {result.inputType === "area" && result.inputValue && ` — ${result.inputValue} м² площ`}
-                  {result.inputType === "floors" && result.inputValue && ` — ${result.inputValue} етажа`}
-                  {result.inputType === "chambers" && result.inputValue && ` — ${result.inputValue} камери`}
+                  {result.inputType === "length" && result.inputValue && ` — ${result.inputValue} м ${t("calculator.lengthUnit", "дължина")}`}
+                  {result.inputType === "area" && result.inputValue && ` — ${result.inputValue} м² ${t("calculator.areaUnit", "площ")}`}
+                  {result.inputType === "floors" && result.inputValue && ` — ${result.inputValue} ${t("calculator.floorsUnit", "етажа")}`}
+                  {result.inputType === "chambers" && result.inputValue && ` — ${result.inputValue} ${t("calculator.chambersUnit", "камери")}`}
                   {result.multiplier > 1 && ` × ${result.multiplier}`}
                 </p>
                 <div className="space-y-3">
                   {result.items.map((item, i) => (
                     <div key={i} className="flex items-center justify-between p-3 bg-background rounded-xl border border-border">
                       <span className="text-foreground font-medium text-sm break-words pr-2">{item.type}</span>
-                      <span className="text-xl font-bold text-primary shrink-0">{item.count} бр.</span>
+                      <span className="text-xl font-bold text-primary shrink-0">{item.count} {t("calculator.pcs", "бр.")}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">
                   <Info className="h-4 w-4 shrink-0 mt-0.5" />
-                  <span className="break-words">Данните са съгласно Приложение 2 към Наредба № Iз-1971 от 2009 г. (обн. ДВ бр. 96/2009 г., посл. изм. и доп. ДВ бр. 91/2024 г., доп. ДВ бр. 46 от 6.VI.2025 г.). Изчислението е ориентировъчно. За точна оценка, свържете се с нас за професионален одит.</span>
+                  <span className="break-words">{t("calculator.disclaimer")}</span>
                 </div>
-                <a href="#contact" className="mt-4 inline-block text-primary font-semibold hover:underline text-sm">→ Поискай безплатна консултация</a>
+                <a href="#contact" className="mt-4 inline-block text-primary font-semibold hover:underline text-sm">{t("calculator.consultation", "→ Поискай безплатна консултация")}</a>
               </motion.div>
             )}
           </motion.div>

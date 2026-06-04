@@ -1,72 +1,45 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type FaqCategory = "all" | "technical" | "normative" | "docs";
 
-interface FaqItem {
-  question: string;
-  answer: string;
-  categories: FaqCategory[];
-}
-
-const faqData: FaqItem[] = [
-  {
-    question: "На какъв период е задължително да се извършва профилактика на наличното оборудване?",
-    answer:
-      "Съгласно действащата нормативна уредба в България (Наредба № 8121з-647), всеки пожарогасител подлежи на задължителна техническа проверка минимум веднъж на 12 месеца. След успешно преминат тест от лицензиран сервиз, уредът получава актуален холограмен стикер и се вписва в дневника за пожарна безопасност на обекта.",
-    categories: ["normative", "technical"],
-  },
-  {
-    question: "Кой е най-подходящият тип гасително вещество за административни и търговски помещения?",
-    answer: "Виж Приложение № 2 от Наредба Iз-1971.",
-    categories: ["technical"],
-  },
-  {
-    question: "Необходимо ли е пълно презареждане при частично използване на уреда?",
-    answer:
-      "Абсолютно да. Дори и при съвсем кратко натискане на спусъка и минимално изпускане на налягане, херметичността на клапана се нарушава. Налягането ще спадне напълно в следващите часове или дни. Такъв уред се счита за неизправен и трябва незабавно да бъде предаден в сервиз за цялостно почистване, зареждане и пломбиране.",
-    categories: ["technical"],
-  },
-  {
-    question: "Кои са задължителните документи, формиращи фирменото досие по пожарна безопасност?",
-    answer: "Определят се съгласно Наредба № 8121з-647.",
-    categories: ["docs", "normative"],
-  },
-  {
-    question: "Кога един уред подлежи на бракуване и какъв е експлоатационният му живот?",
-    answer:
-      "Металният корпус на праховите и водните пожарогасители подлежи на задължително хидравлично изпитване за якост на всеки 10 години. При успешно преминат тест, експлоатационният живот може да бъде удължен. При наличие на видима дълбока корозия, деформации от удари, пукнатини или при неуспешен хидравличен тест, уредът е опасен за употреба и се бракува незабавно.",
-    categories: ["technical", "normative"],
-  },
-];
-
-const filters: { label: string; value: FaqCategory }[] = [
-  { label: "Всички", value: "all" },
-  { label: "Технически", value: "technical" },
-  { label: "Нормативни", value: "normative" },
-  { label: "Документация", value: "docs" },
-];
-
 const FAQSection = () => {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState<FaqCategory>("all");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const filtered =
-    activeFilter === "all"
-      ? faqData
-      : faqData.filter((f) => f.categories.includes(activeFilter));
+  const filters: { label: string; value: FaqCategory }[] = [
+    { label: t("faq.filters.all"), value: "all" },
+    { label: t("faq.filters.technical"), value: "technical" },
+    { label: t("faq.filters.normative"), value: "normative" },
+    { label: t("faq.filters.docs"), value: "docs" },
+  ];
+
+  // Въпросите и отговорите идват от JSON (ключовете са във файловете за превод)
+  const faqItems = [
+    { questionKey: "faq.q1", answerKey: "faq.a1", categories: ["normative", "technical"] },
+    { questionKey: "faq.q2", answerKey: "faq.a2", categories: ["technical"] },
+    { questionKey: "faq.q3", answerKey: "faq.a3", categories: ["technical"] },
+    { questionKey: "faq.q4", answerKey: "faq.a4", categories: ["docs", "normative"] },
+    { questionKey: "faq.q5", answerKey: "faq.a5", categories: ["technical", "normative"] },
+  ];
+
+  const filtered = activeFilter === "all"
+    ? faqItems
+    : faqItems.filter(item => item.categories.includes(activeFilter));
 
   return (
     <section id="faq" className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-extrabold mb-4 italic uppercase tracking-tighter text-foreground">
-            ЕКСПЕРТНИ <span className="text-primary">ОТГОВОРИ</span>
+            {t("faq.title")} <span className="text-primary"></span>
           </h2>
           <div className="w-24 h-1.5 bg-primary mx-auto rounded-full mb-6" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Важна информация относно нормативната уредба и техническата поддръжка
+            {t("faq.description")}
           </p>
         </div>
 
@@ -74,10 +47,7 @@ const FAQSection = () => {
           {filters.map((f) => (
             <button
               key={f.value}
-              onClick={() => {
-                setActiveFilter(f.value);
-                setOpenIndex(null);
-              }}
+              onClick={() => { setActiveFilter(f.value); setOpenIndex(null); }}
               className={`px-4 sm:px-6 py-2 rounded-full font-semibold text-sm transition-all ${
                 activeFilter === f.value
                   ? "bg-primary text-primary-foreground shadow-md"
@@ -94,7 +64,7 @@ const FAQSection = () => {
             const isOpen = openIndex === i;
             return (
               <div
-                key={item.question}
+                key={item.questionKey}
                 className="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
                 <button
@@ -102,13 +72,11 @@ const FAQSection = () => {
                   className="flex items-center justify-between w-full p-5 text-left font-semibold text-foreground hover:bg-muted/30 transition-colors"
                 >
                   <span className="text-base md:text-lg pr-4 break-words">
-                    {item.question}
+                    {t(item.questionKey)}
                   </span>
-                  <ChevronDown
-                    className={`h-5 w-5 text-primary shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                  />
+                  <ChevronDown className={`h-5 w-5 text-primary shrink-0 transition-transform duration-300 ${
+                    isOpen ? "rotate-180" : ""
+                  }`} />
                 </button>
                 <AnimatePresence>
                   {isOpen && (
@@ -120,7 +88,7 @@ const FAQSection = () => {
                       className="overflow-hidden"
                     >
                       <div className="p-5 pt-0 text-muted-foreground leading-relaxed border-t border-border">
-                        {item.answer}
+                        {t(item.answerKey)}
                       </div>
                     </motion.div>
                   )}

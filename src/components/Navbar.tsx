@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Menu, X, Flame } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCalculatorLock } from "@/context/CalculatorLockContext";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const navLinks = [
-  { href: "#home", label: "Начало" },
-  { href: "#about", label: "За нас" },
-  { href: "#services", label: "Услуги" },
-  { href: "#products", label: "Продукти" },
-  { href: "#faq", label: "ЧЗВ" },
+  { href: "#home", labelKey: "nav.home" },
+  { href: "#about", labelKey: "nav.about" },
+  { href: "#services", labelKey: "nav.services" },
+  { href: "#products", labelKey: "nav.products" },
+  { href: "#faq", labelKey: "nav.faq" },
 ];
 
 const Navbar = () => {
@@ -17,6 +19,7 @@ const Navbar = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { unlock } = useCalculatorLock();
+  const { t } = useTranslation();
 
   const handleDoubleClickFlame = () => {
     setShowPasswordModal(true);
@@ -46,27 +49,32 @@ const Navbar = () => {
               </span>
             </a>
 
-            {/* Desktop меню */}
-            <div className="hidden md:flex items-center gap-8 font-semibold text-foreground/80">
+            {/* Desktop меню – всички елементи на един ред */}
+            <div className="hidden md:flex items-center gap-1 lg:gap-2 xl:gap-3 2xl:gap-4 font-semibold text-foreground/80 flex-nowrap">
               {navLinks.map((l) => (
-                <a key={l.href} href={l.href} className="hover:text-primary transition-colors">
-                  {l.label}
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="hover:text-primary transition-colors whitespace-nowrap text-[11px] lg:text-xs xl:text-sm 2xl:text-base px-1"
+                >
+                  {t(l.labelKey)}
                 </a>
               ))}
               <a
                 href="https://www.google.com/maps/search/ВАТО+Пожарна+Безопасност+Варна"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors whitespace-nowrap text-[11px] lg:text-xs xl:text-sm 2xl:text-base px-1"
               >
-                Посетете ни
+                {t("nav.visit")}
               </a>
               <a
                 href="#contact"
-                className="border-l border-border pl-8 text-primary font-bold uppercase hover:text-primary/80 transition-colors"
+                className="border-l border-border pl-1 lg:pl-2 xl:pl-3 text-primary font-bold uppercase hover:text-primary/80 transition-colors whitespace-nowrap text-[11px] lg:text-xs xl:text-sm 2xl:text-base"
               >
-                Контакт
+                {t("nav.contact")}
               </a>
+              <LanguageSwitcher />
             </div>
 
             {/* Mobile toggle */}
@@ -96,7 +104,7 @@ const Navbar = () => {
                     onClick={() => setMobileOpen(false)}
                     className="block px-3 py-2 rounded-md font-medium text-foreground hover:text-primary hover:bg-muted transition-colors"
                   >
-                    {l.label}
+                    {t(l.labelKey)}
                   </a>
                 ))}
                 <a
@@ -106,15 +114,18 @@ const Navbar = () => {
                   onClick={() => setMobileOpen(false)}
                   className="block px-3 py-2 rounded-md font-medium text-foreground hover:text-primary hover:bg-muted transition-colors"
                 >
-                  Посетете ни
+                  {t("nav.visit")}
                 </a>
                 <a
                   href="#contact"
                   onClick={() => setMobileOpen(false)}
                   className="block px-3 py-2 rounded-md font-bold text-primary hover:bg-primary/5 transition-colors"
                 >
-                  Контакт
+                  {t("nav.contact")}
                 </a>
+                <div className="pt-2 mt-2 border-t border-border">
+                  <LanguageSwitcher />
+                </div>
               </div>
             </motion.div>
           )}

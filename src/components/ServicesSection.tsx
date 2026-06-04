@@ -1,92 +1,97 @@
 import { motion } from "framer-motion";
 import { Wrench, ClipboardList, Flame, CheckCircle, Search, CalendarCheck, GraduationCap, Scale } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const services = [
   {
     icon: Wrench,
-    title: "Техническо обслужване",
-    desc: "Годишна проверка, измерване на налягането и заверка със стикер на носими и возими пожарогасители.",
-    checks: ["Проверка на затворен механизъм", "Проверка на гасително вещество"],
+    titleKey: "services.techService",
+    descKey: "services.techServiceDesc",
+    checks: ["services.techCheck1", "services.techCheck2"],
   },
   {
     icon: ClipboardList,
-    title: "Проектиране и Документация",
-    desc: "Изготвяне на досиета по пожарна безопасност, схеми за евакуация и инструкции за пожарна безопасност.",
-    checks: ["Схеми за евакуация", "Журнали и заповеди"],
+    titleKey: "services.projects",
+    descKey: "services.projectsDesc",
+    checks: ["services.projectsCheck1", "services.projectsCheck2"],
   },
   {
     icon: Flame,
-    title: "Активна защита",
-    desc: "Монтаж и поддръжка на пожароизвестителни системи, пожарни хидранти и противопожарни врати.",
-    checks: ["Тестване на датчици", "Проверка на кранове"],
+    titleKey: "services.activeProtection",
+    descKey: "services.activeProtectionDesc",
+    checks: ["services.activeCheck1", "services.activeCheck2"],
   },
   {
     icon: Search,
-    title: "Противопожарно обследване",
-    desc: "Професионални инспекции и одити на обекти за установяване на съответствие с нормативната уредба.",
-    checks: ["Оценка на риска", "Протокол с препоръки"],
+    titleKey: "services.inspection",
+    descKey: "services.inspectionDesc",
+    checks: ["services.inspectionCheck1", "services.inspectionCheck2"],
   },
   {
     icon: CalendarCheck,
-    title: "Абонаментна поддръжка",
-    desc: "Месечни и годишни абонаменти за цялостна поддръжка на пожарогасително и пожароизвестително оборудване.",
-    checks: ["Планирани посещения", "Приоритетно обслужване"],
+    titleKey: "services.subscription",
+    descKey: "services.subscriptionDesc",
+    checks: ["services.subscriptionCheck1", "services.subscriptionCheck2"],
   },
   {
     icon: GraduationCap,
-    title: "Обучение на персонал",
-    desc: "Провеждане на обучения и инструктажи по пожарна безопасност за служители на фирми и организации.",
-    checks: ["Практически упражнения", "Теоретични инструктажи"],
+    titleKey: "services.training",
+    descKey: "services.trainingDesc",
+    checks: ["services.trainingCheck1", "services.trainingCheck2"],
   },
   {
     icon: Scale,
-    title: "Консултации пред РСПБЗН",
-    desc: "Професионални консултации относно изискванията на органите по пожарна безопасност и защита на населението.",
-    checks: ["Подготовка на документи", "Разясняване на нормативи"],
+    titleKey: "services.consultations",
+    descKey: "services.consultationsDesc",
+    checks: ["services.consultationsCheck1", "services.consultationsCheck2"],
   },
 ];
 
-const ServicesSection = () => (
-  <section id="services" className="py-16 md:py-24 bg-background overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 italic uppercase tracking-tighter text-foreground">
-            Нашите <span className="text-primary">Услуги</span>
-          </h2>
-          <div className="w-24 h-1.5 bg-primary mx-auto rounded-full mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Пълен спектър от услуги за пожарна безопасност — от инспекция и обслужване до обучение и представителство
-          </p>
-        </div>
+const ServicesSection = () => {
+  const { t } = useTranslation();
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {services.map((s, i) => (
-            <div key={s.title} className="bg-card border border-border rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                <s.icon className="h-6 w-6 text-primary" />
+  return (
+    <section id="services" className="py-16 md:py-24 bg-background overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4 italic uppercase tracking-tighter text-foreground">
+              {t("services.title")} <span className="text-primary"></span>
+            </h2>
+            <div className="w-24 h-1.5 bg-primary mx-auto rounded-full mb-6" />
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              {t("services.subtitle")}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {services.map((s, i) => (
+              <div key={s.titleKey} className="bg-card border border-border rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <s.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-foreground">{t(s.titleKey)}</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4 text-sm">{t(s.descKey)}</p>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  {s.checks.map((c) => (
+                    <li key={c} className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-success shrink-0" />
+                      <span className="break-words">{t(c)}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-foreground">{s.title}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4 text-sm">{s.desc}</p>
-              <ul className="text-sm text-muted-foreground space-y-2">
-                {s.checks.map((c) => (
-                  <li key={c} className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-success shrink-0" />
-                    <span className="break-words">{c}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-    </div>
-  </section>
-);
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 export default ServicesSection;
