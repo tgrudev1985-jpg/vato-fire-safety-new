@@ -31,7 +31,7 @@ const Navbar = () => {
       setPassword("");
       setError("");
     } else {
-      setError("Невалидна парола");
+      setError(t("calculator.unlockError", "Невалидна парола"));
     }
   };
 
@@ -49,14 +49,10 @@ const Navbar = () => {
               </span>
             </a>
 
-            {/* Desktop меню – всички елементи на един ред */}
+            {/* Desktop меню */}
             <div className="hidden md:flex items-center gap-1 lg:gap-2 xl:gap-3 2xl:gap-4 font-semibold text-foreground/80 flex-nowrap">
               {navLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  className="hover:text-primary transition-colors whitespace-nowrap text-[11px] lg:text-xs xl:text-sm 2xl:text-base px-1"
-                >
+                <a key={l.href} href={l.href} className="hover:text-primary transition-colors whitespace-nowrap text-[11px] lg:text-xs xl:text-sm 2xl:text-base px-1">
                   {t(l.labelKey)}
                 </a>
               ))}
@@ -146,13 +142,13 @@ const Navbar = () => {
             >
               <X className="h-5 w-5" />
             </button>
-            <h3 className="text-xl font-bold mb-4">Отключване на калкулатора</h3>
-            <p className="text-sm text-muted-foreground mb-4">Въведете парола за достъп до калкулатора.</p>
+            <h3 className="text-xl font-bold mb-4">{t("calculator.unlockTitle", "Отключване на калкулатора")}</h3>
+            <p className="text-sm text-muted-foreground mb-4">{t("calculator.unlockDescription", "Въведете парола за достъп до калкулатора.")}</p>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Парола"
+              placeholder={t("calculator.passwordPlaceholder", "Парола")}
               className="w-full p-3 rounded-xl border border-border bg-background mb-3"
             />
             {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
@@ -160,7 +156,7 @@ const Navbar = () => {
               onClick={handleUnlock}
               className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:bg-primary/90"
             >
-              Отключи
+              {t("calculator.unlockButton", "Отключи")}
             </button>
           </div>
         </div>
